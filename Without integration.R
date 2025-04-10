@@ -327,3 +327,49 @@ dev.off()
 
 srobj_9=subset(srobj_9,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
 ################################################################################ End +CPI colitis C3 #9
+
+
+
+################################################################################ Start Merge
+merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, srobj_5, 
+                                      srobj_6, srobj_7, srobj_8, srobj_9), 
+                    add.cell.ids = c("Normal CT1", "Normal CT2", "Normal CT3", "+CPI no colitis NC1", "+CPI no colitis NC2", "+CPI no colitis NC3", "+CPI colitis C1", "+CPI colitis C2", "+CPI colitis C3"))
+################################################################################ End Merge
+
+
+
+
+################################################################################ Start UMAP
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Merged_obj Data")
+
+
+merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
+
+
+merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
+merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
+
+
+merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
+
+
+merged_obj = RunPCA(merged_obj)
+
+
+png(filename = "ElbowPlot.png",width = 10000,height=4000,units ="px",res = 600)
+ElbowPlot(merged_obj,ndims = 50)
+dev.off()
+# PC = 20
+
+
+merged_obj=FindNeighbors(merged_obj,dims = 1:20)
+merged_obj=FindClusters(merged_obj,resolution = 0.5)
+
+
+merged_obj=RunUMAP(merged_obj,dims = 1:20)
+png(filename = "UMAP.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj,reduction = "umap")
+dev.off()
+################################################################################ End UMAP
+
+
