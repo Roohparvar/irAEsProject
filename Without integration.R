@@ -368,8 +368,16 @@ merged_obj=FindClusters(merged_obj,resolution = 0.5)
 
 merged_obj=RunUMAP(merged_obj,dims = 1:20)
 png(filename = "UMAP.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj,reduction = "umap")
+DimPlot(merged_obj,reduction = "umap",label = TRUE)
 dev.off()
 ################################################################################ End UMAP
+
+
+
+################################################################################ Start Find Marker
+merged_obj <- JoinLayers(merged_obj)
+markers = FindAllMarkers(merged_obj,min.pct = 0.33 , logfc.threshold = 0.25)
+markers = markers[which(markers$avg_log2FC>=1),]
+################################################################################ End Find Marker
 
 
