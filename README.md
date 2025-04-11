@@ -26,5 +26,6 @@ To download the dataset, visit:\
 [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469)
 
 ## Initial Analysis and Upcoming Steps
-
+In the initial phase of this project, we performed a simple analysis on the raw data without integrating the datasets. We also generated a UMAP visualization to explore the data distribution.
+In the next step, we will integrate the datasets and then generate a new UMAP to compare the results post-integration. This will help us gain deeper insights into the data.
 Please note that this project is ongoing, and updates are made regularly with new stages being added.
