@@ -372,3 +372,14 @@ DimPlot(merged_obj,reduction = "umap",label = TRUE)
 dev.off()
 ################################################################################ End integration and UMAP
 
+merged_obj1 = merged_obj
+
+################################################################################ Start Find Marker
+merged_obj1 <- JoinLayers(merged_obj1)
+markers = FindAllMarkers(merged_obj1,min.pct = 0.1 , logfc.threshold = 0.1)
+
+library(dplyr)
+top_markers <- markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
+################################################################################ End Find Marker
+
+
