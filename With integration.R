@@ -376,10 +376,18 @@ merged_obj1 = merged_obj
 
 ################################################################################ Start Find Marker
 merged_obj1 <- JoinLayers(merged_obj1)
-markers = FindAllMarkers(merged_obj1,min.pct = 0.1 , logfc.threshold = 0.1)
-
-library(dplyr)
-top_markers <- markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
+markers = FindAllMarkers(merged_obj1,min.pct = 0.08 , logfc.threshold = 0.08)
+write.csv(markers,file="markers.csv")
 ################################################################################ End Find Marker
+
+# Cluster 0 => CD4 Th17
+# Cluster 1 => CD4 TREG
+# Cluster 2 => CD8 cytotoxic
+# Cluster 3 => Cell cycle 
+# Cluster 4 => NK | Gama delta
+# Cluster 5 => Naive T cell
+# Cluster 6 => CD8 cytotoxic
+# Cluster 7 => Monocytes
+# Cluster 8 => Plasma cells
 
 
