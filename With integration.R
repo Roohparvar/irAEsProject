@@ -377,6 +377,7 @@ merged_obj1 = merged_obj
 ################################################################################ Start Find Marker
 merged_obj1 <- JoinLayers(merged_obj1)
 markers = FindAllMarkers(merged_obj1,min.pct = 0.08 , logfc.threshold = 0.08)
+marker22 = FindMarkers(merged_obj1,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "6")
 write.csv(markers,file="markers.csv")
 ################################################################################ End Find Marker
 
@@ -390,4 +391,13 @@ write.csv(markers,file="markers.csv")
 # Cluster 7 => Monocytes
 # Cluster 8 => Plasma cells
 
+DotPlot(merged_obj1, features = c("CD4","CD8A","CD8B","GNLY", "GZMA", "GZMB", "GZMH",
+                                  "GZMK", "NKG7", "PRF1","SELL",
+                                  "CCR7", "LTB",
+                                  "CTLA4", "FOXP3", "TNFRSF4",
+                                  "TNFRSF18", "TIGIT", "IL2RA","ICOS",
+                                  "IFNG", "STAT1", "STAT4", "TBX21",
+                                  "GATA3", "STAT5", "STAT6","IL7R")) + 
+coord_flip()
 
+counts_matrixxx <- merged_obj1[["RNA"]]$data
