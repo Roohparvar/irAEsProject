@@ -61,7 +61,7 @@ Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD
 ### 🧪 CD4 Subclusters
 
 #### • Naïve CD4 T Cells
-- **Upregulated genes:** `SELL`, ``  
+- **Upregulated genes:** `SELL`, `CCR7`  
 - **Downregulated genes:** `IL7R` (specifically), and all other markers not related to this subtype.
 
 #### • Regulatory T Cells (Treg)
