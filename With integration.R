@@ -903,10 +903,25 @@ DimPlot(merged_obj1,reduction = "umap",label = TRUE)
 dev.off()
 
 
+# UMAP of All Samples Colored by Clusters
+# UMAP projection of all integrated samples with cells colored by their Seurat clusters. Labels indicate cluster IDs.
 desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP_Clusters_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+# UMAP Colored by Sample Identity
+# UMAP projection of all cells colored by their original sample ID (orig.ident).
+png(filename = "UMAP_BySampleID.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, reduction = "umap", group.by = "orig.ident")
+dev.off()
+
+# UMAP Split by Sample Identity
+# UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
+png(filename = "UMAP_SplitBySample.png",width = 25000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, reduction = "umap", split.by = "orig.ident")
 dev.off()
 ################################################################################ End integration and UMAP
 
