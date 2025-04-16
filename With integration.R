@@ -920,11 +920,11 @@ write.csv(markers,file="markers.csv")
 ################################################################################ End Find Marker
 
 png(filename = "DotPlot.png",width = 10000,height=4000,units ="px",res = 600 )
-DotPlot(merged_obj2, features = c("CD4","CD40LG","SELL","CCR7","CTLA4","FOXP3","TNFRSF4","TNFRSF18",
-                                  "TIGIT","IL2RA","ICOS","IFNG","STAT1","STAT4","TBX21","GATA3","STAT5",
-                                  "STAT6","RORA","LTB","CD4A","CD4B","GNLY","GZMA","GZMB","GZMH","GZMK",
-                                  "PRF1","CD8A","CD8B","NKG7","IL7R")) + 
+DotPlot(merged_obj2, features = c("SELL","CCR7","IL2RA","IFNG","STAT4","TBX21","STAT5",
+                                  "STAT6","CD4A","CD4B","GZMH","GZMK","GNLY","GZMB","GZMA",
+                                  "PRF1","NKG7","CD8B","CD8A","TIGIT","TNFRSF18",
+                                  "FOXP3","TNFRSF4","CTLA4","STAT1","ICOS","CD4","GATA3","RORA","CD40LG","LTB","IL7R")) + 
 coord_flip()
 dev.off()
 
-counts_matrixxx <- merged_obj2[["RNA"]]$data
+#counts_matrixxx <- merged_obj2[["RNA"]]$data
