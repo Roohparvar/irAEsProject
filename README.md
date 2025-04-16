@@ -86,11 +86,11 @@ Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD
 
 #### • Effector Memory CD4 T Cells (CD4EM)
 - **Upregulated genes:** `IL7R`, `LTB`, `CD40LG`, `CD4`  
-- **Downregulated genes:** All other markers not related to this subtype.
+- **Downregulated genes:** `Sell, `CCR7All` (specifically), and other markers not related to this subtype.
 
 #### • Central Memory CD4 T Cells (CD4CM)
 - **Upregulated genes:** `IL7R`, `LTB`, `CD40LG`, `CD4`, `CCR7`  
-- **Downregulated genes:** All other markers not related to this subtype.
+- **Downregulated genes:** `Sell` (specifically), and All other markers not related to this subtype.
 
 #### • Cytotoxic CD4 T Cells
 - **Upregulated genes:** `CD4`, `CD4A`, `CD4B`, `GNLY`, `GZMA`, `GZMB`, `GZMH`, `GZMK`, `IFNG`, `PRF1`  
