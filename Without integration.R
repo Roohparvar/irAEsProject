@@ -35,7 +35,7 @@ ggplot(data=srobj_1@meta.data, aes(x=srobj_1$nFeature_RNA, y=srobj_1$MTpercent))
   geom_vline(xintercept=600, color='red') +
   geom_vline(xintercept=5000, color='red') 
 dev.off()
-  
+
 
 srobj_1=subset(srobj_1,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<20 & nCount_RNA>1000 & nCount_RNA<25000)
 ################################################################################ End Normal Control CT1 #1
@@ -75,7 +75,7 @@ dev.off()
 
 
 srobj_2=subset(srobj_2,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<20 & nCount_RNA>1500 & nCount_RNA<21000)
-################################################################################ End Normal Control CT1 #2
+################################################################################ End Normal Control CT2 #2
 
 
 
@@ -110,21 +110,197 @@ ggplot(data=srobj_3@meta.data, aes(x=srobj_3$nFeature_RNA, y=srobj_3$MTpercent))
 dev.off()
 
 
-srobj_3=subset(srobj_3,subset=nFeature_RNA>800 & nFeature_RNA<5000 & MTpercent<20 & nCount_RNA> 1800 & nCount_RNA<20000)
+srobj_3=subset(srobj_3,subset=nFeature_RNA>800 & nFeature_RNA<5000 & MTpercent<20 & nCount_RNA>1800 & nCount_RNA<20000)
 ################################################################################ End Normal Control CT3 #3
 
 
-################################################################################ Start +CPI no colitis NC1 #4
-setwd("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+
+################################################################################ Start Normal Control CT4 #4
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
 
 
-srobj_4=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC1",min.cells=3,min.features=200)
+srobj_4=CreateSeuratObject(CountMatrix,project ="Normal Control CT4",min.cells=3,min.features=200)
 srobj_4[["MTpercent"]]=PercentageFeatureSet(srobj_4,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_4@meta.data, aes(x = srobj_4$nCount_RNA, y = srobj_4$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1800, color = 'red') +
+  geom_vline(xintercept = 18000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_4@meta.data, aes(x=srobj_4$nFeature_RNA, y=srobj_4$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=18, color='red') + 
+  geom_vline(xintercept=900, color='red') +
+  geom_vline(xintercept=4500, color='red') 
+dev.off()
+
+
+srobj_4=subset(srobj_4,subset=nFeature_RNA>900 & nFeature_RNA<4500 & MTpercent<18 & nCount_RNA>1800 & nCount_RNA<18000)
+################################################################################ End Normal Control CT4 #4
+
+
+################################################################################ Start Normal Control CT5 #5
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
+
+
+srobj_5=CreateSeuratObject(CountMatrix,project ="Normal Control CT5",min.cells=3,min.features=200)
+srobj_5[["MTpercent"]]=PercentageFeatureSet(srobj_5,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_5@meta.data, aes(x = srobj_5$nCount_RNA, y = srobj_5$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 25, color = 'red') + 
+  geom_vline(xintercept = 1800, color = 'red') +
+  geom_vline(xintercept = 25000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_5@meta.data, aes(x=srobj_5$nFeature_RNA, y=srobj_5$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=25, color='red') + 
+  geom_vline(xintercept=900, color='red') +
+  geom_vline(xintercept=4800, color='red') 
+dev.off()
+
+
+srobj_5=subset(srobj_5,subset=nFeature_RNA>900 & nFeature_RNA<4800 & MTpercent<25 & nCount_RNA>1800 & nCount_RNA<25000)
+################################################################################ End Normal Control CT5 #5
+
+################################################################################ Start Normal Control CT6 #6
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
+
+
+srobj_6=CreateSeuratObject(CountMatrix,project ="Normal Control CT6",min.cells=3,min.features=200)
+srobj_6[["MTpercent"]]=PercentageFeatureSet(srobj_6,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_6@meta.data, aes(x = srobj_6$nCount_RNA, y = srobj_6$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 23, color = 'red') + 
+  geom_vline(xintercept = 1500, color = 'red') +
+  geom_vline(xintercept = 18000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_6@meta.data, aes(x=srobj_6$nFeature_RNA, y=srobj_6$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=23, color='red') + 
+  geom_vline(xintercept=700, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+srobj_6=subset(srobj_6,subset=nFeature_RNA>700 & nFeature_RNA<4000 & MTpercent<23 & nCount_RNA>1500 & nCount_RNA<18000)
+################################################################################ End Normal Control CT6 #6
+
+################################################################################ Start Normal Control CT7 #7
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
+
+
+srobj_7=CreateSeuratObject(CountMatrix,project ="Normal Control CT7",min.cells=3,min.features=200)
+srobj_7[["MTpercent"]]=PercentageFeatureSet(srobj_7,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_7@meta.data, aes(x = srobj_7$nCount_RNA, y = srobj_7$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 21, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 19000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_7@meta.data, aes(x=srobj_7$nFeature_RNA, y=srobj_7$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=21, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+srobj_7=subset(srobj_7,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<21 & nCount_RNA>1400 & nCount_RNA<19000)
+################################################################################ End Normal Control CT7 #7
+
+
+
+################################################################################ Start Normal Control CT8 #8
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
+
+
+srobj_8=CreateSeuratObject(CountMatrix,project ="Normal Control CT8",min.cells=3,min.features=200)
+srobj_8[["MTpercent"]]=PercentageFeatureSet(srobj_8,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_8@meta.data, aes(x = srobj_8$nCount_RNA, y = srobj_8$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 17000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_8@meta.data, aes(x=srobj_8$nFeature_RNA, y=srobj_8$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+srobj_8=subset(srobj_8,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<17000)
+################################################################################ End Normal Control CT8 #8
+
+
+################################################################################ Start +CPI no colitis NC1 #9
+setwd("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+
+
+srobj_9=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC1",min.cells=3,min.features=200)
+srobj_9[["MTpercent"]]=PercentageFeatureSet(srobj_9,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_9@meta.data, aes(x = srobj_9$nCount_RNA, y = srobj_9$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -135,7 +311,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_4@meta.data, aes(x=srobj_4$nFeature_RNA, y=srobj_4$MTpercent)) +
+ggplot(data=srobj_9@meta.data, aes(x=srobj_9$nFeature_RNA, y=srobj_9$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -145,22 +321,23 @@ ggplot(data=srobj_4@meta.data, aes(x=srobj_4$nFeature_RNA, y=srobj_4$MTpercent))
 dev.off()
 
 
-srobj_4=subset(srobj_4,subset=nFeature_RNA>900 & nFeature_RNA<6000 & MTpercent<15 & nCount_RNA>2000 & nCount_RNA<21000)
-################################################################################ End +CPI no colitis NC1 #4
+srobj_9=subset(srobj_9,subset=nFeature_RNA>900 & nFeature_RNA<6000 & MTpercent<15 & nCount_RNA>2000 & nCount_RNA<21000)
+
+################################################################################ End +CPI no colitis NC1 #9
 
 
 
-################################################################################ Start +CPI no colitis NC2 #5
+################################################################################ Start +CPI no colitis NC2 #10
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 
 
-srobj_5=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC2",min.cells=3,min.features=200)
-srobj_5[["MTpercent"]]=PercentageFeatureSet(srobj_5,pattern = "^MT-")
+srobj_10=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC2",min.cells=3,min.features=200)
+srobj_10[["MTpercent"]]=PercentageFeatureSet(srobj_10,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data = srobj_5@meta.data, aes(x = srobj_5$nCount_RNA, y = srobj_5$MTpercent)) +
+ggplot(data = srobj_10@meta.data, aes(x = srobj_10$nCount_RNA, y = srobj_10$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -171,7 +348,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_5@meta.data, aes(x=srobj_5$nFeature_RNA, y=srobj_5$MTpercent)) +
+ggplot(data=srobj_10@meta.data, aes(x=srobj_10$nFeature_RNA, y=srobj_10$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -181,22 +358,23 @@ ggplot(data=srobj_5@meta.data, aes(x=srobj_5$nFeature_RNA, y=srobj_5$MTpercent))
 dev.off()
 
 
-srobj_5=subset(srobj_5,subset=nFeature_RNA>800 & nFeature_RNA<4500 & MTpercent<19 & nCount_RNA>1600 & nCount_RNA<18000)
-################################################################################ End +CPI no colitis NC2 #5
+srobj_10=subset(srobj_10,subset=nFeature_RNA>800 & nFeature_RNA<4500 & MTpercent<19 & nCount_RNA>1600 & nCount_RNA<18000)
+
+################################################################################ End +CPI no colitis NC2 #10
 
 
 
-################################################################################ Start +CPI no colitis NC3 #6
+################################################################################ Start +CPI no colitis NC3 #11
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
 
 
-srobj_6=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC3",min.cells=3,min.features=200)
-srobj_6[["MTpercent"]]=PercentageFeatureSet(srobj_6,pattern = "^MT-")
+srobj_11=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC3",min.cells=3,min.features=200)
+srobj_11[["MTpercent"]]=PercentageFeatureSet(srobj_11,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data = srobj_6@meta.data, aes(x = srobj_6$nCount_RNA, y = srobj_6$MTpercent)) +
+ggplot(data = srobj_11@meta.data, aes(x = srobj_11$nCount_RNA, y = srobj_11$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -207,7 +385,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_6@meta.data, aes(x=srobj_6$nFeature_RNA, y=srobj_6$MTpercent)) +
+ggplot(data=srobj_11@meta.data, aes(x=srobj_11$nFeature_RNA, y=srobj_11$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -217,22 +395,133 @@ ggplot(data=srobj_6@meta.data, aes(x=srobj_6$nFeature_RNA, y=srobj_6$MTpercent))
 dev.off()
 
 
-srobj_6=subset(srobj_6,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<18000)
-################################################################################ End +CPI no colitis NC3 #6
+srobj_11=subset(srobj_11,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<18000)
+
+################################################################################ End +CPI no colitis NC3 #11
+
+
+################################################################################ Start +CPI no colitis NC4 #12
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
+
+
+srobj_12=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC4",min.cells=3,min.features=200)
+srobj_12[["MTpercent"]]=PercentageFeatureSet(srobj_12,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_12@meta.data, aes(x = srobj_12$nCount_RNA, y = srobj_12$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 18000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_12@meta.data, aes(x=srobj_12$nFeature_RNA, y=srobj_12$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=4200, color='red') 
+dev.off()
+
+
+srobj_12=subset(srobj_12,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<18000)
+
+################################################################################ End +CPI no colitis NC4 #12
 
 
 
-################################################################################ Start +CPI colitis C1 #7
+################################################################################ Start +CPI no colitis NC5 #13
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
+
+
+srobj_13=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC5",min.cells=3,min.features=200)
+srobj_13[["MTpercent"]]=PercentageFeatureSet(srobj_13,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_13@meta.data, aes(x = srobj_13$nCount_RNA, y = srobj_13$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 23, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 22000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_13@meta.data, aes(x=srobj_13$nFeature_RNA, y=srobj_13$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=23, color='red') + 
+  geom_vline(xintercept=900, color='red') +
+  geom_vline(xintercept=5000, color='red') 
+dev.off()
+
+
+srobj_13=subset(srobj_13,subset=nFeature_RNA>900 & nFeature_RNA<5000 & MTpercent<23 & nCount_RNA>1600 & nCount_RNA<22000)
+################################################################################ End +CPI no colitis NC5 #13
+
+
+
+
+################################################################################ Start +CPI no colitis NC6 #14
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
+
+
+srobj_14=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC6",min.cells=3,min.features=200)
+srobj_14[["MTpercent"]]=PercentageFeatureSet(srobj_14,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_14@meta.data, aes(x = srobj_14$nCount_RNA, y = srobj_14$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 21, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 21000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_14@meta.data, aes(x=srobj_14$nFeature_RNA, y=srobj_14$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=21, color='red') + 
+  geom_vline(xintercept=600, color='red') +
+  geom_vline(xintercept=5000, color='red') 
+dev.off()
+
+
+srobj_14=subset(srobj_14,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<21 & nCount_RNA>1400 & nCount_RNA<21000)
+################################################################################ End +CPI no colitis NC6 #14
+
+
+
+
+################################################################################ Start +CPI colitis C1 #15
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
 
 
-srobj_7=CreateSeuratObject(CountMatrix,project ="+CPI colitis C1",min.cells=3,min.features=200)
-srobj_7[["MTpercent"]]=PercentageFeatureSet(srobj_7,pattern = "^MT-")
+srobj_15=CreateSeuratObject(CountMatrix,project ="+CPI colitis C1",min.cells=3,min.features=200)
+srobj_15[["MTpercent"]]=PercentageFeatureSet(srobj_15,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data = srobj_7@meta.data, aes(x = srobj_7$nCount_RNA, y = srobj_7$MTpercent)) +
+ggplot(data = srobj_15@meta.data, aes(x = srobj_15$nCount_RNA, y = srobj_15$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -243,7 +532,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_7@meta.data, aes(x=srobj_7$nFeature_RNA, y=srobj_7$MTpercent)) +
+ggplot(data=srobj_15@meta.data, aes(x=srobj_15$nFeature_RNA, y=srobj_15$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -253,22 +542,23 @@ ggplot(data=srobj_7@meta.data, aes(x=srobj_7$nFeature_RNA, y=srobj_7$MTpercent))
 dev.off()
 
 
-srobj_7=subset(srobj_7,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<25 & nCount_RNA>1600 & nCount_RNA<30000)
-################################################################################ End +CPI colitis C1 #7
+srobj_15=subset(srobj_15,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<25 & nCount_RNA>1600 & nCount_RNA<30000)
+
+################################################################################ End +CPI colitis C1 #15
 
 
 
-################################################################################ Start +CPI colitis C2 #8
+################################################################################ Start +CPI colitis C2 #16
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
 
 
-srobj_8=CreateSeuratObject(CountMatrix,project ="+CPI colitis C2",min.cells=3,min.features=200)
-srobj_8[["MTpercent"]]=PercentageFeatureSet(srobj_8,pattern = "^MT-")
+srobj_16=CreateSeuratObject(CountMatrix,project ="+CPI colitis C2",min.cells=3,min.features=200)
+srobj_16[["MTpercent"]]=PercentageFeatureSet(srobj_16,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data = srobj_8@meta.data, aes(x = srobj_8$nCount_RNA, y = srobj_8$MTpercent)) +
+ggplot(data = srobj_16@meta.data, aes(x = srobj_16$nCount_RNA, y = srobj_16$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -279,7 +569,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_8@meta.data, aes(x=srobj_8$nFeature_RNA, y=srobj_8$MTpercent)) +
+ggplot(data=srobj_16@meta.data, aes(x=srobj_16$nFeature_RNA, y=srobj_16$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -289,22 +579,23 @@ ggplot(data=srobj_8@meta.data, aes(x=srobj_8$nFeature_RNA, y=srobj_8$MTpercent))
 dev.off()
 
 
-srobj_8=subset(srobj_8,subset=nFeature_RNA>900 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<37000)
-################################################################################ End +CPI colitis C2 #8
+srobj_16=subset(srobj_16,subset=nFeature_RNA>900 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<37000)
+
+################################################################################ End +CPI colitis C2 #16
 
 
 
-################################################################################ Start +CPI colitis C3 #9
+################################################################################ Start +CPI colitis C3 #17
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
 
 
-srobj_9=CreateSeuratObject(CountMatrix,project ="+CPI colitis C3",min.cells=3,min.features=200)
-srobj_9[["MTpercent"]]=PercentageFeatureSet(srobj_9,pattern = "^MT-")
+srobj_17=CreateSeuratObject(CountMatrix,project ="+CPI colitis C3",min.cells=3,min.features=200)
+srobj_17[["MTpercent"]]=PercentageFeatureSet(srobj_17,pattern = "^MT-")
 
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data = srobj_9@meta.data, aes(x = srobj_9$nCount_RNA, y = srobj_9$MTpercent)) +
+ggplot(data = srobj_17@meta.data, aes(x = srobj_17$nCount_RNA, y = srobj_17$MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'perc. mito') +
   scale_x_log10() +
@@ -315,7 +606,7 @@ dev.off()
 
 
 png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
-ggplot(data=srobj_9@meta.data, aes(x=srobj_9$nFeature_RNA, y=srobj_9$MTpercent)) +
+ggplot(data=srobj_17@meta.data, aes(x=srobj_17$nFeature_RNA, y=srobj_17$MTpercent)) +
   geom_point(size=2, color = 'blue') +
   labs(x='nFeature_RNA', y='perc. mito') +
   scale_x_log10() +
@@ -325,15 +616,209 @@ ggplot(data=srobj_9@meta.data, aes(x=srobj_9$nFeature_RNA, y=srobj_9$MTpercent))
 dev.off()
 
 
-srobj_9=subset(srobj_9,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
-################################################################################ End +CPI colitis C3 #9
+srobj_17=subset(srobj_17,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
+
+################################################################################ End +CPI colitis C3 #17
+
+
+################################################################################ Start +CPI colitis C4 #18
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
+
+
+srobj_18=CreateSeuratObject(CountMatrix,project ="+CPI colitis C4",min.cells=3,min.features=200)
+srobj_18[["MTpercent"]]=PercentageFeatureSet(srobj_18,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_18@meta.data, aes(x = srobj_18$nCount_RNA, y = srobj_18$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 37000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_18@meta.data, aes(x=srobj_18$nFeature_RNA, y=srobj_18$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=6200, color='red') 
+dev.off()
+
+
+srobj_18=subset(srobj_18,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
+
+################################################################################ End +CPI colitis C4 #18
+
+
+
+################################################################################ Start +CPI colitis C5 #19
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
+
+
+srobj_19=CreateSeuratObject(CountMatrix,project ="+CPI colitis C5",min.cells=3,min.features=200)
+srobj_19[["MTpercent"]]=PercentageFeatureSet(srobj_19,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_19@meta.data, aes(x = srobj_19$nCount_RNA, y = srobj_19$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 17, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 37000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_19@meta.data, aes(x=srobj_19$nFeature_RNA, y=srobj_19$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=17, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=5600, color='red') 
+dev.off()
+
+
+srobj_19=subset(srobj_19,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent<17 & nCount_RNA>1400 & nCount_RNA<37000)
+
+################################################################################ End +CPI colitis C5 #19
+
+
+
+################################################################################ Start +CPI colitis C6 #20
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
+
+
+srobj_20=CreateSeuratObject(CountMatrix,project ="+CPI colitis C6",min.cells=3,min.features=200)
+srobj_20[["MTpercent"]]=PercentageFeatureSet(srobj_20,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_20@meta.data, aes(x = srobj_20$nCount_RNA, y = srobj_20$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 37000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_20@meta.data, aes(x=srobj_20$nFeature_RNA, y=srobj_20$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=5600, color='red') 
+dev.off()
+
+
+srobj_20=subset(srobj_20,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
+
+################################################################################ End +CPI colitis C6 #20
+
+
+
+
+################################################################################ Start +CPI colitis C7 #21
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
+
+
+srobj_21=CreateSeuratObject(CountMatrix,project ="+CPI colitis C7",min.cells=3,min.features=200)
+srobj_21[["MTpercent"]]=PercentageFeatureSet(srobj_21,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_21@meta.data, aes(x = srobj_21$nCount_RNA, y = srobj_21$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 43000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_21@meta.data, aes(x=srobj_21$nFeature_RNA, y=srobj_21$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=18, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=6500, color='red') 
+dev.off()
+
+
+srobj_21=subset(srobj_21,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent<18 & nCount_RNA>1600 & nCount_RNA<43000)
+
+################################################################################ End +CPI colitis C7 #21
+
+
+
+
+
+################################################################################ Start +CPI colitis C8 #22
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
+
+
+srobj_22=CreateSeuratObject(CountMatrix,project ="+CPI colitis C8",min.cells=3,min.features=200)
+srobj_22[["MTpercent"]]=PercentageFeatureSet(srobj_22,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj_22@meta.data, aes(x = srobj_22$nCount_RNA, y = srobj_22$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 25, color = 'red') + 
+  geom_vline(xintercept = 1100, color = 'red') +
+  geom_vline(xintercept = 47000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj_22@meta.data, aes(x=srobj_22$nFeature_RNA, y=srobj_22$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=25, color='red') + 
+  geom_vline(xintercept=800, color='red') +
+  geom_vline(xintercept=6500, color='red') 
+dev.off()
+
+
+srobj_22=subset(srobj_22,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent<25 & nCount_RNA>1100 & nCount_RNA<47000)
+
+################################################################################ End +CPI colitis C8 #22
+
 
 
 
 ################################################################################ Start Merge
-merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, srobj_5, 
-                                      srobj_6, srobj_7, srobj_8, srobj_9), 
-                    add.cell.ids = c("Normal CT1", "Normal CT2", "Normal CT3", "+CPI no colitis NC1", "+CPI no colitis NC2", "+CPI no colitis NC3", "+CPI colitis C1", "+CPI colitis C2", "+CPI colitis C3"))
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Merged_obj Data")
+merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, 
+                                      srobj_5, srobj_6, srobj_7, 
+                                      srobj_8, srobj_9,srobj_10, 
+                                      srobj_11, srobj_12,srobj_13,
+                                      srobj_14, srobj_15,srobj_16,
+                                      srobj_17, srobj_18,srobj_19,
+                                      srobj_20, srobj_21,srobj_22))
 ################################################################################ End Merge
 
 
@@ -376,6 +861,6 @@ merged_obj1 = merged_obj
 
 ################################################################################ Start Find Marker
 merged_obj1 <- JoinLayers(merged_obj1)
-markers = FindAllMarkers(merged_obj1,min.pct = 0.25 , logfc.threshold = 0.25)
-markers = markers[which(markers$avg_log2FC>=1),]
+markers = FindAllMarkers(merged_obj1,min.pct = 0.1 , logfc.threshold = 0.1)
+write.csv(markers,file="markers.csv")
 ################################################################################ End Find Marker
