@@ -43,6 +43,79 @@ The next stage includes **integration of datasets** using Seurat's integration w
 A new UMAP is generated to compare cluster behavior across the integrated datasets, enabling improved cross-sample analysis and interpretation.
 
 ---
+## 🧬 Annotation Guide
+
+**Annotation** is a critical phase that requires careful literature review and reading of relevant scientific articles. The guide below provides a helpful starting point, but **note**: this guide alone is not sufficient. A thorough literature review is essential to achieve high-quality annotations.
+
+---
+
+### 🔍 Identifying Major Cell Types
+
+- If a cluster shows expression of **"CD4"** and **"CD40LG"** markers, it represents the **CD4 cell type**.
+- If a cluster shows expression of **"CD8A"** and **"CD8B"** markers, it represents the **CD8 cell type**.
+
+Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD4 subclusters**, followed by **CD8 subclusters**.
+
+---
+
+### 🧪 CD4 Subclusters
+
+#### • Naïve CD4 T Cells
+- **Upregulated genes:** `SELL`, `CCR7`  
+- **Downregulated genes:** `IL7R` (specifically), and all other markers not related to this subtype.
+
+#### • Regulatory T Cells (Treg)
+- **Upregulated genes:** `CTLA4`, `FOXP3`, `TNFRSF4`, `TNFRSF18`, `TIGIT`, `IL2RA`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Follicular Helper T Cells (TFH)
+- **Upregulated genes:** `ICOS` 
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Th1 Cells
+- **Upregulated genes:** `IFNG`, `STAT1`, `STAT4`, `TBX21`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Th2 Cells
+- **Upregulated genes:** `GATA3`, `STAT5`, `STAT6`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Th17 Cells
+- **Upregulated genes:** `IL17A`, `RORA`
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Effector Memory CD4 T Cells (CD4EM)
+- **Upregulated genes:** `IL7R`, `LTB`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Central Memory CD4 T Cells (CD4CM)
+- **Upregulated genes:** `IL7R`, `LTB`, `CCR7`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Cytotoxic CD4 T Cells
+- **Upregulated genes:** `CD4A`, `CD4B`, `GNLY`, `GZMA`, `GZMB`, `GZMH`, `GZMK`, `IFNG`, `PRF1`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+---
+
+### 🧪 CD8 Subclusters
+
+#### • Naïve CD8 T Cells
+- **Upregulated genes:** `SELL`, `CCR7`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Cytotoxic CD8 T Cells
+- **Upregulated genes:** `GNLY`, `GZMA`, `GZMB`, `GZMH`, `GZMK`, `IFNG`, `NKG7`, `PRF1`  
+- **Downregulated genes:** All other markers not related to this subtype.
+
+#### • Effector Memory CD8 T Cells (CD8EM)
+- **Upregulated genes:** `IL7R`, `LTB`  
+- **Downregulated genes:** Specifically, `GNLY`, `GZMA`, `GZMB`, `GZMH`, and `GZMK` should be downregulated. All other markers not related to this subtype should also be downregulated.
+
+#### • Central Memory CD8 T Cells (CD8CM)
+- **Upregulated genes:** `IL7R`, `LTB`, `CD40LG`, `CCR7`  
+- **Downregulated genes:** All other markers not related to this subtype should be downregulated.
+---
 
 ## Upcoming Steps
 This is an **ongoing project**.  
