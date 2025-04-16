@@ -826,7 +826,13 @@ srobj_22=subset(srobj_22,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent
 
 ################################################################################ Start integration and UMAP
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/integrated_obj Data")
-merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, srobj_5, srobj_6, srobj_7, srobj_8, srobj_9))
+merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, 
+                                      srobj_5, srobj_6, srobj_7, 
+                                      srobj_8, srobj_9,srobj_10, 
+                                      srobj_11, srobj_12,srobj_13,
+                                      srobj_14, srobj_15,srobj_16,
+                                      srobj_17, srobj_18,srobj_19,
+                                      srobj_20, srobj_21,srobj_22))
 
 
 merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
@@ -855,43 +861,70 @@ png(filename = "ElbowPlot.png",width = 10000,height=4000,units ="px",res = 600)
 ElbowPlot(merged_obj,ndims = 50)
 dev.off()
 
+merged_obj1 = merged_obj
 
-merged_obj=FindNeighbors(merged_obj,dims = 1:20)
-merged_obj=FindClusters(merged_obj,resolution = 0.1)
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:20)
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
-merged_obj=RunUMAP(merged_obj,dims = 1:20)
-png(filename = "UMAP.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj,reduction = "umap",label = TRUE)
+merged_obj1=RunUMAP(merged_obj1,dims = 1:20)
+png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10, 11), invert = TRUE)
+png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+umap_data <- Embeddings(merged_obj1, reduction = "umap")
+cells_to_keep <- rownames(umap_data[umap_data[, "umap_1"] <= 10, ])
+merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+png(filename = "UMAP3.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+merged_clusters <- as.character(Idents(merged_obj1))
+merged_clusters[merged_clusters == "1" | merged_clusters == "8"] <- "1"
+Idents(merged_obj1) <- merged_clusters
+png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+cluster_ids <- as.character(Idents(merged_obj1))
+cluster_ids[cluster_ids == "9"] <- "8"
+Idents(merged_obj1) <- cluster_ids
+png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+dev.off()
+
+
+desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
+Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
+png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,reduction = "umap",label = TRUE)
 dev.off()
 ################################################################################ End integration and UMAP
 
-merged_obj1 = merged_obj
+merged_obj2 = merged_obj1
 
 ################################################################################ Start Find Marker
-merged_obj1 <- JoinLayers(merged_obj1)
-markers = FindAllMarkers(merged_obj1,min.pct = 0.08 , logfc.threshold = 0.08)
-marker22 = FindMarkers(merged_obj1,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "6")
+merged_obj2 <- JoinLayers(merged_obj2)
+markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
 write.csv(markers,file="markers.csv")
+#marker22 = FindMarkers(merged_obj2,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "6")
 ################################################################################ End Find Marker
 
-# Cluster 0 => CD4 Th17
-# Cluster 1 => CD4 TREG
-# Cluster 2 => CD8 cytotoxic
-# Cluster 3 => Cell cycle 
-# Cluster 4 => NK | Gama delta
-# Cluster 5 => Naive T cell
-# Cluster 6 => CD8 cytotoxic
-# Cluster 7 => Monocytes
-# Cluster 8 => Plasma cells
-
-DotPlot(merged_obj1, features = c("CD4","CD8A","CD8B","GNLY", "GZMA", "GZMB", "GZMH",
-                                  "GZMK", "NKG7", "PRF1","SELL",
-                                  "CCR7", "LTB",
-                                  "CTLA4", "FOXP3", "TNFRSF4",
-                                  "TNFRSF18", "TIGIT", "IL2RA","ICOS",
-                                  "IFNG", "STAT1", "STAT4", "TBX21",
-                                  "GATA3", "STAT5", "STAT6","IL7R")) + 
+png(filename = "DotPlot.png",width = 10000,height=4000,units ="px",res = 600 )
+DotPlot(merged_obj2, features = c("CD4","CD40LG","SELL","CCR7","CTLA4","FOXP3","TNFRSF4","TNFRSF18",
+                                  "TIGIT","IL2RA","ICOS","IFNG","STAT1","STAT4","TBX21","GATA3","STAT5",
+                                  "STAT6","RORA","LTB","CD4A","CD4B","GNLY","GZMA","GZMB","GZMH","GZMK",
+                                  "PRF1","CD8A","CD8B","NKG7","IL7R")) + 
 coord_flip()
+dev.off()
 
-counts_matrixxx <- merged_obj1[["RNA"]]$data
+counts_matrixxx <- merged_obj2[["RNA"]]$data
