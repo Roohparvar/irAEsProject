@@ -8,11 +8,6 @@ The overall design of the dataset includes samples from 22 patients across 3 dif
 - **CPI no colitis**: 6 individuals  
 - **CPI colitis**: 8 individuals  
 
-For the purposes of this project, we selected 3 samples from each cohort, resulting in a total of 9 samples:
-- **Normal control**: 3 individuals  
-- **CPI no colitis**: 3 individuals  
-- **CPI colitis**: 3 individuals  
-
 This study focuses specifically on **CD3+ cells**.  
 The raw data can be found in the `Data` folder.
 
