@@ -930,16 +930,47 @@ merged_obj2 = merged_obj1
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
 markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
-write.csv(markers,file="markers.csv")
-#marker22 = FindMarkers(merged_obj2,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "6")
+write.csv(markers,file="AllMarkers.csv")
+#marker_2And3 = FindMarkers(merged_obj2,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "3")
 ################################################################################ End Find Marker
 
-png(filename = "DotPlot.png",width = 10000,height=4000,units ="px",res = 600 )
-DotPlot(merged_obj2, features = c("SELL","CCR7","IL2RA","IFNG","STAT4","TBX21","STAT5",
-                                  "STAT6","CD4A","CD4B","GZMH","GZMK","GNLY","GZMB","GZMA",
-                                  "PRF1","NKG7","CD8B","CD8A","TIGIT","TNFRSF18",
-                                  "FOXP3","TNFRSF4","CTLA4","STAT1","ICOS","CD4","GATA3","RORA","CD40LG","LTB","IL7R")) + 
+merged_obj3 = merged_obj2
+################################################################################ Start annotation
+
+# 
+png(filename = "DotPlot_Key Markers_Across_All_Clusters.png",width = 10000,height=4000,units ="px",res = 600 )
+DotPlot(merged_obj3, features = c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
+                                  "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
+                                  "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
+                                  "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")) + 
 coord_flip()
 dev.off()
 
-#counts_matrixxx <- merged_obj2[["RNA"]]$data
+# The following requested variables were not found: STAT4, STAT5, STAT6, CD4A, CD4B 
+#
+important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
+                       "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
+                       "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
+                       "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")
+
+filtered_markers <- markers[markers$gene %in% important_markers, ]
+write.csv(filtered_markers,file="Filtered_Markers.csv")
+
+# Cluster 0 => TFH | CD4CM
+# Cluster 1 => Naïve | Treg
+# Cluster 2 => Cytotoxic CD8
+# Cluster 3 => Cytotoxic CD8
+# Cluster 4 => Naïve | TFH
+# Cluster 5 => Cytotoxic CD8
+# Cluster 6 => Cytotoxic CD8
+# Cluster 7 => Cytotoxic CD8
+# Cluster 8 => Effector Memory CD8 T Cells (CD8EM)
+################################################################################ End annotation
+
+
+
+
+
+
+
+#counts_matrixxx <- merged_obj3[["RNA"]]$data
