@@ -116,7 +116,6 @@ srobj_3=subset(srobj_3,subset=nFeature_RNA>800 & nFeature_RNA<5000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT4 #4
-
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
 
@@ -149,6 +148,7 @@ dev.off()
 
 srobj_4=subset(srobj_4,subset=nFeature_RNA>900 & nFeature_RNA<4500 & MTpercent<18 & nCount_RNA>1800 & nCount_RNA<18000)
 ################################################################################ End Normal Control CT4 #4
+
 
 
 ################################################################################ Start Normal Control CT5 #5
@@ -185,6 +185,8 @@ dev.off()
 srobj_5=subset(srobj_5,subset=nFeature_RNA>900 & nFeature_RNA<4800 & MTpercent<25 & nCount_RNA>1800 & nCount_RNA<25000)
 ################################################################################ End Normal Control CT5 #5
 
+
+
 ################################################################################ Start Normal Control CT6 #6
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
@@ -218,6 +220,8 @@ dev.off()
 
 srobj_6=subset(srobj_6,subset=nFeature_RNA>700 & nFeature_RNA<4000 & MTpercent<23 & nCount_RNA>1500 & nCount_RNA<18000)
 ################################################################################ End Normal Control CT6 #6
+
+
 
 ################################################################################ Start Normal Control CT7 #7
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
@@ -290,6 +294,7 @@ srobj_8=subset(srobj_8,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<2
 ################################################################################ End Normal Control CT8 #8
 
 
+
 ################################################################################ Start +CPI no colitis NC1 #9
 setwd("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
@@ -322,7 +327,6 @@ dev.off()
 
 
 srobj_9=subset(srobj_9,subset=nFeature_RNA>900 & nFeature_RNA<6000 & MTpercent<15 & nCount_RNA>2000 & nCount_RNA<21000)
-
 ################################################################################ End +CPI no colitis NC1 #9
 
 
@@ -359,7 +363,6 @@ dev.off()
 
 
 srobj_10=subset(srobj_10,subset=nFeature_RNA>800 & nFeature_RNA<4500 & MTpercent<19 & nCount_RNA>1600 & nCount_RNA<18000)
-
 ################################################################################ End +CPI no colitis NC2 #10
 
 
@@ -396,8 +399,8 @@ dev.off()
 
 
 srobj_11=subset(srobj_11,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<18000)
-
 ################################################################################ End +CPI no colitis NC3 #11
+
 
 
 ################################################################################ Start +CPI no colitis NC4 #12
@@ -432,7 +435,6 @@ dev.off()
 
 
 srobj_12=subset(srobj_12,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<18000)
-
 ################################################################################ End +CPI no colitis NC4 #12
 
 
@@ -543,7 +545,6 @@ dev.off()
 
 
 srobj_15=subset(srobj_15,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<25 & nCount_RNA>1600 & nCount_RNA<30000)
-
 ################################################################################ End +CPI colitis C1 #15
 
 
@@ -580,7 +581,6 @@ dev.off()
 
 
 srobj_16=subset(srobj_16,subset=nFeature_RNA>900 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1600 & nCount_RNA<37000)
-
 ################################################################################ End +CPI colitis C2 #16
 
 
@@ -617,8 +617,8 @@ dev.off()
 
 
 srobj_17=subset(srobj_17,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
-
 ################################################################################ End +CPI colitis C3 #17
+
 
 
 ################################################################################ Start +CPI colitis C4 #18
@@ -653,7 +653,6 @@ dev.off()
 
 
 srobj_18=subset(srobj_18,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
-
 ################################################################################ End +CPI colitis C4 #18
 
 
@@ -690,7 +689,6 @@ dev.off()
 
 
 srobj_19=subset(srobj_19,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent<17 & nCount_RNA>1400 & nCount_RNA<37000)
-
 ################################################################################ End +CPI colitis C5 #19
 
 
@@ -727,9 +725,7 @@ dev.off()
 
 
 srobj_20=subset(srobj_20,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent<20 & nCount_RNA>1400 & nCount_RNA<37000)
-
 ################################################################################ End +CPI colitis C6 #20
-
 
 
 
@@ -765,10 +761,7 @@ dev.off()
 
 
 srobj_21=subset(srobj_21,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent<18 & nCount_RNA>1600 & nCount_RNA<43000)
-
 ################################################################################ End +CPI colitis C7 #21
-
-
 
 
 
@@ -804,23 +797,7 @@ dev.off()
 
 
 srobj_22=subset(srobj_22,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent<25 & nCount_RNA>1100 & nCount_RNA<47000)
-
 ################################################################################ End +CPI colitis C8 #22
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -854,6 +831,7 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                         new.reduction = "integrated.cca",
                         verbose = FALSE)
 
+
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 
 
@@ -861,7 +839,9 @@ png(filename = "ElbowPlot.png",width = 10000,height=4000,units ="px",res = 600)
 ElbowPlot(merged_obj,ndims = 50)
 dev.off()
 
+
 merged_obj1 = merged_obj
+
 
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:20)
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
@@ -903,7 +883,6 @@ DimPlot(merged_obj1,reduction = "umap",label = TRUE)
 dev.off()
 
 
-# UMAP of All Samples Colored by Clusters
 # UMAP projection of all integrated samples with cells colored by their Seurat clusters. Labels indicate cluster IDs.
 desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
@@ -912,13 +891,12 @@ DimPlot(merged_obj1,reduction = "umap",label = TRUE)
 dev.off()
 
 
-# UMAP Colored by Sample Identity
 # UMAP projection of all cells colored by their original sample ID (orig.ident).
 png(filename = "UMAP_BySampleID.png",width = 10000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, reduction = "umap", group.by = "orig.ident")
 dev.off()
 
-# UMAP Split by Sample Identity
+
 # UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
 png(filename = "UMAP_SplitBySample.png",width = 25000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, reduction = "umap", split.by = "orig.ident")
@@ -931,14 +909,14 @@ merged_obj2 = merged_obj1
 merged_obj2 <- JoinLayers(merged_obj2)
 markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
 write.csv(markers,file="AllMarkers.csv")
-#marker_2And3 = FindMarkers(merged_obj2,min.pct = 0.08 , logfc.threshold = 0.08, ident.1 = "2",ident.2 = "3")
+#marker_2And3 = FindMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1, ident.1 = "2",ident.2 = "3")
 ################################################################################ End Find Marker
 
 merged_obj3 = merged_obj2
-################################################################################ Start annotation
 
-# 
-png(filename = "DotPlot_Key Markers_Across_All_Clusters.png",width = 10000,height=4000,units ="px",res = 600 )
+################################################################################ Start annotation
+# Dot Plot of Key Marker Genes Across All Clusters
+png(filename = "DotPlot_Key_Markers_Across_All_Clusters.png",width = 10000,height=4000,units ="px",res = 600 )
 DotPlot(merged_obj3, features = c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
                                   "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
                                   "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
@@ -946,33 +924,15 @@ DotPlot(merged_obj3, features = c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7
 coord_flip()
 dev.off()
 
-# The following requested variables were not found: STAT4, STAT5, STAT6, CD4A, CD4B 
-#
+
 important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
                        "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
                        "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
                        "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")
 
 
-
+# Filtered Key Markers from All Identified Cluster Markers
 filtered_markers <- markers[markers$gene %in% important_markers, ]
 write.csv(filtered_markers,file="Filtered_Markers.csv")
-
-# Cluster 0 => CD4_EM
-# Cluster 1 => CD4_Treg
-# Cluster 2 => NK_complete
-# Cluster 3 => Gamma Delta
-# Cluster 4 => CD4_Tfh
-# Cluster 5 => Cytotoxic CD8
-# Cluster 6 => CD8 EM
-# Cluster 7 => Cell cycle | Proliferating T cells
-# Cluster 8 => MAIT_cell
 ################################################################################ End annotation
 
-
-
-
-
-
-
-#counts_matrixxx <- merged_obj3[["RNA"]]$data
