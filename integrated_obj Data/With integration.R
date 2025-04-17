@@ -934,5 +934,15 @@ important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", 
 # Filtered Key Markers from All Identified Cluster Markers
 filtered_markers <- markers[markers$gene %in% important_markers, ]
 write.csv(filtered_markers,file="Filtered_Markers.csv")
+
+# 0: CD4 EM 
+# 1: CD4_Tregs
+# 2: NK_complete
+# 3: Gamma Delta
+# 4: Naïve CD4 T Cells
+# 5: CD8 cytotoxic | CD8 TRM
+# 6: CD8 EM
+# 7: Proliferating T cells | Cell cycle
+# 8: CD4_Th17
 ################################################################################ End annotation
 
