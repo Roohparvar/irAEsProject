@@ -953,18 +953,20 @@ important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", 
                        "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
                        "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")
 
+
+
 filtered_markers <- markers[markers$gene %in% important_markers, ]
 write.csv(filtered_markers,file="Filtered_Markers.csv")
 
-# Cluster 0 => TFH | CD4CM
-# Cluster 1 => Naïve | Treg
-# Cluster 2 => Cytotoxic CD8
-# Cluster 3 => Cytotoxic CD8
-# Cluster 4 => Naïve | TFH
+# Cluster 0 => CD4_EM
+# Cluster 1 => CD4_Treg
+# Cluster 2 => NK_complete
+# Cluster 3 => Gamma Delta
+# Cluster 4 => CD4_Tfh
 # Cluster 5 => Cytotoxic CD8
-# Cluster 6 => Cytotoxic CD8
-# Cluster 7 => Cytotoxic CD8
-# Cluster 8 => Effector Memory CD8 T Cells (CD8EM)
+# Cluster 6 => CD8 EM
+# Cluster 7 => Cell cycle | Proliferating T cells
+# Cluster 8 => MAIT_cell
 ################################################################################ End annotation
 
 
