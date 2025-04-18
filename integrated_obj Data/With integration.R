@@ -935,14 +935,35 @@ important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", 
 filtered_markers <- markers[markers$gene %in% important_markers, ]
 write.csv(filtered_markers,file="Filtered_Markers.csv")
 
-# 0: CD4 EM 
-# 1: CD4_Tregs
-# 2: NK_complete
-# 3: Gamma Delta
-# 4: Naïve CD4 T Cells
-# 5: CD8 cytotoxic | CD8 TRM
-# 6: CD8 EM
-# 7: Proliferating T cells | Cell cycle
-# 8: CD4_Th17
+# Cluster 0: CD4 EM 
+# Cluster 1: CD4_Tregs
+# Cluster 2: NK_complete
+# Cluster 3: Gamma Delta
+# Cluster 4: Naïve CD4 T Cells
+# Cluster 5: CD8 cytotoxic | CD8 TRM
+# Cluster 6: CD8 EM
+# Cluster 7: Proliferating T cells | Cell cycle
+# Cluster 8: CD4_Th17
+
+new_cluster_ids <- c(
+  "CD4_EM",
+  "CD4_Treg",
+  "NK_complete",
+  "Gamma Delta",
+  "Naïve CD4 T Cells",
+  "CD8 cytotoxic | CD8 TRM",
+  "CD8 EM",
+  "Proliferating T cells | Cell cycle",
+  "CD4_Th17"
+)
+
+
+names(new_cluster_ids) <- levels(merged_obj2)
+merged_obj2 <- RenameIdents(merged_obj2, new_cluster_ids)
+
+
+png(filename = "UMAP_CellType_Annotated_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj2,reduction = "umap",label = TRUE)
+dev.off()
 ################################################################################ End annotation
 
