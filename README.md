@@ -1,3 +1,4 @@
+---
 # Single-Cell Analysis Pipeline
 This repository contains a single-cell analysis pipeline using the dataset **GSE144469**.
 
@@ -39,15 +40,15 @@ Feel free to explore or extend this part of the analysis.
 ---
 
 ## Second Step Analysis
-The next stage includes **integration of datasets** using Seurat's integration workflow.  
-A new UMAP is generated to compare cluster behavior across the integrated datasets, enabling improved cross-sample analysis and interpretation.
+- The next stage includes integration of datasets using Seurat's integration workflow.
+- A new UMAP is generated to compare cluster behavior across the integrated datasets, enabling improved cross-sample analysis and interpretation.
+- Following integration and UMAP visualization, significant genes were identified using a defined threshold for adjusted p-value, average log fold change, and expression percentage differences.
+- Based on the discovered marker genes and the guidance provided in the section 🧬 Annotation Guide—as well as through careful review of relevant scientific articles—annotation was performed to assign a cell type identity to each cluster.
 
 ---
 ## 🧬 Annotation Guide
 
 **Annotation** is a critical phase that requires careful literature review and reading of relevant scientific articles. The guide below provides a helpful starting point, but **note**: this guide alone is not sufficient. A thorough literature review is essential to achieve high-quality annotations.
-
----
 
 ### 🔍 Identifying Major Cell Types
 
@@ -56,7 +57,7 @@ A new UMAP is generated to compare cluster behavior across the integrated datase
 
 Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD4 subclusters**, followed by **CD8 subclusters**.
 
----
+#
 
 ### 🧪 CD4 Subclusters
 
@@ -96,7 +97,7 @@ Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD
 - **Upregulated genes:** `CD4`, `CD4A`, `CD4B`, `GNLY`, `GZMA`, `GZMB`, `GZMH`, `GZMK`, `IFNG`, `PRF1`  
 - **Downregulated genes:** All other markers not related to this subtype.
 
----
+#
 
 ### 🧪 CD8 Subclusters
 
@@ -116,7 +117,21 @@ Both CD4 and CD8 T cells have several **subtypes**. Below, we first present **CD
 - **Upregulated genes:** `IL7R`, `LTB`, `CD40LG`, `CD8A`, `CCR7`  
 - **Downregulated genes:** All other markers not related to this subtype should be downregulated.
 ---
+## 🔍 Significant Gene Discovery
+
+After identifying all marker genes, we applied the following thresholds to discover **significant genes**:
+
+```
+filtered_data <- subset(data, 
+                        p_val_adj < 0.05 & 
+                        avg_log2FC > 0.1 & 
+                        pct.1 > 0.1 & 
+                        (pct.1 - pct.2) > 0.1)
+```
+---
 
 ## Upcoming Steps
-This is an **ongoing project**.  
+This is an ongoing project.  
 New stages and updates will be continuously added as the analysis progresses.
+
+---
