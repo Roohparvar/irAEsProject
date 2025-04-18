@@ -842,28 +842,28 @@ dev.off()
 
 merged_obj1 = merged_obj
 
-
-merged_obj1=FindNeighbors(merged_obj1,dims = 1:20)
+###############
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:20,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
-
+###############
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:20)
 png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
 merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10, 11), invert = TRUE)
 png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
-umap_data <- Embeddings(merged_obj1, reduction = "umap")
+umap_data <- Embeddings(merged_obj1, reduction = "integrated.cca")
 cells_to_keep <- rownames(umap_data[umap_data[, "umap_1"] <= 10, ])
 merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
 png(filename = "UMAP3.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
@@ -871,7 +871,7 @@ merged_clusters <- as.character(Idents(merged_obj1))
 merged_clusters[merged_clusters == "1" | merged_clusters == "8"] <- "1"
 Idents(merged_obj1) <- merged_clusters
 png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
@@ -879,7 +879,7 @@ cluster_ids <- as.character(Idents(merged_obj1))
 cluster_ids[cluster_ids == "9"] <- "8"
 Idents(merged_obj1) <- cluster_ids
 png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
@@ -887,19 +887,19 @@ dev.off()
 desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
 png(filename = "UMAP_Clusters_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "umap",label = TRUE)
+DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
 
 # UMAP projection of all cells colored by their original sample ID (orig.ident).
 png(filename = "UMAP_BySampleID.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1, reduction = "umap", group.by = "orig.ident")
+DimPlot(merged_obj1, reduction = "integrated.cca", group.by = "orig.ident")
 dev.off()
 
 
 # UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
 png(filename = "UMAP_SplitBySample.png",width = 25000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1, reduction = "umap", split.by = "orig.ident")
+DimPlot(merged_obj1, reduction = "integrated.cca", split.by = "orig.ident")
 dev.off()
 ################################################################################ End integration and UMAP
 
@@ -963,7 +963,7 @@ merged_obj2 <- RenameIdents(merged_obj2, new_cluster_ids)
 
 
 png(filename = "UMAP_CellType_Annotated_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj2,reduction = "umap",label = TRUE)
+DimPlot(merged_obj2,reduction = "integrated.cca",label = TRUE)
 dev.off()
 ################################################################################ End annotation
 
