@@ -44,9 +44,8 @@ srobj_1=subset(srobj_1,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT2 #2
-setwd("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
-
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
 
 srobj_2=CreateSeuratObject(CountMatrix,project ="Normal Control CT2",min.cells=3,min.features=200)
 srobj_2[["MTpercent"]]=PercentageFeatureSet(srobj_2,pattern = "^MT-")
@@ -296,8 +295,8 @@ srobj_8=subset(srobj_8,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<2
 
 
 ################################################################################ Start +CPI no colitis NC1 #9
-setwd("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/GSE144469/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 
 
 srobj_9=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC1",min.cells=3,min.features=200)
@@ -824,6 +823,8 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 
 merged_obj = RunPCA(merged_obj)
 
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after RunPCA and before IntegrateLayers
 
 merged_obj <- IntegrateLayers(object = merged_obj,
                         method = CCAIntegration,
@@ -831,6 +832,8 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                         new.reduction = "integrated.cca",
                         verbose = FALSE)
 
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after IntegrateLayers
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 
@@ -844,7 +847,7 @@ merged_obj1 = merged_obj
 
 ###############
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:20,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2,reduction = "integrated.cca")
 ###############
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:20)
@@ -860,9 +863,9 @@ dev.off()
 
 
 umap_data <- Embeddings(merged_obj1, reduction = "integrated.cca")
-cells_to_keep <- rownames(umap_data[umap_data[, "umap_1"] <= 10, ])
+cells_to_keep <- rownames(umap_data[umap_data[, "integratedcca_1"] <= 5, ])
 merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP3.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP3.png",width = 10000,height=8000,units ="px",res = 600 )
 DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
 dev.off()
 
