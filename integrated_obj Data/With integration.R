@@ -823,6 +823,7 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 
 merged_obj = RunPCA(merged_obj)
 
+# 1
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
@@ -832,81 +833,102 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                         new.reduction = "integrated.cca",
                         verbose = FALSE)
 
+# 2
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
-
-
-png(filename = "ElbowPlot.png",width = 10000,height=4000,units ="px",res = 600)
-ElbowPlot(merged_obj,ndims = 50)
-dev.off()
-
+################################################################################ End integration
 
 merged_obj1 = merged_obj
 
-###############
-merged_obj1=FindNeighbors(merged_obj1,dims = 1:20,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.2,reduction = "integrated.cca")
-###############
+################################################################################ Start UMAP
+# png(filename = "ElbowPlot2.png",width = 10000,height=4000,units ="px",res = 600)
+# ElbowPlot(merged_obj,ndims = 50)
+# dev.off()
 
-merged_obj1=RunUMAP(merged_obj1,dims = 1:20)
+
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+
+
+# 3
+# saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after FindNeighbors and FindClusters
+
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
 png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
+DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10, 11), invert = TRUE)
+
+# Remove clusters 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
 png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
+DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-umap_data <- Embeddings(merged_obj1, reduction = "integrated.cca")
-cells_to_keep <- rownames(umap_data[umap_data[, "integratedcca_1"] <= 5, ])
-merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP3.png",width = 10000,height=8000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
-dev.off()
+
+# Remove cells with an x-axis value greater than 5.
+# umap_data <- Embeddings(merged_obj1)
+# cells_to_keep <- rownames(umap_data[umap_data[, "integratedcca_1"] <= 5, ])
+# merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+# png(filename = "UMAP3.png",width = 10000,height=8000,units ="px",res = 600 )
+# DimPlot(merged_obj1,label = TRUE)
+# dev.off()
 
 
-merged_clusters <- as.character(Idents(merged_obj1))
-merged_clusters[merged_clusters == "1" | merged_clusters == "8"] <- "1"
-Idents(merged_obj1) <- merged_clusters
-png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
-dev.off()
+
+# This code combines clusters 1 and 8 into a single cluster labeled "1" and then generates and saves a UMAP plot of the modified dataset.
+# merged_clusters <- as.character(Idents(merged_obj1))
+# merged_clusters[merged_clusters == "1" | merged_clusters == "8"] <- "1"
+# Idents(merged_obj1) <- merged_clusters
+# png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
+# DimPlot(merged_obj1,label = TRUE)
+# dev.off()
 
 
-cluster_ids <- as.character(Idents(merged_obj1))
-cluster_ids[cluster_ids == "9"] <- "8"
-Idents(merged_obj1) <- cluster_ids
-png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
-dev.off()
+
+# This code changes the label of cluster 9 to cluster 8 and then generates and saves a UMAP plot of the modified dataset.
+# cluster_ids <- as.character(Idents(merged_obj1))
+# cluster_ids[cluster_ids == "9"] <- "8"
+# Idents(merged_obj1) <- cluster_ids
+# png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+# DimPlot(merged_obj1,label = TRUE)
+# dev.off()
 
 
-# UMAP projection of all integrated samples with cells colored by their Seurat clusters. Labels indicate cluster IDs.
-desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
-Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-png(filename = "UMAP_Clusters_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,reduction = "integrated.cca",label = TRUE)
-dev.off()
+
+# This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("0", "1", "2", "3", "4", "5", "6", "7", "8")
+# desired_order <- c("0", "1", "2", "3", "4", "5", "6", "7", "8")
+# Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
+# png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+# DimPlot(merged_obj1,label = TRUE)
+# dev.off()
+
 
 
 # UMAP projection of all cells colored by their original sample ID (orig.ident).
 png(filename = "UMAP_BySampleID.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1, reduction = "integrated.cca", group.by = "orig.ident")
+DimPlot(merged_obj1, group.by = "orig.ident")
 dev.off()
+
 
 
 # UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
-png(filename = "UMAP_SplitBySample.png",width = 25000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1, reduction = "integrated.cca", split.by = "orig.ident")
+png(filename = "UMAP_SplitBySample.png",width = 28000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, split.by = "orig.ident")
 dev.off()
-################################################################################ End integration and UMAP
+################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
+
+# 4
+# saveRDS(file = "merged_obj2",merged_obj2)
+# The Seurat object obtained after UMAP
 
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
@@ -916,6 +938,9 @@ write.csv(markers,file="AllMarkers.csv")
 ################################################################################ End Find Marker
 
 merged_obj3 = merged_obj2
+# 5
+ saveRDS(file = "merged_obj3",merged_obj3)
+# The Seurat object obtained after FindAllMarkers
 
 ################################################################################ Start annotation
 # Dot Plot of Key Marker Genes Across All Clusters
