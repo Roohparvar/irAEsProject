@@ -123,7 +123,7 @@ After identifying all marker genes, we applied the following thresholds to disco
 
 ```
 filtered_data <- subset(data, 
-                        p_val_adj < 0.05 & 
+                        p_val < 0.05 & 
                         avg_log2FC > 0.1 & 
                         pct.1 > 0.1 & 
                         (pct.1 - pct.2) > 0.1)
