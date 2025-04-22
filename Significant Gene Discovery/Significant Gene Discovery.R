@@ -32,7 +32,7 @@ for (sheet_name in sheet_names) {
   data <- read.xlsx(input_file, sheet = sheet_name)
   
   filtered_data <- subset(data, 
-                          p_val_adj < 0.05 & 
+                          p_val < 0.05 & 
                             avg_log2FC > 0.1 & 
                             pct.1 > 0.1 & 
                             (pct.1 - pct.2) > 0.1)

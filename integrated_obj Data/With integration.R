@@ -912,14 +912,14 @@ dev.off()
 
 
 # UMAP projection of all cells colored by their original sample ID (orig.ident).
-png(filename = "UMAP_BySampleID.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP3.png",width = 7000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, group.by = "orig.ident")
 dev.off()
 
 
 
 # UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
-png(filename = "UMAP_SplitBySample.png",width = 28000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP4.png",width = 28000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, split.by = "orig.ident")
 dev.off()
 ################################################################################ End UMAP
@@ -963,35 +963,63 @@ important_markers <- c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", 
 filtered_markers <- markers[markers$gene %in% important_markers, ]
 write.csv(filtered_markers,file="Filtered_Markers.csv")
 
-# Cluster 0: CD4 EM 
-# Cluster 1: CD4_Tregs
-# Cluster 2: NK_complete
-# Cluster 3: Gamma Delta
-# Cluster 4: Naïve CD4 T Cells
-# Cluster 5: CD8 cytotoxic | CD8 TRM
-# Cluster 6: CD8 EM
+# Cluster 0: NK | CD8 TRM
+# Cluster 1: CD4 EM
+# Cluster 2: Naïve
+# Cluster 3: Gamma Delta | CD8+ GDTcells
+# Cluster 4: CD4_Tregs
+# Cluster 5: CD8 EM | CD8 cytotoxic
+# Cluster 6: CD4_Th17
 # Cluster 7: Proliferating T cells | Cell cycle
-# Cluster 8: CD4_Th17
+# Cluster 8: FOXP3- Tregs
+# Cluster 9: Dendrtitic cells | Monocytes | Plasma cells XXXXXXXXXXX
+
+
+
+s3=merged_obj3
+merged_obj3=s3
+
+# Remove clusters 9
+merged_obj3 <- subset(merged_obj3, subset = seurat_clusters %in% c(9), invert = TRUE)
+png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj3,label = TRUE)
+dev.off()
+
+
+
+# Remove cells with an x-axis value greater than 12.
+umap_df <- as.data.frame(Embeddings(merged_obj3, reduction = "umap"))
+cells_to_keep <- rownames(umap_df[umap_df$umap_1 < 11.5, ])
+merged_obj3 <- subset(merged_obj3, cells = cells_to_keep)
+png(filename = "UMAP6.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj3, reduction = "umap",label = TRUE)
+dev.off()
+
+
+
 
 new_cluster_ids <- c(
-  "CD4_EM",
-  "CD4_Treg",
-  "NK_complete",
-  "Gamma Delta",
-  "Naïve CD4 T Cells",
-  "CD8 cytotoxic | CD8 TRM",
-  "CD8 EM",
+  "NK | CD8 TRM",
+  "CD4 EM",
+  "Naïve",
+  "Gamma Delta | CD8+ GDTcells",
+  "CD4_Tregs",
+  "CD8 EM | CD8 cytotoxic",
+  "CD4_Th17",
   "Proliferating T cells | Cell cycle",
-  "CD4_Th17"
+  "FOXP3- Tregs",
+  "Dendrtitic cells | Monocytes | Plasma cells X"
 )
 
 
-names(new_cluster_ids) <- levels(merged_obj2)
-merged_obj2 <- RenameIdents(merged_obj2, new_cluster_ids)
+names(new_cluster_ids) <- levels(merged_obj3)
+merged_obj3 <- RenameIdents(merged_obj3, new_cluster_ids)
 
 
-png(filename = "UMAP_CellType_Annotated_AllSamples.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj2,reduction = "integrated.cca",label = TRUE)
+png(filename = "UMAP7.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj3,label = TRUE,label.size = 3) +
+  theme(legend.text = element_text(size = 8))
 dev.off()
+
 ################################################################################ End annotation
 
