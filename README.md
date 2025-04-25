@@ -128,10 +128,3 @@ filtered_data <- subset(data,
                         pct.1 > 0.1 & 
                         (pct.1 - pct.2) > 0.1)
 ```
----
-
-## Upcoming Steps
-This is an ongoing project.  
-New stages and updates will be continuously added as the analysis progresses.
-
----
