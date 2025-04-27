@@ -1,6 +1,6 @@
 # Single-Cell Analysis Pipeline
 
-This repository contains a single-cell analysis pipeline for working with two datasets, **GSE144469** and **GSE206299**, focusing on immune cell populations in the context of colitis and other immune-related conditions.
+This repository contains a single-cell analysis pipeline for working with two datasets, **GSE144469** and **GSE206299**.
 
 ## Overview
 
@@ -22,7 +22,8 @@ The second dataset, added in the second part of the project, includes samples fr
 - **8 ICI-treated controls without irColitis**
 - **8 healthy controls**
 
-In the first part of the project, we focused specifically on **CD3+ cells**. In the second part, we expanded the analysis to include **CD4+** and **CD8+ cells**.
+In the first part of the project, we focused specifically on **CD3+ cells**. In the second part, we focused on **CD4+** and **CD8+ cells**.
+
 
 For more details on the methodology and findings, please refer to the following publications:
 - [Nature Article on GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)
@@ -129,15 +130,15 @@ Annotation is a critical step in the analysis process. The following guide is a 
 
 After identifying all marker genes, we applied the following thresholds to discover **significant genes**:
 
-```R
+```
 filtered_data <- subset(data, 
                         p_val < 0.05 & 
                         avg_log2FC > 0.1 & 
                         pct.1 > 0.1 & 
                         (pct.1 - pct.2) > 0.1)
-
+```
 ---
-# Part 2: Integrating GSE206299 Dataset for Immune Cell Analysis
+# Part 2: Adding the New Dataset
 
 In Part 2 of this project, we extended the analysis to include the **GSE206299** dataset, focusing on **CD4+** and **CD8+** cells in patients with **irColitis**. This dataset adds additional data points to the initial **GSE144469** dataset, allowing us to perform a more comprehensive immune cell analysis across different conditions.
 
