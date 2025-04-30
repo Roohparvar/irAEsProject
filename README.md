@@ -148,6 +148,6 @@ In Part 2 of this project, we extended the analysis to include the **GSE206299**
 
 The **GSE206299** dataset includes samples from 29 patients, divided into the following cohorts:
 
-- **13 patients with irColitis** (treated with either anti-PD-1 or anti-CTLA-4 monotherapy or dual ICI therapy)
-- **8 ICI-treated controls without irColitis**
-- **8 healthy controls**
+- **irColitis** (treated with either anti-PD-1 or anti-CTLA-4 monotherapy or dual ICI therapy)
+- **ICI-treated controls without irColitis**
+- **healthy controls**
