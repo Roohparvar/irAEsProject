@@ -417,6 +417,18 @@ seurat_obj_11=subset(seurat_obj_11,subset=nFeature_RNA>150 & nFeature_RNA<1800 &
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ################################################################################ Start Control - On ICI Therapy SIC_109 #12
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX")
 data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
@@ -601,3 +613,535 @@ dev.off()
 
 seurat_obj_16=subset(seurat_obj_16,subset=nFeature_RNA>210 & nFeature_RNA<1000 & MTpercent<40 & nCount_RNA>400 & nCount_RNA<3000)
 ################################################################################ End Control - On ICI Therapy SIC_94 #16
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################ Start irColitis Case SIC_100 #17
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_17 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_100",min.cells=3,min.features=200)
+seurat_obj_17[["MTpercent"]]=PercentageFeatureSet(seurat_obj_17,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_17@meta.data, aes(x = seurat_obj_17$nCount_RNA, y = seurat_obj_17$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 500, color = 'red') +
+  geom_vline(xintercept = 10000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_17@meta.data, aes(x=seurat_obj_17$nFeature_RNA, y=seurat_obj_17$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=400, color='red') +
+  geom_vline(xintercept=3000, color='red') 
+dev.off()
+
+
+seurat_obj_17=subset(seurat_obj_17,subset=nFeature_RNA>400 & nFeature_RNA<3000 & MTpercent<20 & nCount_RNA>500 & nCount_RNA<10000)
+################################################################################ End irColitis Case SIC_100 #17
+
+
+
+
+################################################################################ Start irColitis Case SIC_121 #18
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_18 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_121",min.cells=3,min.features=200)
+seurat_obj_18[["MTpercent"]]=PercentageFeatureSet(seurat_obj_18,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_18@meta.data, aes(x = seurat_obj_18$nCount_RNA, y = seurat_obj_18$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 25, color = 'red') + 
+  geom_vline(xintercept = 300, color = 'red') +
+  geom_vline(xintercept = 20000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_18@meta.data, aes(x=seurat_obj_18$nFeature_RNA, y=seurat_obj_18$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=25, color='red') + 
+  geom_vline(xintercept=205, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+seurat_obj_18=subset(seurat_obj_18,subset=nFeature_RNA>205 & nFeature_RNA<4000 & MTpercent<25 & nCount_RNA>300 & nCount_RNA<20000)
+################################################################################ End irColitis Case SIC_121 #18
+
+
+
+################################################################################ Start irColitis Case SIC_126 #19
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_19 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_126",min.cells=3,min.features=200)
+seurat_obj_19[["MTpercent"]]=PercentageFeatureSet(seurat_obj_19,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_19@meta.data, aes(x = seurat_obj_19$nCount_RNA, y = seurat_obj_19$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 350, color = 'red') +
+  geom_vline(xintercept = 23000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_19@meta.data, aes(x=seurat_obj_19$nFeature_RNA, y=seurat_obj_19$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=205, color='red') +
+  geom_vline(xintercept=3500, color='red') 
+dev.off()
+
+
+seurat_obj_19=subset(seurat_obj_19,subset=nFeature_RNA>205 & nFeature_RNA<3500 & MTpercent<20 & nCount_RNA>350 & nCount_RNA<23000)
+################################################################################ End irColitis Case SIC_126 #19
+
+
+
+
+################################################################################ Start irColitis Case SIC_134 #20
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_20 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_134",min.cells=3,min.features=200)
+seurat_obj_20[["MTpercent"]]=PercentageFeatureSet(seurat_obj_20,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_20@meta.data, aes(x = seurat_obj_20$nCount_RNA, y = seurat_obj_20$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 20000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_20@meta.data, aes(x=seurat_obj_20$nFeature_RNA, y=seurat_obj_20$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=18, color='red') + 
+  geom_vline(xintercept=205, color='red') +
+  geom_vline(xintercept=2500, color='red') 
+dev.off()
+
+
+seurat_obj_20=subset(seurat_obj_20,subset=nFeature_RNA>205 & nFeature_RNA<2500 & MTpercent<18 & nCount_RNA>1000 & nCount_RNA<20000)
+################################################################################ End irColitis Case SIC_134 #20
+
+
+
+
+################################################################################ Start irColitis Case SIC_140 #21
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_21 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_140",min.cells=3,min.features=200)
+seurat_obj_21[["MTpercent"]]=PercentageFeatureSet(seurat_obj_21,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_21@meta.data, aes(x = seurat_obj_21$nCount_RNA, y = seurat_obj_21$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1200, color = 'red') +
+  geom_vline(xintercept = 23000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_21@meta.data, aes(x=seurat_obj_21$nFeature_RNA, y=seurat_obj_21$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=18, color='red') + 
+  geom_vline(xintercept=700, color='red') +
+  geom_vline(xintercept=3200, color='red') 
+dev.off()
+
+
+seurat_obj_21=subset(seurat_obj_21,subset=nFeature_RNA>700 & nFeature_RNA<3200 & MTpercent<18 & nCount_RNA>1200 & nCount_RNA<23000)
+################################################################################ End irColitis Case SIC_140 #21
+
+
+
+################################################################################ Start irColitis Case SIC_141_A #22
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_22 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_141_A",min.cells=3,min.features=200)
+seurat_obj_22[["MTpercent"]]=PercentageFeatureSet(seurat_obj_22,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_22@meta.data, aes(x = seurat_obj_22$nCount_RNA, y = seurat_obj_22$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 29, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 15000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_22@meta.data, aes(x=seurat_obj_22$nFeature_RNA, y=seurat_obj_22$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=29, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=2800, color='red') 
+dev.off()
+
+
+seurat_obj_22=subset(seurat_obj_22,subset=nFeature_RNA>200 & nFeature_RNA<2800 & MTpercent<29 & nCount_RNA>400 & nCount_RNA<15000)
+################################################################################ End irColitis Case SIC_141_A #22
+
+
+
+################################################################################ Start irColitis Case SIC_141_B #23
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_23 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_141_B",min.cells=3,min.features=200)
+seurat_obj_23[["MTpercent"]]=PercentageFeatureSet(seurat_obj_23,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_23@meta.data, aes(x = seurat_obj_23$nCount_RNA, y = seurat_obj_23$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 29, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 17000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_23@meta.data, aes(x=seurat_obj_23$nFeature_RNA, y=seurat_obj_23$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=29, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=2600, color='red') 
+dev.off()
+
+
+seurat_obj_23=subset(seurat_obj_23,subset=nFeature_RNA>200 & nFeature_RNA<2600 & MTpercent<29 & nCount_RNA>400 & nCount_RNA<17000)
+################################################################################ End irColitis Case SIC_141_B #23
+
+
+
+################################################################################ Start irColitis Case SIC_32_Colon_128 #24
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_24 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_32_Colon_128",min.cells=3,min.features=200)
+seurat_obj_24[["MTpercent"]]=PercentageFeatureSet(seurat_obj_24,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_24@meta.data, aes(x = seurat_obj_24$nCount_RNA, y = seurat_obj_24$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 75, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 6000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_24@meta.data, aes(x=seurat_obj_24$nFeature_RNA, y=seurat_obj_24$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=75, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=2000, color='red') 
+dev.off()
+
+
+seurat_obj_24=subset(seurat_obj_24,subset=nFeature_RNA>200 & nFeature_RNA<2000 & MTpercent<75 & nCount_RNA>400 & nCount_RNA<6000)
+################################################################################ End irColitis Case SIC_32_Colon_128 #24
+
+
+
+################################################################################ Start irColitis Case SIC_32_Colon_178 #25
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_25 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_32_Colon_178",min.cells=3,min.features=200)
+seurat_obj_25[["MTpercent"]]=PercentageFeatureSet(seurat_obj_25,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_25@meta.data, aes(x = seurat_obj_25$nCount_RNA, y = seurat_obj_25$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 75, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 9000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_25@meta.data, aes(x=seurat_obj_25$nFeature_RNA, y=seurat_obj_25$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=75, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=2500, color='red') 
+dev.off()
+
+
+seurat_obj_25=subset(seurat_obj_25,subset=nFeature_RNA>200 & nFeature_RNA<2500 & MTpercent<75 & nCount_RNA>400 & nCount_RNA<9000)
+################################################################################ End irColitis Case SIC_32_Colon_178 #25
+
+
+
+
+################################################################################ Start irColitis Case SIC_40 #26
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_26 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_40",min.cells=3,min.features=200)
+seurat_obj_26[["MTpercent"]]=PercentageFeatureSet(seurat_obj_26,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_26@meta.data, aes(x = seurat_obj_26$nCount_RNA, y = seurat_obj_26$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 30, color = 'red') + 
+  geom_vline(xintercept = 300, color = 'red') +
+  geom_vline(xintercept = 1800, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_26@meta.data, aes(x=seurat_obj_26$nFeature_RNA, y=seurat_obj_26$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=30, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=550, color='red') 
+dev.off()
+
+
+seurat_obj_26=subset(seurat_obj_26,subset=nFeature_RNA>200 & nFeature_RNA<550 & MTpercent<30 & nCount_RNA>300 & nCount_RNA<1800)
+################################################################################ End irColitis Case SIC_40 #26
+
+
+
+################################################################################ Start irColitis Case SIC_71 #27
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_27 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_71",min.cells=3,min.features=200)
+seurat_obj_27[["MTpercent"]]=PercentageFeatureSet(seurat_obj_27,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_27@meta.data, aes(x = seurat_obj_27$nCount_RNA, y = seurat_obj_27$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 300, color = 'red') +
+  geom_vline(xintercept = 17000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_27@meta.data, aes(x=seurat_obj_27$nFeature_RNA, y=seurat_obj_27$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=400, color='red') +
+  geom_vline(xintercept=3000, color='red') 
+dev.off()
+
+
+seurat_obj_27=subset(seurat_obj_27,subset=nFeature_RNA>400 & nFeature_RNA<3000 & MTpercent<20 & nCount_RNA>300 & nCount_RNA<17000)
+################################################################################ End irColitis Case SIC_71 #27
+
+
+
+################################################################################ Start irColitis Case SIC_76 #28
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_28 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_76",min.cells=3,min.features=200)
+seurat_obj_28[["MTpercent"]]=PercentageFeatureSet(seurat_obj_28,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_28@meta.data, aes(x = seurat_obj_28$nCount_RNA, y = seurat_obj_28$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 25, color = 'red') + 
+  geom_vline(xintercept = 300, color = 'red') +
+  geom_vline(xintercept = 17000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_28@meta.data, aes(x=seurat_obj_28$nFeature_RNA, y=seurat_obj_28$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=25, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+seurat_obj_28=subset(seurat_obj_28,subset=nFeature_RNA>200 & nFeature_RNA<4000 & MTpercent<25 & nCount_RNA>300 & nCount_RNA<17000)
+################################################################################ End irColitis Case SIC_76 #28
+
+
+
+################################################################################ Start irColitis Case SIC_89 #29
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_29 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_89",min.cells=3,min.features=200)
+seurat_obj_29[["MTpercent"]]=PercentageFeatureSet(seurat_obj_29,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_29@meta.data, aes(x = seurat_obj_29$nCount_RNA, y = seurat_obj_29$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 30, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 8000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_29@meta.data, aes(x=seurat_obj_29$nFeature_RNA, y=seurat_obj_29$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=30, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=1700, color='red') 
+dev.off()
+
+
+seurat_obj_29=subset(seurat_obj_29,subset=nFeature_RNA>200 & nFeature_RNA<1700 & MTpercent<30 & nCount_RNA>400 & nCount_RNA<8000)
+################################################################################ End irColitis Case SIC_89 #29
+
+
+
+
+################################################################################ Start irColitis Case SIC_97 #30
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_30 <- CreateSeuratObject(counts = raw_data, project = "irColitis Case SIC_97",min.cells=3,min.features=200)
+seurat_obj_30[["MTpercent"]]=PercentageFeatureSet(seurat_obj_30,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_30@meta.data, aes(x = seurat_obj_30$nCount_RNA, y = seurat_obj_30$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 30, color = 'red') + 
+  geom_vline(xintercept = 350, color = 'red') +
+  geom_vline(xintercept = 13000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_30@meta.data, aes(x=seurat_obj_30$nFeature_RNA, y=seurat_obj_30$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=30, color='red') + 
+  geom_vline(xintercept=200, color='red') +
+  geom_vline(xintercept=3500, color='red') 
+dev.off()
+
+
+seurat_obj_30=subset(seurat_obj_30,subset=nFeature_RNA>200 & nFeature_RNA<3500 & MTpercent<30 & nCount_RNA>350 & nCount_RNA<13000)
+################################################################################ End irColitis Case SIC_97 #30
