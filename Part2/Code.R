@@ -414,3 +414,190 @@ dev.off()
 
 seurat_obj_11=subset(seurat_obj_11,subset=nFeature_RNA>150 & nFeature_RNA<1800 & MTpercent<25 & nCount_RNA>400 & nCount_RNA<14000)
 ################################################################################ End Control Healthy SIC_612_B #11
+
+
+
+################################################################################ Start Control - On ICI Therapy SIC_109 #12
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_12 <- CreateSeuratObject(counts = raw_data, project = "Control - On ICI Therapy SIC_109",min.cells=3,min.features=200)
+seurat_obj_12[["MTpercent"]]=PercentageFeatureSet(seurat_obj_12,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_12@meta.data, aes(x = seurat_obj_12$nCount_RNA, y = seurat_obj_12$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 47, color = 'red') + 
+  geom_vline(xintercept = 500, color = 'red') +
+  geom_vline(xintercept = 6000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_12@meta.data, aes(x=seurat_obj_12$nFeature_RNA, y=seurat_obj_12$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=47, color='red') + 
+  geom_vline(xintercept=240, color='red') +
+  geom_vline(xintercept=1600, color='red') 
+dev.off()
+
+
+seurat_obj_12=subset(seurat_obj_12,subset=nFeature_RNA>240 & nFeature_RNA<1600 & MTpercent<47 & nCount_RNA>500 & nCount_RNA<6000)
+################################################################################ End Control - On ICI Therapy SIC_109 #12
+
+
+
+################################################################################ Start Control - On ICI Therapy SIC_172 #13
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_13 <- CreateSeuratObject(counts = raw_data, project = "Control - On ICI Therapy SIC_172",min.cells=3,min.features=200)
+seurat_obj_13[["MTpercent"]]=PercentageFeatureSet(seurat_obj_13,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_13@meta.data, aes(x = seurat_obj_13$nCount_RNA, y = seurat_obj_13$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 10000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_13@meta.data, aes(x=seurat_obj_13$nFeature_RNA, y=seurat_obj_13$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=20, color='red') + 
+  geom_vline(xintercept=600, color='red') +
+  geom_vline(xintercept=2900, color='red') 
+dev.off()
+
+
+seurat_obj_13=subset(seurat_obj_13,subset=nFeature_RNA>600 & nFeature_RNA<2900 & MTpercent<20 & nCount_RNA>1000 & nCount_RNA<10000)
+################################################################################ End Control - On ICI Therapy SIC_172 #13
+
+
+
+################################################################################ Start Control - On ICI Therapy SIC_19 #14
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_14 <- CreateSeuratObject(counts = raw_data, project = "Control - On ICI Therapy SIC_19",min.cells=3,min.features=200)
+seurat_obj_14[["MTpercent"]]=PercentageFeatureSet(seurat_obj_14,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_14@meta.data, aes(x = seurat_obj_14$nCount_RNA, y = seurat_obj_14$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 80, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 8000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_14@meta.data, aes(x=seurat_obj_14$nFeature_RNA, y=seurat_obj_14$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=80, color='red') + 
+  geom_vline(xintercept=240, color='red') +
+  geom_vline(xintercept=2600, color='red') 
+dev.off()
+
+
+seurat_obj_14=subset(seurat_obj_14,subset=nFeature_RNA>240 & nFeature_RNA<2600 & MTpercent<80 & nCount_RNA>700 & nCount_RNA<8000)
+################################################################################ End Control - On ICI Therapy SIC_19 #14
+
+
+
+
+################################################################################ Start Control - On ICI Therapy SIC_31 #15
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_15 <- CreateSeuratObject(counts = raw_data, project = "Control - On ICI Therapy SIC_31",min.cells=3,min.features=200)
+seurat_obj_15[["MTpercent"]]=PercentageFeatureSet(seurat_obj_15,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_15@meta.data, aes(x = seurat_obj_15$nCount_RNA, y = seurat_obj_15$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 7000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_15@meta.data, aes(x=seurat_obj_15$nFeature_RNA, y=seurat_obj_15$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=18, color='red') + 
+  geom_vline(xintercept=550, color='red') +
+  geom_vline(xintercept=2400, color='red') 
+dev.off()
+
+
+seurat_obj_15=subset(seurat_obj_15,subset=nFeature_RNA>550 & nFeature_RNA<2400 & MTpercent<18 & nCount_RNA>900 & nCount_RNA<7000)
+################################################################################ End Control - On ICI Therapy SIC_31 #15
+
+
+
+
+################################################################################ Start Control - On ICI Therapy SIC_94 #16
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+
+
+raw_data <- Read10X_h5(data_dir)
+seurat_obj_16 <- CreateSeuratObject(counts = raw_data, project = "Control - On ICI Therapy SIC_94",min.cells=3,min.features=200)
+seurat_obj_16[["MTpercent"]]=PercentageFeatureSet(seurat_obj_16,pattern = "^MT-")
+
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = seurat_obj_16@meta.data, aes(x = seurat_obj_16$nCount_RNA, y = seurat_obj_16$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 40, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 3000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=seurat_obj_16@meta.data, aes(x=seurat_obj_16$nFeature_RNA, y=seurat_obj_16$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=40, color='red') + 
+  geom_vline(xintercept=210, color='red') +
+  geom_vline(xintercept=1000, color='red') 
+dev.off()
+
+
+seurat_obj_16=subset(seurat_obj_16,subset=nFeature_RNA>210 & nFeature_RNA<1000 & MTpercent<40 & nCount_RNA>400 & nCount_RNA<3000)
+################################################################################ End Control - On ICI Therapy SIC_94 #16
