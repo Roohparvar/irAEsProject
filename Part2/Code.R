@@ -1249,3 +1249,15 @@ dev.off()
 ################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
+
+################################################################################ Start Extracting and saving Seurat objects for each sample
+
+samples <- unique(merged_obj2$orig.ident)
+
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
+  assign(paste0("seurat_obj_", i), seurat_obj)
+}
+
+################################################################################ End Extracting and saving Seurat objects for each sample
