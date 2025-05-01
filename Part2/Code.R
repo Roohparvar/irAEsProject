@@ -1182,9 +1182,9 @@ merged_obj = RunPCA(merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
 merged_obj <- IntegrateLayers(object = merged_obj,
-                              method = RPCAIntegration,
+                              method = CCAIntegration,
                               orig.reduction = "pca", 
-                              new.reduction = "integrated.RPCA",
+                              new.reduction = "integrated.cca",
                               verbose = FALSE)
 
 # 2
@@ -1197,17 +1197,13 @@ merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 merged_obj1 = merged_obj
 
 ################################################################################ Start UMAP
-# png(filename = "ElbowPlot2.png",width = 10000,height=4000,units ="px",res = 600)
-# ElbowPlot(merged_obj,ndims = 50)
-# dev.off()
-
 
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
 # 3
-# saveRDS(file = "merged_obj1",merged_obj1)
+ saveRDS(file = "merged_obj1",merged_obj1)
 # The Seurat object obtained after FindNeighbors and FindClusters
 
 
