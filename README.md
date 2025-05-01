@@ -151,3 +151,15 @@ The **GSE206299** dataset includes samples from 29 patients, divided into the fo
 - **irColitis** (treated with either anti-PD-1 or anti-CTLA-4 monotherapy or dual ICI therapy)
 - **ICI-treated controls without irColitis**
 - **healthy controls**
+
+---
+
+### Quality Control
+
+As in the previous part of the analysis, we started with quality control steps. After integrating all data, we performed UMAP plotting. The key step in this part was to select only T cells.
+
+### T Cell Selection
+
+To identify T cells, we used specific marker genes: 
+- **CD3D**, **CD3E**, **CD3G** for T cell identification
+- **LYZ**, **CD78A** were not included in the T cell group.
