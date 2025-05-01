@@ -1203,7 +1203,7 @@ merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
 # 3
- saveRDS(file = "merged_obj1",merged_obj1)
+# saveRDS(file = "merged_obj1",merged_obj1)
 # The Seurat object obtained after FindNeighbors and FindClusters
 
 
@@ -1213,3 +1213,39 @@ DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
+png(filename = "FeaturePlot.png", width = 10000, height = 4000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD78A"))
+dev.off()
+
+
+# Remove clusters 1 2 3 6 8 9 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1,2,3,6,8,9,10), invert = TRUE)
+png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+# Remove cells with an x-axis value less than -2.
+umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
+cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] >= -2, ])
+merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+png(filename = "UMAP3.png", width = 10000, height = 4000, units = "px", res = 600)
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
+
+
+# This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("0", "1", "2", "3")
+desired_order <- c("0", "1", "2", "3")
+Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
+png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+# 4
+# saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after UMAP
+
+################################################################################ End UMAP
+
+merged_obj2 = merged_obj1
