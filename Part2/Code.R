@@ -1145,3 +1145,75 @@ dev.off()
 
 seurat_obj_30=subset(seurat_obj_30,subset=nFeature_RNA>200 & nFeature_RNA<3500 & MTpercent<30 & nCount_RNA>350 & nCount_RNA<13000)
 ################################################################################ End irColitis Case SIC_97 #30
+
+
+
+
+################################################################################ Start integration and UMAP
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2")
+merged_obj <- merge(seurat_obj_1, y = list(seurat_obj_2, seurat_obj_3, seurat_obj_4, 
+                                           seurat_obj_5, seurat_obj_6, seurat_obj_7, 
+                                           seurat_obj_8, seurat_obj_9,seurat_obj_10, 
+                                           seurat_obj_11, seurat_obj_12,seurat_obj_13,
+                                           seurat_obj_14, seurat_obj_15,seurat_obj_16,
+                                           seurat_obj_17, seurat_obj_18,seurat_obj_19,
+                                           seurat_obj_20, seurat_obj_21,seurat_obj_22,
+                                           seurat_obj_23, seurat_obj_24,seurat_obj_25,
+                                           seurat_obj_26, seurat_obj_27,seurat_obj_28,
+                                           seurat_obj_29, seurat_obj_30))
+                    
+                    
+
+
+merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
+
+
+merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
+merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
+
+
+merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
+
+
+merged_obj = RunPCA(merged_obj)
+
+# 1
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after RunPCA and before IntegrateLayers
+
+merged_obj <- IntegrateLayers(object = merged_obj,
+                              method = RPCAIntegration,
+                              orig.reduction = "pca", 
+                              new.reduction = "integrated.RPCA",
+                              verbose = FALSE)
+
+# 2
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after IntegrateLayers
+
+merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
+################################################################################ End integration
+
+merged_obj1 = merged_obj
+
+################################################################################ Start UMAP
+# png(filename = "ElbowPlot2.png",width = 10000,height=4000,units ="px",res = 600)
+# ElbowPlot(merged_obj,ndims = 50)
+# dev.off()
+
+
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+
+
+# 3
+# saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after FindNeighbors and FindClusters
+
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
