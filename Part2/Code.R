@@ -1225,31 +1225,38 @@ DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-# Remove cells with an x-axis value less than -2.
+# Remove cells with an x-axis value less than -1.
 umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
-cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] >= -2, ])
+cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] >= -1, ])
 merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
 png(filename = "UMAP3.png", width = 10000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
 
+# This code changes the label of cluster cluster 4 to cluster 1 | cluster 5 to cluster 2 | cluster 7 to cluster 3
+#  and then generates and saves a UMAP plot of the modified dataset.
+cluster_ids <- as.character(Idents(merged_obj1))
+cluster_ids[cluster_ids == "4"] <- "1"
+cluster_ids[cluster_ids == "5"] <- "2" 
+cluster_ids[cluster_ids == "7"] <- "3" 
+
+Idents(merged_obj1) <- cluster_ids
+png(filename = "UMAP4.png", width = 10000, height = 4000, units = "px", res = 600)
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
+
+
 # This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("0", "1", "2", "3")
-# تنظیم ترتیب خوشه‌ها به 0, 1, 2, 3
 desired_order <- c("0", "1", "2", "3")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-
-# تغییر نام خوشه‌ها به 0, 1, 2, 3
-levels(merged_obj1) <- c("0", "1", "2", "3")
-
-# کشیدن UMAP با ترتیب جدید خوشه‌ها
-png(filename = "UMAP44.png", width = 10000, height = 4000, units ="px", res = 600)
+png(filename = "UMAP5.png", width = 10000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
 # 4
 # saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after UMAP
+# The Seurat object obtained after UMAP and FeaturePlot
 
 ################################################################################ End UMAP
 
@@ -1281,17 +1288,3 @@ for (i in 1:length(seurat_objs)) {
 }
 
 ################################################################################ End Extracting and saving Seurat objects for each sample
-
-
-
-################################################################################ Start Find Marker
-merged_obj2 <- JoinLayers(merged_obj2)
-markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
-write.csv(markers,file="AllMarkers.csv")
-################################################################################ End Find Marker
-
-merged_obj3 = merged_obj2
-
-# 6
-saveRDS(file = "merged_obj3",merged_obj3)
-# The Seu
