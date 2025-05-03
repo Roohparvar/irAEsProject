@@ -939,7 +939,7 @@ write.csv(markers,file="AllMarkers.csv")
 
 merged_obj3 = merged_obj2
 # 5
- saveRDS(file = "merged_obj3",merged_obj3)
+# saveRDS(file = "merged_obj3",merged_obj3)
 # The Seurat object obtained after FindAllMarkers
 
 ################################################################################ Start annotation
@@ -975,10 +975,6 @@ write.csv(filtered_markers,file="Filtered_Markers.csv")
 # Cluster 9: Dendrtitic cells | Monocytes | Plasma cells XXXXXXXXXXX
 
 
-
-s3=merged_obj3
-merged_obj3=s3
-
 # Remove clusters 9
 merged_obj3 <- subset(merged_obj3, subset = seurat_clusters %in% c(9), invert = TRUE)
 png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
@@ -996,6 +992,31 @@ DimPlot(merged_obj3, reduction = "umap",label = TRUE)
 dev.off()
 
 
+################################################################################ Start Extracting and saving Seurat objects for each sample
+
+samples <- unique(merged_obj3$orig.ident)
+
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj3, subset = orig.ident == sample_name)
+  assign(paste0("srobj_", i), seurat_obj)
+}
+
+
+# 6
+# 6_GSE144469_seurat_objs
+seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
+                    srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
+                    srobj_11, srobj_12, srobj_13, srobj_14, srobj_15, 
+                    srobj_16, srobj_17, srobj_18, srobj_19, srobj_20, 
+                    srobj_21, srobj_22)
+
+# Loop to save each Seurat object
+for (i in 1:length(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
+}
+
+################################################################################ End Extracting and saving Seurat objects for each sample
 
 
 new_cluster_ids <- c(
