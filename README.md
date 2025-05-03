@@ -150,11 +150,4 @@ filtered_data <- subset(data,
 ---
 
 ## Part 2: Adding the New Dataset (GSE206299):
-In Part 2 of this project, we extended the analysis to include the **GSE206299** dataset, focusing on **CD4+** and **CD8+** cells in patients with **irColitis**. This dataset adds additional data points to the initial **GSE144469** dataset, allowing us to perform a more comprehensive immune cell analysis across different conditions.
-
----
-
-### Quality Control:
-We started this part of the project with quality control. After integrating all the data, we performed UMAP plotting. The key step in this part was to select only T cells. With the help of a **FeaturePlot**, we considered that a cell should express **CD3D**, **CD3E**, and **CD3G**, and not express **LYZ** or **CD78A**.
-
----
+In Part 2 of this project, we expanded the analysis by incorporating the GSE206299 dataset, focusing on CD4+ and CD8+ T cells. This new dataset adds valuable data points to the original GSE144469 dataset, enabling a more comprehensive analysis of immune cell populations across different conditions. We began this phase with quality control, ensuring the integrity of the data. After integrating the datasets, we proceeded with UMAP plotting to visualize the cellular distribution. The key step in this part of the project was the selection of T cells. Using a FeaturePlot, we identified cells that expressed CD3D, CD3E, and CD3G, while excluding cells that expressed LYZ or CD78A. Following this, we filtered the dataset to retain only T cells and removed the remaining non-T cells. Finally, each sample was saved separately after this filtration process for further analysis.
