@@ -1235,12 +1235,17 @@ dev.off()
 
 
 # This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("0", "1", "2", "3")
+# تنظیم ترتیب خوشه‌ها به 0, 1, 2, 3
 desired_order <- c("0", "1", "2", "3")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,label = TRUE)
-dev.off()
 
+# تغییر نام خوشه‌ها به 0, 1, 2, 3
+levels(merged_obj1) <- c("0", "1", "2", "3")
+
+# کشیدن UMAP با ترتیب جدید خوشه‌ها
+png(filename = "UMAP44.png", width = 10000, height = 4000, units ="px", res = 600)
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
 
 # 4
 # saveRDS(file = "merged_obj1",merged_obj1)
@@ -1260,4 +1265,33 @@ for (i in seq_along(samples)) {
   assign(paste0("seurat_obj_", i), seurat_obj)
 }
 
+
+# 5
+# GSE206299_seurat_objs
+seurat_objs <- list(seurat_obj_1, seurat_obj_2, seurat_obj_3, seurat_obj_4, seurat_obj_5, 
+                    seurat_obj_6, seurat_obj_7, seurat_obj_8, seurat_obj_9, seurat_obj_10, 
+                    seurat_obj_11, seurat_obj_12, seurat_obj_13, seurat_obj_14, seurat_obj_15, 
+                    seurat_obj_16, seurat_obj_17, seurat_obj_18, seurat_obj_19, seurat_obj_20, 
+                    seurat_obj_21, seurat_obj_22, seurat_obj_23, seurat_obj_24, seurat_obj_25, 
+                    seurat_obj_26, seurat_obj_27, seurat_obj_28, seurat_obj_29, seurat_obj_30)
+
+# Loop to save each Seurat object
+for (i in 1:length(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("seurat_obj_", i, ".rds"))
+}
+
 ################################################################################ End Extracting and saving Seurat objects for each sample
+
+
+
+################################################################################ Start Find Marker
+merged_obj2 <- JoinLayers(merged_obj2)
+markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
+write.csv(markers,file="AllMarkers.csv")
+################################################################################ End Find Marker
+
+merged_obj3 = merged_obj2
+
+# 6
+saveRDS(file = "merged_obj3",merged_obj3)
+# The Seu
