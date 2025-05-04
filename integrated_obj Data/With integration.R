@@ -815,7 +815,7 @@ merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.
 
 
 merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
-merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
+# merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
 
 
 merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
@@ -864,8 +864,8 @@ dev.off()
 
 
 
-# Remove clusters 10
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
+# Remove clusters 11
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(11), invert = TRUE)
 png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
@@ -922,6 +922,28 @@ dev.off()
 png(filename = "UMAP4.png",width = 28000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, split.by = "orig.ident")
 dev.off()
+
+
+png(filename = "FeaturePlot.png", width = 10000, height = 4000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD78A"))
+dev.off()
+
+
+# Remove clusters 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
+png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+
+# Remove cells with an x-axis value less than -11 and y-axis value less than -1.
+umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
+cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < -11 & umap_coord[, "umap_2"] < -1), ])
+merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
 ################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
@@ -930,6 +952,41 @@ merged_obj2 = merged_obj1
 # saveRDS(file = "merged_obj2",merged_obj2)
 # The Seurat object obtained after UMAP
 
+
+################################################################################ Start Extracting and saving Seurat objects for each sample
+ 
+samples <- unique(merged_obj2$orig.ident)
+ 
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
+  assign(paste0("srobj_", i), seurat_obj)
+}
+ 
+ 
+# 5
+# 5_GSE144469_seurat_objs
+seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
+                     srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
+                     srobj_11, srobj_12, srobj_13, srobj_14, srobj_15, 
+                     srobj_16, srobj_17, srobj_18, srobj_19, srobj_20, 
+                     srobj_21, srobj_22)
+ 
+# Loop to save each Seurat object
+for (i in 1:length(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
+}
+ 
+################################################################################ End Extracting and saving Seurat objects for each sample
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
 markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
@@ -990,33 +1047,6 @@ merged_obj3 <- subset(merged_obj3, cells = cells_to_keep)
 png(filename = "UMAP6.png",width = 7000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj3, reduction = "umap",label = TRUE)
 dev.off()
-
-
-################################################################################ Start Extracting and saving Seurat objects for each sample
-
-samples <- unique(merged_obj3$orig.ident)
-
-for (i in seq_along(samples)) {
-  sample_name <- samples[i]
-  seurat_obj <- subset(merged_obj3, subset = orig.ident == sample_name)
-  assign(paste0("srobj_", i), seurat_obj)
-}
-
-
-# 6
-# 6_GSE144469_seurat_objs
-seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
-                    srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
-                    srobj_11, srobj_12, srobj_13, srobj_14, srobj_15, 
-                    srobj_16, srobj_17, srobj_18, srobj_19, srobj_20, 
-                    srobj_21, srobj_22)
-
-# Loop to save each Seurat object
-for (i in 1:length(seurat_objs)) {
-  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
-}
-
-################################################################################ End Extracting and saving Seurat objects for each sample
 
 
 new_cluster_ids <- c(

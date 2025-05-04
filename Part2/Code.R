@@ -1169,7 +1169,7 @@ merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.
 
 
 merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
-merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
+#merged_obj=subset(merged_obj, features = VariableFeatures(merged_obj))
 
 
 merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
@@ -1178,7 +1178,7 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 merged_obj = RunPCA(merged_obj)
 
 # 1
-# saveRDS(file = "merged_obj",merged_obj)
+ saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
 merged_obj <- IntegrateLayers(object = merged_obj,
@@ -1208,49 +1208,47 @@ merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP1.png",width = 9000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "FeaturePlot.png", width = 10000, height = 4000, units = "px", res = 600)
+png(filename = "FeaturePlot.png", width = 9000, height = 4000, units = "px", res = 600)
 FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD78A"))
 dev.off()
 
 
-# Remove clusters 1 2 3 6 8 9 10
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1,2,3,6,8,9,10), invert = TRUE)
-png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
+# Remove clusters 0 2 5 6 8 9 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(0, 2, 5, 6, 8, 9, 10), invert = TRUE)
+png(filename = "UMAP2.png",width = 7000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-# Remove cells with an x-axis value less than -1.
+# Remove cells with an x-axis value greater than 1.
 umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
-cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] >= -1, ])
+cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] <= 1, ])
 merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP3.png", width = 10000, height = 4000, units = "px", res = 600)
+png(filename = "UMAP3.png", width = 7000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
 
-# This code changes the label of cluster cluster 4 to cluster 1 | cluster 5 to cluster 2 | cluster 7 to cluster 3
+# This code changes the label of cluster 7 to cluster 2
 #  and then generates and saves a UMAP plot of the modified dataset.
 cluster_ids <- as.character(Idents(merged_obj1))
-cluster_ids[cluster_ids == "4"] <- "1"
-cluster_ids[cluster_ids == "5"] <- "2" 
-cluster_ids[cluster_ids == "7"] <- "3" 
+cluster_ids[cluster_ids == "7"] <- "2" 
 
 Idents(merged_obj1) <- cluster_ids
-png(filename = "UMAP4.png", width = 10000, height = 4000, units = "px", res = 600)
+png(filename = "UMAP4.png", width = 7000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
 
-# This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("0", "1", "2", "3")
-desired_order <- c("0", "1", "2", "3")
+# This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("1", "2", "3", "4")
+desired_order <- c("1", "2", "3", "4")
 Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-png(filename = "UMAP5.png", width = 10000, height = 4000, units = "px", res = 600)
+png(filename = "UMAP5.png", width = 7000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
