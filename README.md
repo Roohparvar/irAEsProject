@@ -64,9 +64,13 @@ The related files, including plots and outputs, are saved in the **Merged_obj Da
 
 ### Second Step Analysis of Part 1:
 In the next stage, we integrated the datasets using Seurat's integration workflow. The steps include:
-- Generation of a new UMAP to compare cluster behavior across the integrated datasets, enabling improved cross-sample analysis and interpretation.
-- Identification of significant genes using thresholds for adjusted p-value, average log fold change, and expression percentage differences.
-- Based on the identified marker genes, **annotation** was performed using both the provided **Annotation Guide** and a review of relevant scientific articles to assign cell type identities to each cluster.
+- Performed quality control to ensure data integrity.
+- Integrated the datasets to enable joint analysis.
+- Generated UMAP plots for visualization of cellular distribution.
+- Selected T cells
+- Saved each sample separately as an individual Seurat object.
+- Identified significant genes using thresholds for adjusted p-value, average log fold change, and expression percentage differences.
+- Annotated clusters based on identified marker genes, using both the provided Annotation Guide and supporting scientific literature to assign cell type identities.
 
 ---
 
@@ -150,4 +154,4 @@ filtered_data <- subset(data,
 ---
 
 ## Part 2: Adding the New Dataset (GSE206299):
-In Part 2 of this project, we expanded the analysis by incorporating the GSE206299 dataset, focusing on CD4+ and CD8+ T cells. This new dataset adds valuable data points to the original GSE144469 dataset, enabling a more comprehensive analysis of immune cell populations across different conditions. We began this phase with quality control, ensuring the integrity of the data. After integrating the datasets, we proceeded with UMAP plotting to visualize the cellular distribution. The key step in this part of the project was the selection of T cells. Using a FeaturePlot, we identified cells that expressed CD3D, CD3E, and CD3G, while excluding cells that expressed LYZ or CD78A. Following this, we filtered the dataset to retain only T cells and removed the remaining non-T cells. Finally, each sample was saved separately after this filtration process for further analysis.
+In this section, we followed the same approach as in the second step of Part 1 of the project; however, this time, the analyses were performed on the GSE206299 dataset.
