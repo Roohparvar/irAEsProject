@@ -69,7 +69,7 @@ In the next stage, we integrated the datasets using Seurat's integration workflo
 - Generated UMAP plots for visualization of cellular distribution.
 - Selected T cells
 - Saved each sample separately as an individual Seurat object.
-- Identified significant genes using thresholds for adjusted p-value, average log fold change, and expression percentage differences.
+- Identified significant genes
 - Annotated clusters based on identified marker genes, using both the provided Annotation Guide and supporting scientific literature to assign cell type identities.
 
 ---
@@ -155,3 +155,10 @@ filtered_data <- subset(data,
 
 ## Part 2: Adding the New Dataset (GSE206299):
 In this section, we followed the same approach as in the second step of Part 1 of the project; however, this time, the analyses were performed on the GSE206299 dataset.
+
+---
+---
+---
+
+## Part 3: Integration of All 52 Samples Collected in Parts 1 and 2:
+In this section, we applied the same analytical approach used in Parts 1 and 2 of the project. However, this time, the analyses were conducted on all 52 samples combined.
