@@ -1,10 +1,15 @@
+################################################################################ Start library
 library(Seurat)
 library(SeuratObject)
 library(ggplot2)
+library(dplyr)
+library(openxlsx)
+################################################################################ End library
+
 
 
 ################################################################################ Start Load Seurat objects from Dataset 1: GSE144469
-folder_path1 <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Part 1_GSE144469_Seurat_Objs"
+folder_path1 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 3/Data/Part 1_GSE144469_Seurat_Objs"
 
 rds_files1 <- list.files(folder_path1, pattern = "\\.rds$", full.names = TRUE)
 
@@ -17,7 +22,7 @@ for (i in seq_along(rds_files1)) {
 
 
 ################################################################################ Start Load Seurat objects from Dataset 2: GSE206299
-folder_path2 <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Part 2_GSE206299_Seurat_Objs"
+folder_path2 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 3/Data/Part 2_GSE206299_Seurat_Objs"
 
 rds_files2 <- list.files(folder_path2, pattern = "\\.rds$", full.names = TRUE)
 
@@ -27,6 +32,7 @@ for (i in seq_along(rds_files2)) {
   assign(paste0("srob", i + offset), obj)
 }
 ################################################################################ End Load Seurat objects from Dataset 2: GSE206299
+
 
 
 ################################################################################ Start integration
@@ -86,8 +92,18 @@ merged_obj1 = merged_obj
 
 ################################################################################ Start UMAP
 
+merged_obj1@meta.data <- merged_obj1@meta.data %>% mutate(dataset = case_when(
+  grepl(x = merged_obj1$orig.ident, pattern = "CPI") ~ 1,
+  grepl(x = merged_obj1$orig.ident, pattern = "Normal") ~ 1,
+  grepl(x = merged_obj1$orig.ident, pattern = "irColitis") ~ 2,
+  grepl(x = merged_obj1$orig.ident, pattern = "Healthy") ~ 2,
+  grepl(x = merged_obj1$orig.ident, pattern = "Therapy") ~ 2
+))
+
+
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+
 
 # 3
 # saveRDS(file = "merged_obj1",merged_obj1)
@@ -99,3 +115,47 @@ png(filename = "UMAP1.png", width = 8000, height = 4000, units = "px", res = 120
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
+png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
+DimPlot(merged_obj1, group.by = "orig.ident")
+dev.off()
+
+png(filename = "UMAP3.png",width = 20000,height=9000,units ="px",res = 600 )
+DimPlot(merged_obj1, split.by = "dataset")
+dev.off()
+
+################################################################################ End UMAP
+
+merged_obj2 = merged_obj1
+
+################################################################################ Start Find Marker
+merged_obj2 <- JoinLayers(merged_obj2)
+markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
+write.csv(markers,file="AllMarkers.csv")
+################################################################################ Start Find Marker
+
+
+################################################################################ Start saving each cluster's into a separate sheet
+df <- read.csv("AllMarkers.csv")
+filtered_df <- df %>% filter(
+  p_val < 0.05,
+  avg_log2FC > 0.1,
+  pct.1 > 0.1,
+  (pct.1 - pct.2) > 0.1
+)
+
+wb <- createWorkbook()
+
+clusters <- unique(filtered_df$cluster)
+
+for (i in seq_along(clusters)) {
+  cluster_value <- clusters[i]
+  
+  cluster_data <- filtered_df %>% filter(cluster == cluster_value)
+  
+  sheet_name <- paste0("Cluster_", cluster_value)
+  addWorksheet(wb, sheet_name)
+  writeData(wb, sheet_name, cluster_data)
+}
+
+saveWorkbook(wb, "Significant_Genes_ByCluster.xlsx", overwrite = TRUE)
+################################################################################ End saving each cluster's into a separate sheet
