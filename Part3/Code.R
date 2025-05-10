@@ -165,3 +165,15 @@ for (i in seq_along(clusters)) {
 
 saveWorkbook(wb, "Significant_Genes_ByCluster.xlsx", overwrite = TRUE)
 ################################################################################ End saving each cluster's into a separate sheet
+
+
+
+################################################################################ Start Dot Plot of Key Marker Genes
+png(filename = "DotPlot.png",width = 10000,height=4000,units ="px",res = 600 )
+DotPlot(merged_obj2, features = c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
+                                  "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
+                                  "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
+                                  "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")) + 
+coord_flip()
+dev.off()
+################################################################################ End Dot Plot of Key Marker Genes
