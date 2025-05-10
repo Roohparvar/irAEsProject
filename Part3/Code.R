@@ -93,21 +93,16 @@ merged_obj1 = merged_obj
 ################################################################################ Start UMAP
 
 merged_obj1@meta.data <- merged_obj1@meta.data %>% mutate(dataset = case_when(
-  grepl(x = merged_obj1$orig.ident, pattern = "CPI") ~ 1,
-  grepl(x = merged_obj1$orig.ident, pattern = "Normal") ~ 1,
-  grepl(x = merged_obj1$orig.ident, pattern = "irColitis") ~ 2,
-  grepl(x = merged_obj1$orig.ident, pattern = "Healthy") ~ 2,
-  grepl(x = merged_obj1$orig.ident, pattern = "Therapy") ~ 2
+  grepl(x = merged_obj1$orig.ident, pattern = "CPI") ~ "GSE144469",
+  grepl(x = merged_obj1$orig.ident, pattern = "Normal") ~ "GSE144469",
+  grepl(x = merged_obj1$orig.ident, pattern = "irColitis") ~ "GSE206299",
+  grepl(x = merged_obj1$orig.ident, pattern = "Healthy") ~ "GSE206299",
+  grepl(x = merged_obj1$orig.ident, pattern = "Therapy") ~ "GSE206299"
 ))
 
 
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
-
-
-# 3
-# saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after FindNeighbors and FindClusters
+merged_obj1=FindClusters(merged_obj1,resolution = 0.17)
 
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
@@ -115,24 +110,35 @@ png(filename = "UMAP1.png", width = 8000, height = 4000, units = "px", res = 120
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 
-png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
-DimPlot(merged_obj1, group.by = "orig.ident")
-dev.off()
 
-png(filename = "UMAP3.png",width = 20000,height=9000,units ="px",res = 600 )
-DimPlot(merged_obj1, split.by = "dataset")
+png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
+DimPlot(merged_obj1, split.by = "dataset") + 
+  theme(
+    strip.text = element_text(size = 35),   # اندازه عنوان پنل ها
+    axis.text = element_text(size = 20),    # اندازه اعداد محور
+    axis.title = element_text(size = 20),   # عنوان محورها
+    legend.text = element_text(size = 17) 
+  ) +
+  guides(color = guide_legend(override.aes = list(size = 8))) 
 dev.off()
 
 ################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
 
+# 3
+# saveRDS(file = "merged_obj2",merged_obj2)
+# The Seurat object obtained after UMAP
+
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
 markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
 write.csv(markers,file="AllMarkers.csv")
-################################################################################ Start Find Marker
+################################################################################ ٍدی Find Marker
 
+# 4
+# saveRDS(file = "merged_obj2",merged_obj2)
+# The Seurat object obtained after  FindAllMarkers
 
 ################################################################################ Start saving each cluster's into a separate sheet
 df <- read.csv("AllMarkers.csv")
