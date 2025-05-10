@@ -137,19 +137,6 @@ Annotation is a critical step in the analysis process. The following guide is a 
 - **Downregulated genes**: Other markers not related to this subtype.
 
 ---
-
-### Significant Gene Discovery:
-After identifying all marker genes, we applied the following thresholds to discover **significant genes**:
-
-```
-filtered_data <- subset(data, 
-                        p_val < 0.05 & 
-                        avg_log2FC > 0.1 & 
-                        pct.1 > 0.1 & 
-                        (pct.1 - pct.2) > 0.1)
-```
-
----
 ---
 ---
 

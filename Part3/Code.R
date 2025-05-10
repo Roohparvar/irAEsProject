@@ -140,11 +140,10 @@ write.csv(markers,file="AllMarkers.csv")
 # saveRDS(file = "merged_obj2",merged_obj2)
 # The Seurat object obtained after  FindAllMarkers
 
-################################################################################ Start saving each cluster's into a separate sheet
+################################################################################ Start finding Significant Genes and saving each cluster's into a separate sheet
 df <- read.csv("AllMarkers.csv")
 filtered_df <- df %>% filter(
   p_val < 0.05,
-  avg_log2FC > 0.1,
   pct.1 > 0.1,
   (pct.1 - pct.2) > 0.1
 )
@@ -163,8 +162,8 @@ for (i in seq_along(clusters)) {
   writeData(wb, sheet_name, cluster_data)
 }
 
-saveWorkbook(wb, "Significant_Genes_ByCluster.xlsx", overwrite = TRUE)
-################################################################################ End saving each cluster's into a separate sheet
+saveWorkbook(wb, "Significant_Genes.xlsx", overwrite = TRUE)
+################################################################################ End finding Significant Genes and saving each cluster's into a separate sheet
 
 
 
