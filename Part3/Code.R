@@ -144,6 +144,7 @@ write.csv(markers,file="AllMarkers.csv")
 df <- read.csv("AllMarkers.csv")
 filtered_df <- df %>% filter(
   p_val < 0.05,
+  avg_log2FC > 0.1,
   pct.1 > 0.1,
   (pct.1 - pct.2) > 0.1
 )
@@ -168,11 +169,37 @@ saveWorkbook(wb, "Significant_Genes.xlsx", overwrite = TRUE)
 
 
 ################################################################################ Start Dot Plot of Key Marker Genes
+file_path <- "Significant_Genes.xlsx"
+
+target_genes <- c("CD8A", "CD8B", "GNLY","GZMA", "GZMB", "GZMH", "GZMK", "IFNG", "NKG7", "PRF1",
+                  "CD4", "CD40LG", "SELL", "CCR7", "IL7R", "CTLA4", "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", 
+                  "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
+                  "LTB", "CD4A", "CD4B")
+
+
+sheets <- excel_sheets(file_path)
+
+found_genes <- c()
+
+for (sheet in sheets) {
+  df <- read_excel(file_path, sheet = sheet)
+  found_in_sheet <- intersect(target_genes, df$gene)
+  found_genes <- union(found_genes, found_in_sheet)
+}
+
+not_found_genes <- setdiff(target_genes, found_genes)
+
+
+
 png(filename = "DotPlot.png",width = 10000,height=4000,units ="px",res = 600 )
-DotPlot(merged_obj2, features = c("CD4", "CD40LG", "CD8A", "CD8B", "SELL", "CCR7", "IL7R", "CTLA4", 
-                                  "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", "IFNG", 
-                                  "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
-                                  "LTB", "CD4A", "CD4B", "GNLY", "GZMA", "GZMB", "GZMH", "GZMK", "PRF1", "NKG7")) + 
-coord_flip()
+DotPlot(merged_obj2, features = found_genes) +  coord_flip()
 dev.off()
 ################################################################################ End Dot Plot of Key Marker Genes
+
+# 0 --> Cytotoxic CD8 T Cells
+# 1 --> Effector Memory CD4 T Cells (CD4EM)
+# 3 --> Central Memory CD4 T Cells (CD4CM)
+# 5 --> CD4_Tregs | FOXP3- Tregs
+# 6 --> Proliferating T cells | Cell cycle
+# 7 --> NK | NKT
+
