@@ -4,6 +4,7 @@ library(SeuratObject)
 library(ggplot2)
 library(dplyr)
 library(openxlsx)
+library(readxl)
 ################################################################################ End library
 
 
@@ -102,7 +103,7 @@ merged_obj1@meta.data <- merged_obj1@meta.data %>% mutate(dataset = case_when(
 
 
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.17)
+merged_obj1=FindClusters(merged_obj1,resolution = 0.60)
 
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
@@ -114,9 +115,9 @@ dev.off()
 png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
 DimPlot(merged_obj1, split.by = "dataset") + 
   theme(
-    strip.text = element_text(size = 35),   # اندازه عنوان پنل ها
-    axis.text = element_text(size = 20),    # اندازه اعداد محور
-    axis.title = element_text(size = 20),   # عنوان محورها
+    strip.text = element_text(size = 35), 
+    axis.text = element_text(size = 20), 
+    axis.title = element_text(size = 20),  
     legend.text = element_text(size = 17) 
   ) +
   guides(color = guide_legend(override.aes = list(size = 8))) 
@@ -124,11 +125,12 @@ dev.off()
 
 ################################################################################ End UMAP
 
+# 3
+# saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after UMAP
+
 merged_obj2 = merged_obj1
 
-# 3
-# saveRDS(file = "merged_obj2",merged_obj2)
-# The Seurat object obtained after UMAP
 
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
@@ -171,12 +173,15 @@ saveWorkbook(wb, "Significant_Genes.xlsx", overwrite = TRUE)
 ################################################################################ Start Dot Plot of Key Marker Genes
 file_path <- "Significant_Genes.xlsx"
 
-target_genes <- c("CD8A", "CD8B", "GNLY","GZMA", "GZMB", "GZMH", "GZMK", "IFNG", "NKG7", "PRF1",
-                  "CD4", "CD40LG", "SELL", "CCR7", "IL7R", "CTLA4", "FOXP3", "TNFRSF4", "TNFRSF18", "TIGIT", "IL2RA", "ICOS", 
-                  "STAT1", "STAT4", "TBX21", "GATA3", "STAT5", "STAT6", "IL17A", "RORA", 
-                  "LTB", "CD4A", "CD4B")
+target_genes <- c("CD8A", "CD8B","GZMA", "GZMB", "GZMH", "GZMK", "NKG7", "PRF1", "EOMES", "RUNX3", "CXCR3", "CXCR6", "KLRD1", "IFNG",
+                  "IL7R", "LTB", "CD4", "CD40LG", "SELL", "CCR7",
+                  "TRDC", "TRGC1", "TRGC2", "GZMB", "GNLY", "NKG7", "KLRD1",
+                  "LEF1","TCF7", "CD28", "CD27",
+                  "FOXP3", "IL2RA", "CTLA4", "TNFRSF18", "TNFRSF4", "ICOS", "TIGIT",
+                  "MKI67", "TOP2A", "PCNA", "CDK1", "CCNB1", "CCNB2", "BIRC5", "AURKA", "AURKB", "CENPF","UBE2C",
+                  "NCAM1")
 
-
+ 
 sheets <- excel_sheets(file_path)
 
 found_genes <- c()
@@ -196,10 +201,14 @@ DotPlot(merged_obj2, features = found_genes) +  coord_flip()
 dev.off()
 ################################################################################ End Dot Plot of Key Marker Genes
 
-# 0 --> Cytotoxic CD8 T Cells
-# 1 --> Effector Memory CD4 T Cells (CD4EM)
-# 3 --> Central Memory CD4 T Cells (CD4CM)
-# 5 --> CD4_Tregs | FOXP3- Tregs
-# 6 --> Proliferating T cells | Cell cycle
-# 7 --> NK | NKT
+# 0 --> Cytotoxic CD8 T Cells | "CD8A", "CD8B","GZMA", "GZMB", "GZMH", "GZMK", "NKG7", "PRF1", "EOMES", "RUNX3", "CXCR3", "CXCR6", "KLRD1", "IFNG",
+# 1 --> Effector Memory CD4 T Cells (CD4EM) | "IL7R", "LTB", "CD4", "CD40LG", "SELL", "CCR7",
+# 2 --> Gamma Delta T cells | "TRDC", "TRGC1", "TRGC2", "GZMB", "GNLY", "NKG7", "KLRD1",
+# 3 --> Central Memory CD4 T Cells (CD4CM) | "LEF1","TCF7", "CD28", "CD27",
+# 5 --> CD4_Tregs | "FOXP3", "IL2RA", "CTLA4", "TNFRSF18", "TNFRSF4", "ICOS", "TIGIT",
+# 6 --> Proliferating T cells | Cell cycle | "MKI67", "TOP2A", "PCNA", "CDK1", "CCNB1", "CCNB2", "BIRC5", "AURKA", "AURKB", "CENPF","UBE2C",
+# 7 --> NKT | "NCAM1"
+
+
+
 
