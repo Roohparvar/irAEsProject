@@ -978,15 +978,9 @@ for (i in 1:length(seurat_objs)) {
 }
  
 ################################################################################ End Extracting and saving Seurat objects for each sample
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
 ################################################################################ Start Find Marker
 merged_obj2 <- JoinLayers(merged_obj2)
 markers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1)
