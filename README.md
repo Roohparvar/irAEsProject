@@ -1,12 +1,18 @@
 # Single-Cell Analysis Pipeline:
-This repository contains a single-cell analysis pipeline for working with two datasets, **GSE144469** and **GSE206299**.
+This repository contains a single-cell analysis pipeline for working with three datasets, **GSE144469**, **GSE206299**, and **GSE206301**
 
 ---
 ---
 ---
 
 ## Overview:
-In the first part of this project, we analyzed the **GSE144469** dataset. In the second part, we added the **GSE206299** dataset for a comprehensive analysis, combining both datasets to better understand immune cell populations across different conditions.
+The project is divided into three main parts:
+
+1. **Part 1** – Analysis of the **GSE144469** dataset  
+2. **Part 2** – Analysis of the **GSE206299** dataset  
+3. **Part 3** – Integration of the **GSE206301** dataset for a combined analysis of all three datasets  
+
+By integrating these datasets, the pipeline aims to provide deeper insights into immune cell populations under various conditions.
 
 ---
 
