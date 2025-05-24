@@ -218,7 +218,7 @@ write.csv(markers,file="AllMarkers2.csv")
 
 # 5
 # saveRDS(file = "merged_obj3",merged_obj3)
-gc()
+# gc()
 # The Seurat object obtained after  FindAllMarkers 2
 
 
@@ -288,6 +288,27 @@ dev.off()
 # 6 --> Proliferating T cells | Cell cycle | "MKI67", "TOP2A", "PCNA", "CDK1", "CCNB1", "CCNB2", "BIRC5", "AURKA", "AURKB", "CENPF","UBE2C",
 # 7 --> NKT | "NCAM1"
 
+
+
+new_cluster_ids <- c(
+  "Cytotoxic CD8 T Cells",
+  "Effector Memory CD4",
+  "Gamma Delta T cells",
+  "CD4CM",
+  "CD4_Tregs",
+  "Proliferating T cells | Cell cycle",
+  "NKT"
+)
+
+
+names(new_cluster_ids) <- levels(merged_obj3)
+merged_obj3 <- RenameIdents(merged_obj3, new_cluster_ids)
+
+
+png(filename = "UMAP7.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj3,label = TRUE,label.size = 3) +
+  theme(legend.text = element_text(size = 8))
+dev.off()
 
 
 
