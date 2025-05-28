@@ -243,5 +243,509 @@ CPI_Colitis_5_New=subset(CPI_Colitis_5_New,subset=nFeature_RNA>360 & nFeature_RN
 
 
 
+################################################################################ Start CPI_Colitis_6_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_6_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_6_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 1450, color = 'red') +
+  geom_vline(xintercept = 6500, color = 'red')
+dev.off()
 
 
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_6_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 2400, color = 'red')
+dev.off()
+
+
+CPI_Colitis_6_New=subset(CPI_Colitis_6_New,subset=nFeature_RNA>600 & nFeature_RNA<2400 & MTpercent<5 & nCount_RNA>1450 & nCount_RNA<6500)
+
+################################################################################ End CPI_Colitis_6_New
+
+
+
+################################################################################ Start CPI_Colitis_7_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_7_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_7_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 1100, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_7_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 500, color = 'red') +
+  geom_vline(xintercept = 2000, color = 'red')
+dev.off()
+
+
+CPI_Colitis_7_New=subset(CPI_Colitis_7_New,subset=nFeature_RNA>500 & nFeature_RNA<2000 & MTpercent<5 & nCount_RNA>1100 & nCount_RNA<4500)
+
+################################################################################ End CPI_Colitis_7_New
+
+
+
+################################################################################ Start CPI_Colitis_8_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_8_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_8_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 1100, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_8_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 500, color = 'red') +
+  geom_vline(xintercept = 2000, color = 'red')
+dev.off()
+
+
+CPI_Colitis_8_New=subset(CPI_Colitis_8_New,subset=nFeature_RNA>500 & nFeature_RNA<2000 & MTpercent<5 & nCount_RNA>1100 & nCount_RNA<4500)
+
+################################################################################ End CPI_Colitis_8_New
+
+
+
+################################################################################ Start CPI_Colitis_9_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_9_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_9_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 1100, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_9_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 500, color = 'red') +
+  geom_vline(xintercept = 2000, color = 'red')
+dev.off()
+
+
+CPI_Colitis_9_New=subset(CPI_Colitis_9_New,subset=nFeature_RNA>500 & nFeature_RNA<2000 & MTpercent<5 & nCount_RNA>1100 & nCount_RNA<4500)
+
+################################################################################ End CPI_Colitis_9_New
+
+
+
+
+################################################################################ Start CPI_Colitis_10_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_10_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_10_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_10_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_10_New=subset(CPI_Colitis_10_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_10_New
+
+
+
+
+################################################################################ Start CPI_Colitis_11_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_11_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_11_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_11_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_11_New=subset(CPI_Colitis_11_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+
+################################################################################ End CPI_Colitis_11_New
+
+
+
+################################################################################ Start CPI_Colitis_12_New
+
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_12_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_12_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_12_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_12_New=subset(CPI_Colitis_12_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+
+################################################################################ End CPI_Colitis_12_New
+
+
+
+################################################################################ Start CPI_Colitis_13_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_13_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_13_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_13_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_13_New=subset(CPI_Colitis_13_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_13_New
+
+
+
+################################################################################ Start CPI_Colitis_14_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_14_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_14_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_14_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_14_New=subset(CPI_Colitis_14_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_14_New
+
+
+
+################################################################################ Start CPI_Colitis_15_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_15_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_15_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_15_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_15_New=subset(CPI_Colitis_15_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_15_New
+
+
+
+################################################################################ Start CPI_Colitis_15_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_15_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_15_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_15_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_15_New=subset(CPI_Colitis_15_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_15_New
+
+
+
+################################################################################ Start CPI_Colitis_16_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_16_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_16_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_16_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_16_New=subset(CPI_Colitis_16_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_16_New
+
+
+
+################################################################################ Start CPI_Colitis_17_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_17_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_17_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_17_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_17_New=subset(CPI_Colitis_17_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_17_New
+
+
+
+
+################################################################################ Start CPI_Colitis_18_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_18_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_18_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_18_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1700, color = 'red')
+dev.off()
+
+
+CPI_Colitis_18_New=subset(CPI_Colitis_18_New,subset=nFeature_RNA>900 & nFeature_RNA<1700 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<4500)
+################################################################################ End CPI_Colitis_18_New
+
+
+
+
+################################################################################ Start CPI_Colitis_19_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_19_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_19_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 5000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_19_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 950, color = 'red') +
+  geom_vline(xintercept = 2000, color = 'red')
+dev.off()
+
+
+CPI_Colitis_19_New=subset(CPI_Colitis_19_New,subset=nFeature_RNA>950 & nFeature_RNA<2000 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<5000)
+################################################################################ End CPI_Colitis_19_New
+
+
+
+################################################################################ Start CPI_Colitis_20_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_20_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_20_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 5200, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_20_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 950, color = 'red') +
+  geom_vline(xintercept = 1800, color = 'red')
+dev.off()
+
+
+CPI_Colitis_20_New=subset(CPI_Colitis_20_New,subset=nFeature_RNA>950 & nFeature_RNA<1800 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<5200)
+################################################################################ End CPI_Colitis_20_New
+
+
+
+################################################################################ Start CPI_Colitis_21_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_21_New")
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_21_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 2000, color = 'red') +
+  geom_vline(xintercept = 5000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = CPI_Colitis_21_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 900, color = 'red') +
+  geom_vline(xintercept = 1800, color = 'red')
+dev.off()
+
+
+CPI_Colitis_21_New=subset(CPI_Colitis_21_New,subset=nFeature_RNA>900 & nFeature_RNA<1800 & MTpercent<5 & nCount_RNA>2000 & nCount_RNA<5000)
+################################################################################ End CPI_Colitis_21_New
