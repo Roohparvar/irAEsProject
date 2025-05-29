@@ -2197,10 +2197,7 @@ dev.off()
 
 
 
-################################################################################ Start integration and UMAP
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3")
-
-
+################################################################################ Start Convert old Seurat objects to the new Seurat v5 object structure
 object_names <- c(
   "CPI_Colitis_1_New", "CPI_Colitis_2_New", "CPI_Colitis_3_New", "CPI_Colitis_4_New", 
   "CPI_Colitis_5_New", "CPI_Colitis_6_New", "CPI_Colitis_7_New", 
@@ -2226,8 +2223,13 @@ for (obj_name in object_names) {
   
   assign(obj_name, new_obj)
 }
+################################################################################ End Convert old Seurat objects to the new Seurat v5 object structure
 
 
+
+
+################################################################################ Start integration
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3")
 merged_obj <- merge(CPI_Colitis_1_New, y = list(CPI_Colitis_2_New, CPI_Colitis_3_New, CPI_Colitis_4_New, 
                                                 CPI_Colitis_5_New, CPI_Colitis_6_New, CPI_Colitis_7_New, 
                                                 CPI_Control_1_New, CPI_Control_2_New, CPI_Control_3_New, 
@@ -2261,3 +2263,37 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                               orig.reduction = "pca", 
                               new.reduction = "integrated.cca",
                               verbose = FALSE)
+
+# 2
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after IntegrateLayers
+
+merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
+################################################################################ End integration
+
+merged_obj1 = merged_obj
+
+################################################################################ Start UMAP
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+
+
+# 3
+# saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after FindNeighbors and FindClusters
+
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+png(filename = "UMAP1.png",width = 9000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+png(filename = "FeaturePlot.png", width = 9000, height = 5000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+dev.off()
+################################################################################ End UMAP
+
+merged_obj2 = merged_obj1
+
+################################################################################ Start Extracting and saving Seurat objects for each sample

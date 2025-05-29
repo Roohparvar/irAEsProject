@@ -1128,7 +1128,7 @@ seurat_obj_30=subset(seurat_obj_30,subset=nFeature_RNA>200 & nFeature_RNA<3500 &
 
 
 
-################################################################################ Start integration and UMAP
+################################################################################ Start integration
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2")
 merged_obj <- merge(seurat_obj_1, y = list(seurat_obj_2, seurat_obj_3, seurat_obj_4, 
                                            seurat_obj_5, seurat_obj_6, seurat_obj_7, 
