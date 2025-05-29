@@ -23,7 +23,8 @@ group_counts <- list()
 
 for (i in 1:nrow(donor_info)) {
   donor_id <- donor_info$Donor[i]
-  donor_type <- gsub(" ", "_", donor_info$Type[i])
+  #donor_type <- gsub(" ", "_", donor_info$Type[i])
+  donor_type <- gsub("[- ]", "_", donor_info$Type[i])
   
   if (!donor_type %in% names(group_counts)) {
     group_counts[[donor_type]] <- 1
@@ -41,7 +42,6 @@ for (i in 1:nrow(donor_info)) {
   
   saveRDS(seurat_obj, file = file.path("Donor_Seurat_Objects", paste0(object_name, ".rds")))
   
-  print(paste("Saved:", object_name, ".rds"))
 }
 ################################################################################ End reading the main RDS file and save each sample in a separate RDS file.
 
@@ -1509,3 +1509,690 @@ dev.off()
 
 Healthy_Control_9_New=subset(Healthy_Control_9_New,subset=nFeature_RNA>800 & nFeature_RNA<1800 & MTpercent<6 & nCount_RNA>1850 & nCount_RNA<6000)
 ################################################################################ End Healthy_Control_9_New
+
+
+
+################################################################################ Start UC_Inflamed_1_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_1_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_1_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 2.5, color = 'red') + 
+  geom_vline(xintercept = 750, color = 'red') +
+  geom_vline(xintercept = 4000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_1_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 2.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Inflamed_1_New=subset(UC_Inflamed_1_New,subset=nFeature_RNA>400 & nFeature_RNA<1500 & MTpercent<6 & nCount_RNA>750 & nCount_RNA<4000)
+################################################################################ End UC_Inflamed_1_New
+
+
+
+################################################################################ Start UC_Inflamed_2_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_2_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_2_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 2.5, color = 'red') + 
+  geom_vline(xintercept = 750, color = 'red') +
+  geom_vline(xintercept = 4000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_2_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 2.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Inflamed_2_New=subset(UC_Inflamed_2_New,subset=nFeature_RNA>400 & nFeature_RNA<1500 & MTpercent<6 & nCount_RNA>750 & nCount_RNA<4000)
+################################################################################ End UC_Inflamed_2_New
+
+
+
+################################################################################ Start UC_Inflamed_3_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_3_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_3_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 5500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_3_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Inflamed_3_New=subset(UC_Inflamed_3_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1400 & nCount_RNA<5500)
+################################################################################ End UC_Inflamed_3_New
+
+
+
+################################################################################ Start UC_Inflamed_4_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_4_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_4_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 5000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_4_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Inflamed_4_New=subset(UC_Inflamed_4_New,subset=nFeature_RNA>700 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<5000)
+################################################################################ End UC_Inflamed_4_New
+
+
+
+################################################################################ Start UC_Inflamed_5_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_5_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_5_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4900, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_5_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 650, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Inflamed_5_New=subset(UC_Inflamed_5_New,subset=nFeature_RNA>650 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4900)
+################################################################################ End UC_Inflamed_5_New
+
+
+
+################################################################################ Start UC_Inflamed_6_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_6_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_6_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_6_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+UC_Inflamed_6_New=subset(UC_Inflamed_6_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_6_New
+
+
+
+################################################################################ Start UC_Inflamed_7_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_7_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_7_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_7_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+# UC_Inflamed_7_New=subset(UC_Inflamed_7_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_7_New
+
+
+
+################################################################################ Start UC_Inflamed_8_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_8_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_8_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_8_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+# UC_Inflamed_8_New=subset(UC_Inflamed_8_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_8_New
+
+
+
+
+################################################################################ Start UC_Inflamed_9_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_9_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_9_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_9_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+# UC_Inflamed_9_New=subset(UC_Inflamed_9_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_9_New
+
+
+
+
+################################################################################ Start UC_Inflamed_10_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_10_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_10_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_10_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+# UC_Inflamed_10_New=subset(UC_Inflamed_10_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_10_New
+
+
+
+
+################################################################################ Start UC_Inflamed_11_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_11_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_11_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_11_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1400, color = 'red')
+dev.off()
+
+
+# UC_Inflamed_11_New=subset(UC_Inflamed_11_New,subset=nFeature_RNA>400 & nFeature_RNA<1400 & MTpercent<6.5 & nCount_RNA>800 & nCount_RNA<4500)
+################################################################################ End UC_Inflamed_11_New
+
+
+
+################################################################################ Start UC_Inflamed_12_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_12_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_12_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 1500, color = 'red') +
+  geom_vline(xintercept = 7000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_12_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 2000, color = 'red')
+dev.off()
+
+
+UC_Inflamed_12_New=subset(UC_Inflamed_12_New,subset=nFeature_RNA>800 & nFeature_RNA<2000 & MTpercent<4 & nCount_RNA>1500 & nCount_RNA<7000)
+################################################################################ End UC_Inflamed_12_New
+
+
+
+################################################################################ Start UC_Inflamed_13_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_13_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_13_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4.5, color = 'red') + 
+  geom_vline(xintercept = 1800, color = 'red') +
+  geom_vline(xintercept = 6000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_13_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 4.5, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 1900, color = 'red')
+dev.off()
+
+
+UC_Inflamed_13_New=subset(UC_Inflamed_13_New,subset=nFeature_RNA>1000 & nFeature_RNA<1900 & MTpercent<4.5 & nCount_RNA>1800 & nCount_RNA<6000)
+################################################################################ End UC_Inflamed_13_New
+
+
+
+################################################################################ Start UC_Inflamed_14_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_14_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_14_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 1900, color = 'red') +
+  geom_vline(xintercept = 6000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Inflamed_14_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 5, color = 'red') + 
+  geom_vline(xintercept = 800, color = 'red') +
+  geom_vline(xintercept = 1900, color = 'red')
+dev.off()
+
+
+UC_Inflamed_14_New=subset(UC_Inflamed_14_New,subset=nFeature_RNA>800 & nFeature_RNA<1900 & MTpercent<5 & nCount_RNA>1900 & nCount_RNA<6000)
+################################################################################ End UC_Inflamed_14_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_1_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_1_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_1_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6, color = 'red') + 
+  geom_vline(xintercept = 850, color = 'red') +
+  geom_vline(xintercept = 4000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_1_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6, color = 'red') + 
+  geom_vline(xintercept = 400, color = 'red') +
+  geom_vline(xintercept = 1450, color = 'red')
+dev.off()
+
+
+UC_Non_Inflamed_1_New=subset(UC_Non_Inflamed_1_New,subset=nFeature_RNA>400 & nFeature_RNA<1450 & MTpercent<6 & nCount_RNA>850 & nCount_RNA<4000)
+################################################################################ End UC_Non_Inflamed_1_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_2_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_2_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_2_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_2_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Non_Inflamed_2_New=subset(UC_Non_Inflamed_2_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6 & nCount_RNA>1400 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_2_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_3_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_3_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_3_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_3_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 750, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Non_Inflamed_3_New=subset(UC_Non_Inflamed_3_New,subset=nFeature_RNA>750 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_3_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_4_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_4_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_4_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_4_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+UC_Non_Inflamed_4_New=subset(UC_Non_Inflamed_4_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_4_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_5_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_5_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_5_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_5_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+# UC_Non_Inflamed_5_New=subset(UC_Non_Inflamed_5_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_5_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_6_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_6_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_6_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_6_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+# UC_Non_Inflamed_6_New=subset(UC_Non_Inflamed_6_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_6_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_7_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_7_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_7_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_7_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+# UC_Non_Inflamed_7_New=subset(UC_Non_Inflamed_7_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_7_New
+
+
+
+################################################################################ Start UC_Non_Inflamed_8_New
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_8_New")
+
+
+png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_8_New@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 1600, color = 'red') +
+  geom_vline(xintercept = 4500, color = 'red')
+dev.off()
+
+
+png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
+ggplot(data = UC_Non_Inflamed_8_New@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nFeature_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 6.5, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 1500, color = 'red')
+dev.off()
+
+
+# UC_Non_Inflamed_8_New=subset(UC_Non_Inflamed_8_New,subset=nFeature_RNA>600 & nFeature_RNA<1500 & MTpercent<6.5 & nCount_RNA>1600 & nCount_RNA<4500)
+################################################################################ End UC_Non_Inflamed_8_New
+
+
