@@ -2196,3 +2196,68 @@ dev.off()
 ################################################################################ End UC_Non_Inflamed_8_New
 
 
+
+################################################################################ Start integration and UMAP
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3")
+
+
+object_names <- c(
+  "CPI_Colitis_1_New", "CPI_Colitis_2_New", "CPI_Colitis_3_New", "CPI_Colitis_4_New", 
+  "CPI_Colitis_5_New", "CPI_Colitis_6_New", "CPI_Colitis_7_New", 
+  "CPI_Control_1_New", "CPI_Control_2_New", "CPI_Control_3_New", 
+  "CPI_Control_4_New", "CPI_Control_5_New", "CPI_Control_6_New", 
+  "Healthy_Control_1_New", "Healthy_Control_2_New", "Healthy_Control_7_New",
+  "Healthy_Control_8_New", "Healthy_Control_9_New",
+  "UC_Inflamed_1_New", "UC_Inflamed_2_New", "UC_Inflamed_3_New", 
+  "UC_Inflamed_4_New", "UC_Inflamed_5_New", "UC_Inflamed_6_New", 
+  "UC_Inflamed_12_New", "UC_Inflamed_13_New", "UC_Inflamed_14_New", 
+  "UC_Non_Inflamed_1_New", "UC_Non_Inflamed_2_New", "UC_Non_Inflamed_3_New", 
+  "UC_Non_Inflamed_4_New"
+)
+
+
+for (obj_name in object_names) {
+  old_obj <- get(obj_name)
+  raw_data <- GetAssayData(old_obj, layer = "counts")
+  new_obj <- CreateSeuratObject(counts = raw_data, project = obj_name, min.cells = 3, min.features = 200)
+  
+  cell_metadata <- old_obj@meta.data
+  new_obj@meta.data <- cell_metadata
+  
+  assign(obj_name, new_obj)
+}
+
+
+merged_obj <- merge(CPI_Colitis_1_New, y = list(CPI_Colitis_2_New, CPI_Colitis_3_New, CPI_Colitis_4_New, 
+                                                CPI_Colitis_5_New, CPI_Colitis_6_New, CPI_Colitis_7_New, 
+                                                CPI_Control_1_New, CPI_Control_2_New, CPI_Control_3_New, 
+                                                CPI_Control_4_New, CPI_Control_5_New, CPI_Control_6_New, 
+                                                Healthy_Control_1_New, Healthy_Control_2_New, Healthy_Control_7_New,
+                                                Healthy_Control_8_New, Healthy_Control_9_New,
+                                                UC_Inflamed_1_New, UC_Inflamed_2_New, UC_Inflamed_3_New, 
+                                                UC_Inflamed_4_New, UC_Inflamed_5_New, UC_Inflamed_6_New, 
+                                                UC_Inflamed_12_New, UC_Inflamed_13_New, UC_Inflamed_14_New, 
+                                                UC_Non_Inflamed_1_New, UC_Non_Inflamed_2_New, UC_Non_Inflamed_3_New, 
+                                                UC_Non_Inflamed_4_New))
+
+
+merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
+
+
+merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
+
+
+merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
+
+
+merged_obj = RunPCA(merged_obj)
+
+# 1
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after RunPCA and before IntegrateLayers
+
+merged_obj <- IntegrateLayers(object = merged_obj,
+                              method = CCAIntegration,
+                              orig.reduction = "pca", 
+                              new.reduction = "integrated.cca",
+                              verbose = FALSE)
