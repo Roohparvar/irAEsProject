@@ -2219,6 +2219,11 @@ for (obj_name in object_names) {
   new_obj <- CreateSeuratObject(counts = raw_data, project = obj_name, min.cells = 3, min.features = 200)
   
   cell_metadata <- old_obj@meta.data
+  cell_metadata$Type <- obj_name
+  
+  cell_metadata$orig.ident <- cell_metadata$Type
+  cell_metadata$Type <- NULL
+  
   new_obj@meta.data <- cell_metadata
   
   assign(obj_name, new_obj)
@@ -2230,17 +2235,20 @@ for (obj_name in object_names) {
 
 ################################################################################ Start integration
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3")
-merged_obj <- merge(CPI_Colitis_1_New, y = list(CPI_Colitis_2_New, CPI_Colitis_3_New, CPI_Colitis_4_New, 
-                                                CPI_Colitis_5_New, CPI_Colitis_6_New, CPI_Colitis_7_New, 
-                                                CPI_Control_1_New, CPI_Control_2_New, CPI_Control_3_New, 
-                                                CPI_Control_4_New, CPI_Control_5_New, CPI_Control_6_New, 
-                                                Healthy_Control_1_New, Healthy_Control_2_New, Healthy_Control_7_New,
-                                                Healthy_Control_8_New, Healthy_Control_9_New,
-                                                UC_Inflamed_1_New, UC_Inflamed_2_New, UC_Inflamed_3_New, 
-                                                UC_Inflamed_4_New, UC_Inflamed_5_New, UC_Inflamed_6_New, 
-                                                UC_Inflamed_12_New, UC_Inflamed_13_New, UC_Inflamed_14_New, 
-                                                UC_Non_Inflamed_1_New, UC_Non_Inflamed_2_New, UC_Non_Inflamed_3_New, 
-                                                UC_Non_Inflamed_4_New))
+
+merged_obj <- merge(
+  CPI_Colitis_1_New,
+  y = list(CPI_Colitis_2_New, CPI_Colitis_3_New, CPI_Colitis_4_New, 
+           CPI_Colitis_5_New, CPI_Colitis_6_New, CPI_Colitis_7_New, 
+           CPI_Control_1_New, CPI_Control_2_New, CPI_Control_3_New, 
+           CPI_Control_4_New, CPI_Control_5_New, CPI_Control_6_New, 
+           Healthy_Control_1_New, Healthy_Control_2_New, Healthy_Control_7_New,
+           Healthy_Control_8_New, Healthy_Control_9_New,
+           UC_Inflamed_1_New, UC_Inflamed_2_New, UC_Inflamed_3_New, 
+           UC_Inflamed_4_New, UC_Inflamed_5_New, UC_Inflamed_6_New, 
+           UC_Inflamed_12_New, UC_Inflamed_13_New, UC_Inflamed_14_New, 
+           UC_Non_Inflamed_1_New, UC_Non_Inflamed_2_New, UC_Non_Inflamed_3_New, 
+           UC_Non_Inflamed_4_New))
 
 
 merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
@@ -2297,3 +2305,30 @@ dev.off()
 merged_obj2 = merged_obj1
 
 ################################################################################ Start Extracting and saving Seurat objects for each sample
+samples <- unique(merged_obj2$orig.ident)
+
+
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
+  assign(paste0("sr_obj_", i), seurat_obj)
+}
+
+
+
+# 4
+# New_seurat_objs
+setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part3/4_New_seurat_objs")
+
+sr_objs <- list(sr_obj_1, sr_obj_2, sr_obj_3, sr_obj_4, sr_obj_5, 
+                sr_obj_6, sr_obj_7, sr_obj_8, sr_obj_9, sr_obj_10, 
+                sr_obj_11, sr_obj_12, sr_obj_13, sr_obj_14, sr_obj_15, 
+                sr_obj_16, sr_obj_17, sr_obj_18, sr_obj_19, sr_obj_20, 
+                sr_obj_21, sr_obj_22, sr_obj_23, sr_obj_24, sr_obj_25, 
+                sr_obj_26, sr_obj_27, sr_obj_28, sr_obj_29, sr_obj_30, sr_obj_31)
+
+
+for (i in 1:length(sr_objs)) {
+  saveRDS(sr_objs[[i]], file = paste0("sr_obj_", i, ".rds"))
+}
+################################################################################ End Extracting and saving Seurat objects for each sample

@@ -1256,7 +1256,6 @@ seurat_objs <- list(seurat_obj_1, seurat_obj_2, seurat_obj_3, seurat_obj_4, seur
                     seurat_obj_21, seurat_obj_22, seurat_obj_23, seurat_obj_24, seurat_obj_25, 
                     seurat_obj_26, seurat_obj_27, seurat_obj_28, seurat_obj_29, seurat_obj_30)
 
-# Loop to save each Seurat object
 for (i in 1:length(seurat_objs)) {
   saveRDS(seurat_objs[[i]], file = paste0("seurat_obj_", i, ".rds"))
 }
