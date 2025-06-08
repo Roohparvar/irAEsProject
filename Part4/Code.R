@@ -118,3 +118,49 @@ gc()
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 ################################################################################ End integration
+
+merged_obj1 = merged_obj
+
+################################################################################ Start UMAP
+
+merged_obj1@meta.data <- merged_obj1@meta.data %>% mutate(dataset = case_when(
+  grepl(x = merged_obj1$orig.ident, pattern = "Normal Control") ~ "Dataset 1",
+  grepl(x = merged_obj1$orig.ident, pattern = "CPI no colitis") ~ "Dataset 1",
+  grepl(x = merged_obj1$orig.ident, pattern = "CPI colitis C") ~ "Dataset 1",
+  grepl(x = merged_obj1$orig.ident, pattern = "Control Healthy") ~ "Dataset 2",
+  grepl(x = merged_obj1$orig.ident, pattern = "Control - On ICI Therapy SIC") ~ "Dataset 2",
+  grepl(x = merged_obj1$orig.ident, pattern = "irColitis Case SIC") ~ "Dataset 2",
+  grepl(x = merged_obj1$orig.ident, pattern = "New") ~ "Dataset 3"
+))
+
+
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+
+merged_obj1=FindClusters(merged_obj1,resolution = 0.60)
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+
+# 3
+setwd("C:/Esmaeil/irAEsProject/Backup/Part4/3_The Seurat object obtained after First RunUMAP")
+saveRDS(file = "merged_obj1",merged_obj1)
+# The Seurat object obtained after First RunUMAP
+gc()
+
+
+png(filename = "UMAP1.png", width = 8000, height = 4000, units = "px", res = 1200)
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
+
+
+png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
+DimPlot(merged_obj1, split.by = "dataset") + 
+  theme(
+    strip.text = element_text(size = 35), 
+    axis.text = element_text(size = 20), 
+    axis.title = element_text(size = 20),  
+    legend.text = element_text(size = 17) 
+  ) +
+  guides(color = guide_legend(override.aes = list(size = 8))) 
+dev.off()
+
+################################################################################ End UMAP
