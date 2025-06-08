@@ -18,6 +18,7 @@ By analyzing each dataset individually and then integrating them, we aim to prov
 ---
 ---
 ---
+
 ## Data
 
 The project's data summary is as follows:
@@ -46,6 +47,8 @@ This dataset includes samples from five distinct groups:
 - **UC Inflamed**  
 - **UC Non-Inflamed**  
 
+---
+
 ### Related Publications:
 For more details on the data, please refer to the following publications:  
 - [GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)  
@@ -56,43 +59,37 @@ For more details on the data, please refer to the following publications:
 ---
 ---
 
-### Cell Type Focus:
+## Cell Type Focus:
 
 - In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
 - In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
 - In the **third part**, remaining cells from the GSE206301 dataset were selected based on upregulation of **CD3D**, **CD3E**, and **CD3G** genes, and downregulation of **LYZ**, **CD79A**, and **CD19** genes.
+
+---
+---
+---
+
+## Part 1: Analyzing Each Dataset Separately
+For each dataset (article by article, dataset by dataset), we performed the following steps:
+
+- Conducted quality control (QC) on individual samples  
+- Integrated all samples within each dataset  
+- Generated UMAP plots to visualize cellular distributions  
+- Identified and selected T cell clusters  
+- Saved each sample as a separate Seurat object for downstream analysis  
+
 ---
 ---
 ---
 
-## Part 1 (GSE144469):
-This part of the project consists of two sections. In the first section, as a warm-up, we draw a UMAP without data integration. In the second section, we integrate the data, draw the UMAP, and then identify gene markers and perform cell type annotation.
+## Part 2: Integration of All Samples from the Three Articles
+In this section, we applied the same analytical approach as in the previous parts. However, this time, the analysis was performed on all samples collectively by integrating the datasets obtained from the three referenced publications.
 
 ---
-
-### First Step Analysis of Part 1:
-As an initial analysis, we performed a **basic analysis** on the raw data without dataset integration. This step included:
-- Standard Seurat preprocessing
-- UMAP visualization of the merged object
-- Identification of **marker genes** for each cluster
-
-The related files, including plots and outputs, are saved in the **Merged_obj Data** folder.
-
+---
 ---
 
-### Second Step Analysis of Part 1:
-In the next stage, we integrated the datasets using Seurat's integration workflow. The steps include:
-- Performed quality control to ensure data integrity.
-- Integrated the datasets to enable joint analysis.
-- Generated UMAP plots for visualization of cellular distribution.
-- Selected T cells
-- Saved each sample separately as an individual Seurat object.
-- Identified significant genes
-- Annotated clusters based on identified marker genes, using both the provided Annotation Guide and supporting scientific literature to assign cell type identities.
-
----
-
-### Annotation Guide
+## Annotation Guide
 Annotation is a critical step in the analysis process. The following guide is a starting point for identifying major immune cell types, though a thorough literature review is recommended for high-quality annotations.
 
 #### Identifying Major Cell Types
@@ -157,13 +154,3 @@ Annotation is a critical step in the analysis process. The following guide is a 
 ---
 ---
 ---
-
-## Part 2: Adding the New Dataset (GSE206299):
-In this section, we followed the same approach as in the second step of Part 1 of the project; however, this time, the analyses were performed on the GSE206299 dataset.
-
----
----
----
-
-## Part 3: Integration of All 52 Samples Collected in Parts 1 and 2:
-In this section, we applied the same analytical approach used in Parts 1 and 2 of the project. However, this time, the analyses were conducted on all 52 samples combined.
