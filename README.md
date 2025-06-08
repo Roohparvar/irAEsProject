@@ -1,54 +1,66 @@
-# Single-Cell Analysis Pipeline:
-This repository contains a single-cell analysis pipeline for working with three datasets, **GSE144469**, **GSE206299**, and **GSE206301**
+# irAEs Project:
+This repository contains a single-cell analysis pipeline for discovering biologically relevant insights in immune-related adverse events (irAE) disease.
 
 ---
 ---
 ---
 
 ## Overview:
-The project is divided into three main parts:
+The project is divided into four main parts:
 
-1. **Part 1** – Analysis of the **GSE144469** dataset  
-2. **Part 2** – Analysis of the **GSE206299** dataset  
-3. **Part 3** – Integration of the **GSE206301** dataset for a combined analysis of all three datasets  
+1. **Part 1** – Analysis of the **GSE144469** dataset [NCBI GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469) 
+2. **Part 2** – Analysis of the **GSE206299** dataset [NCBI GSE206299](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)
+3. **Part 3** – Analysis of the **GSE206301** dataset [CPI-Colitis Single Cell and Spatial Atlas] https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/
+4. **Part 4** – Integration of all three datasets
 
-By integrating these datasets, the pipeline aims to provide deeper insights into immune cell populations under various conditions.
+By analyzing each dataset individually and then integrating them, we aim to provide deeper insights into immune-related adverse event diseases.
 
 ---
+---
+---
+## Data
 
-### Dataset 1: GSE144469:
-This dataset includes samples categorized into three cohorts:
+The project's data summary is as follows:
+
+### Dataset 1: GSE144469  
+This dataset includes samples categorized into three cohorts:  
 - **Normal controls**  
 - **CPI-treated patients without colitis**  
-- **CPI-treated patients with colitis**
+- **CPI-treated patients with colitis**  
 
 ---
 
-### Dataset 2: GSE206299:
-This dataset also includes samples from three distinct groups:
-- **Patients with irColitis**
+### Dataset 2: GSE206299  
+This dataset includes samples from three distinct groups:  
+- **Patients with irColitis**  
 - **ICI-treated controls without irColitis**  
-- **Healthy controls**
+- **Healthy controls**  
 
+---
+
+### Dataset 3: GSE206301  
+This dataset includes samples from five distinct groups:  
+- **CPI Colitis**  
+- **CPI Control**  
+- **Healthy Control**  
+- **UC Inflamed**  
+- **UC Non-Inflamed**  
+
+### Related Publications:
+For more details on the data, please refer to the following publications:  
+- [GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)  
+- [GSE206299](https://www.nature.com/articles/s41591-024-02895-x)  
+- [GSE206301](https://www.nature.com/articles/s41591-024-02895-x)  
+
+---
+---
 ---
 
 ### Cell Type Focus:
-- In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.
-- In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.
 
----
-
-### Related Publications:
-For more details on the methodology and findings, please refer to the following publications:
-- [Nature Article on GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)
-- [Nature Article on GSE206299](https://www.nature.com/articles/s41591-024-02895-x)
-
----
-
-### Dataset Sources:
-- **Part 1 (GSE144469)**: [NCBI GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469)
-- **Part 2 (GSE206299)**: [NCBI GSE206299](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)
-
+- In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
+- In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
+- In the **third part**, remaining cells from the GSE206301 dataset were selected based on upregulation of **CD3D**, **CD3E**, and **CD3G** genes, and downregulation of **LYZ**, **CD79A**, and **CD19** genes.
 ---
 ---
 ---
