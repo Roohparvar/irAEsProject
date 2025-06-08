@@ -10,7 +10,7 @@ The project is divided into four main parts:
 
 1. **Part 1** – Analysis of the **GSE144469** dataset [NCBI GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469) 
 2. **Part 2** – Analysis of the **GSE206299** dataset [NCBI GSE206299](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)
-3. **Part 3** – Analysis of the **GSE206301** dataset [CPI-Colitis Single Cell and Spatial Atlas] (https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/)
+3. **Part 3** – Analysis of the **GSE206301** dataset [CPI-Colitis Single Cell and Spatial Atlas](https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/)
 4. **Part 4** – Integration of all three datasets
 
 By analyzing each dataset individually and then integrating them, we aim to provide deeper insights into immune-related adverse event diseases.
