@@ -7,6 +7,12 @@ library(openxlsx)
 library(readxl)
 library(future)
 library(future.apply)
+
+if (!requireNamespace("MAST", quietly = TRUE)) {
+  install.packages("BiocManager")
+  BiocManager::install("MAST")
+}
+library(MAST)
 ################################################################################ End library
 
 
@@ -142,17 +148,23 @@ merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
 
 # 3
 setwd("C:/Esmaeil/irAEsProject/Backup/Part4/3_The Seurat object obtained after First RunUMAP")
-saveRDS(file = "merged_obj1",merged_obj1)
+# saveRDS(file = "merged_obj1",merged_obj1)
 # The Seurat object obtained after First RunUMAP
 gc()
 
 
 png(filename = "UMAP1.png", width = 8000, height = 4000, units = "px", res = 1200)
-DimPlot(merged_obj1, label = TRUE)
+DimPlot(merged_obj1, label = TRUE) +
+  theme(
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 8),
+    legend.key.size = unit(0.3, "cm")
+  )
 dev.off()
 
 
-png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
+
+png(filename = "UMAP3.png",width = 20000,height=9000,units ="px",res = 600 )
 DimPlot(merged_obj1, split.by = "dataset") + 
   theme(
     strip.text = element_text(size = 35), 
@@ -164,3 +176,16 @@ DimPlot(merged_obj1, split.by = "dataset") +
 dev.off()
 
 ################################################################################ End UMAP
+
+merged_obj2 = merged_obj1
+
+################################################################################ Start Find Marker
+merged_obj2 <- JoinLayers(merged_obj2)
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4")
+
+Wilcoxmarkers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1, test.use = "wilcox")
+write.csv(Wilcoxmarkers,file="WilcoxMarkers.csv")
+
+# MASTmarkers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1, test.use = "MAST")
+# write.csv(MASTmarkers,file="MASTMarkers.csv")
+################################################################################ End Find Marker
