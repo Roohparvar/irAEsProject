@@ -25,27 +25,27 @@ The project's data summary is as follows:
 
 ### Dataset 1: GSE144469  
 This dataset includes samples categorized into three cohorts:  
-- **Normal controls**  
-- **CPI-treated patients without colitis**  
-- **CPI-treated patients with colitis**  
+- **Normal controls**: Healthy individuals without immunotherapy treatment and no colitis (baseline control group).
+- **CPI-treated patients without colitis**: Patients receiving Immune Checkpoint Inhibitors (CPI) treatment but without colitis.
+- **CPI-treated patients with colitis**: Patients treated with CPI who developed colitis as an immune-related adverse event.  
 
 ---
 
 ### Dataset 2: GSE206299  
 This dataset includes samples from three distinct groups:  
-- **Patients with irColitis**  
-- **ICI-treated controls without irColitis**  
-- **Healthy controls**  
+- **Patients with irColitis**: Healthy controls without any treatment and no colitis.
+- **ICI-treated controls without irColitis**: Patients undergoing Immune Checkpoint Inhibitor (ICI) therapy without colitis. 
+- **Healthy controls**: Patients on ICI therapy who developed immune-related colitis.
 
 ---
 
 ### Dataset 3: GSE189040  
 This dataset includes samples from five distinct groups:  
-- **CPI Colitis**  
-- **CPI Control**  
-- **Healthy Control**  
-- **UC Inflamed**  
-- **UC Non-Inflamed**  
+- **CPI Colitis**: Patients treated with CPI who experienced irAE-associated colitis.
+- **CPI Control**: Patients receiving CPI treatment but without colitis.
+- **Healthy Control**: Healthy individuals with no treatment and no colitis. 
+- **UC Inflamed**: Patients with active inflammation due to Ulcerative Colitis (UC). 
+- **UC Non-Inflamed**: Patients with Ulcerative Colitis in remission or non-inflamed phase.
 
 ---
 
