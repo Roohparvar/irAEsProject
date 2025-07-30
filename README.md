@@ -53,7 +53,7 @@ This dataset includes samples from five distinct groups:
 For more details on the data, please refer to the following publications:  
 - [GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)  
 - [GSE206299](https://www.nature.com/articles/s41591-024-02895-x)  
-- [GSE206301](https://www.nature.com/articles/s41591-024-02895-x)  
+- [GSE206301](https://www.sciencedirect.com/science/article/pii/S153561082400134X?via%3Dihub#appsec2)  
 
 ---
 ---
