@@ -20,7 +20,7 @@ By analyzing each dataset individually and then integrating them, we aim to prov
 ---
 
 ## Data
-
+The samples in this study were obtained through tissue biopsy collection.
 The project's data summary is as follows:
 
 ### Dataset 1: GSE144469  
