@@ -53,7 +53,7 @@ This dataset includes samples from five distinct groups:
 For more details on the data, please refer to the following publications:  
 - [GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)  
 - [GSE206299](https://www.nature.com/articles/s41591-024-02895-x)  
-- [GSE206301](https://www.sciencedirect.com/science/article/pii/S153561082400134X?via%3Dihub#appsec2)  
+- [GSE189040](https://www.sciencedirect.com/science/article/pii/S153561082400134X?via%3Dihub#appsec2)  
 
 ---
 ---
@@ -63,7 +63,7 @@ For more details on the data, please refer to the following publications:
 
 - In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
 - In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
-- In the **third part**, remaining cells from the GSE206301 dataset were selected based on upregulation of **CD3D**, **CD3E**, and **CD3G** genes, and downregulation of **LYZ**, **CD79A**, and **CD19** genes.
+- In the **third part**, remaining cells from the GSE189040 dataset were selected based on upregulation of **CD3D**, **CD3E**, and **CD3G** genes, and downregulation of **LYZ**, **CD79A**, and **CD19** genes.
 
 ---
 ---
