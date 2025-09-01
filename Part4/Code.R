@@ -2,124 +2,195 @@
 library(Seurat)
 library(SeuratObject)
 library(ggplot2)
-library(dplyr)
-library(openxlsx)
-library(readxl)
-library(future)
-library(future.apply)
-
-if (!requireNamespace("MAST", quietly = TRUE)) {
-  install.packages("BiocManager")
-  BiocManager::install("MAST")
-}
-library(MAST)
 ################################################################################ End library
 
 
 
-################################################################################ Start Load Seurat objects | Part 1
-folder_path1 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/5_GSE144469_seurat_objs"
-rds_files1 <- list.files(folder_path1, pattern = "\\.rds$", full.names = TRUE)
+################################################################################ Start P1_T #1
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part4/P1_T")
 
-for (i in seq_along(rds_files1)) {
-  obj <- readRDS(rds_files1[i])
-  assign(paste0("srob", i), obj)
-}
-################################################################################ End Load Seurat objects | Part 1
+srobj=CreateSeuratObject(CountMatrix,project ="P1_T_Blood",min.cells=3,min.features=200)
+srobj[["MTpercent"]]=PercentageFeatureSet(srobj,pattern = "^MT-")
 
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4/Quality Control/P1_T")
 
-################################################################################ Start Load Seurat objects | Part 2
-folder_path2 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/5_GSE206299_seurat_objs"
-rds_files2 <- list.files(folder_path2, pattern = "\\.rds$", full.names = TRUE)
-
-offset2 <- length(rds_files1)
-for (i in seq_along(rds_files2)) {
-  obj <- readRDS(rds_files2[i])
-  assign(paste0("srob", i + offset2), obj)
-}
-################################################################################ End Load Seurat objects | Part 2
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj@meta.data, aes(x = srobj$nCount_RNA, y = srobj$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 40, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 22000, color = 'red')
+dev.off()
 
 
-################################################################################ Start Load Seurat objects | Part 3
-folder_path3 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part3/4_New_seurat_objs"
-rds_files3 <- list.files(folder_path3, pattern = "\\.rds$", full.names = TRUE)
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj@meta.data, aes(x=srobj$nFeature_RNA, y=srobj$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=40, color='red') + 
+  geom_vline(xintercept=500, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
 
-offset3 <- length(rds_files1) + length(rds_files2)
-for (i in seq_along(rds_files3)) {
-  obj <- readRDS(rds_files3[i])
-  assign(paste0("srob", i + offset3), obj)
-}
-################################################################################ End Load Seurat objects | Part 3
 
+srobj_P1_T=subset(srobj,subset=nFeature_RNA>500 & nFeature_RNA<4000 & MTpercent<40 & nCount_RNA>1000 & nCount_RNA<22000)
+################################################################################ End P1_T #1
 
 
 
-################################################################################ Start integration
-plan("multicore", workers = 2)
-options(future.globals.maxSize = 54 * 1024^3)
+################################################################################ Start P1_TN #2
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part4/P1_TN")
+
+rownames(CountMatrix) <- make.unique(rownames(CountMatrix))
+colnames(CountMatrix) <- make.unique(colnames(CountMatrix))
+rownames(CountMatrix) <- gsub("_", "-", rownames(CountMatrix))
+
+srobj=CreateSeuratObject(CountMatrix,project ="P1_TN_Blood",min.cells=3,min.features=200)
+srobj[["MTpercent"]]=PercentageFeatureSet(srobj,pattern = "^MT-")
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4/Quality Control/P1_TN")
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj@meta.data, aes(x = srobj$nCount_RNA, y = srobj$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 1, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 22000, color = 'red')
+dev.off()
 
 
-merged_obj <- merge(srob1, y = list(srob2, srob3, srob4, 
-                                    srob5, srob6, srob7, 
-                                    srob8, srob9, srob10, 
-                                    srob11, srob12, srob13,
-                                    srob14, srob15, srob16,
-                                    srob17, srob18, srob19,
-                                    srob20, srob21, srob22,
-                                    srob23, srob24, srob25,
-                                    srob26, srob27, srob28,
-                                    srob29, srob30, srob31,
-                                    srob32, srob32, srob33,
-                                    srob34, srob35, srob36,
-                                    srob37, srob38, srob39,
-                                    srob40, srob41, srob42,
-                                    srob43, srob44, srob45,
-                                    srob46, srob47, srob48,
-                                    srob49, srob50, srob51,
-                                    srob52, srob53, srob54,
-                                    srob55, srob56, srob57,
-                                    srob58, srob59, srob60,
-                                    srob61, srob62, srob63,
-                                    srob64, srob65, srob66,
-                                    srob67, srob68, srob69,
-                                    srob70, srob71, srob72,
-                                    srob73, srob74, srob75,
-                                    srob76, srob77, srob78,
-                                    srob79, srob80, srob81,
-                                    srob82, srob83))
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj@meta.data, aes(x=srobj$nFeature_RNA, y=srobj$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=1, color='red') + 
+  geom_vline(xintercept=500, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
 
 
-rm(list = paste0("srob", 1:83))
-gc() 
+srobj_P1_TN=subset(srobj,subset=nFeature_RNA>500 & nFeature_RNA<4000 & MTpercent<40 & nCount_RNA>1000 & nCount_RNA<22000)
+################################################################################ End P1_TN #2
+
+
+
+
+################################################################################ Start P1_TN #2
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part4/P6_T")
+
+rownames(CountMatrix) <- make.unique(rownames(CountMatrix))
+colnames(CountMatrix) <- make.unique(colnames(CountMatrix))
+rownames(CountMatrix) <- gsub("_", "-", rownames(CountMatrix))
+
+srobj=CreateSeuratObject(CountMatrix,project ="P6_T_Blood",min.cells=3,min.features=200)
+
+
+
+
+
+install.packages("scCustomize")
+
+# Load the package
+library(scCustomize)
+
+# Access the list of human mitochondrial Ensembl gene IDs
+mt_genes <- ensembl_mito_id$Homo_sapiens_mito_ensembl
+
+# Print the first few entries to verify
+head(mt_genes)
+
+
+srobj[["MTpercent"]] <- PercentageFeatureSet(srobj, features = mt_genes)
+
+# Check the summary statistics
+summary(srobj[["percent.mt"]])
+
+
+# srobj[["MTpercent"]]=PercentageFeatureSet(srobj,pattern = "^MT-")
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4/Quality Control/P6_T")
+
+png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data = srobj@meta.data, aes(x = srobj$nCount_RNA, y = srobj$MTpercent)) +
+  geom_point(size = 2, color = 'blue') +
+  labs(x = 'nCount_RNA', y = 'perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept = 1, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 22000, color = 'red')
+dev.off()
+
+
+png(filename = "2.png",width = 10000,height=4000,units ="px",res = 600)
+ggplot(data=srobj@meta.data, aes(x=srobj$nFeature_RNA, y=srobj$MTpercent)) +
+  geom_point(size=2, color = 'blue') +
+  labs(x='nFeature_RNA', y='perc. mito') +
+  scale_x_log10() +
+  geom_hline(yintercept=1, color='red') + 
+  geom_vline(xintercept=500, color='red') +
+  geom_vline(xintercept=4000, color='red') 
+dev.off()
+
+
+srobj_P2_TN=subset(srobj,subset=nFeature_RNA>500 & nFeature_RNA<4000 & MTpercent<40 & nCount_RNA>1000 & nCount_RNA<22000)
+################################################################################ End P1_TN #6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################ Start integration and UMAP
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/integrated_obj Data")
+merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, 
+                                      srobj_5, srobj_6, srobj_7, 
+                                      srobj_8, srobj_9,srobj_10, 
+                                      srobj_11, srobj_12,srobj_13,
+                                      srobj_14, srobj_15,srobj_16,
+                                      srobj_17, srobj_18,srobj_19,
+                                      srobj_20, srobj_21,srobj_22))
 
 
 merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
-gc()
+
 
 merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
-gc()
 
-merged_obj = ScaleData(merged_obj)
-gc()
+
+merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
+
 
 merged_obj = RunPCA(merged_obj)
-gc()
 
 # 1
-setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part4/1_The Seurat object obtained after RunPCA and before IntegrateLayers")
-saveRDS(file = "merged_obj",merged_obj)
+# saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
-gc()
 
 merged_obj <- IntegrateLayers(object = merged_obj,
                               method = CCAIntegration,
                               orig.reduction = "pca", 
-                              new.reduction = "integrated.cca")
+                              new.reduction = "integrated.cca",
+                              verbose = FALSE)
 
-gc()
 # 2
-#setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part4/2_The Seurat object obtained after IntegrateLayers")
-#saveRDS(file = "merged_obj",merged_obj)
+# saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
@@ -128,88 +199,92 @@ merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 merged_obj1 = merged_obj
 
 ################################################################################ Start UMAP
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
-merged_obj1@meta.data <- merged_obj1@meta.data %>% mutate(dataset = case_when(
-  grepl(x = merged_obj1$orig.ident, pattern = "Normal Control") ~ "Dataset 1",
-  grepl(x = merged_obj1$orig.ident, pattern = "CPI no colitis") ~ "Dataset 1",
-  grepl(x = merged_obj1$orig.ident, pattern = "CPI colitis C") ~ "Dataset 1",
-  grepl(x = merged_obj1$orig.ident, pattern = "Control Healthy") ~ "Dataset 2",
-  grepl(x = merged_obj1$orig.ident, pattern = "Control - On ICI Therapy SIC") ~ "Dataset 2",
-  grepl(x = merged_obj1$orig.ident, pattern = "irColitis Case SIC") ~ "Dataset 2",
-  grepl(x = merged_obj1$orig.ident, pattern = "New") ~ "Dataset 3"
-))
-
-
-merged_obj1 = FindNeighbors(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-merged_obj1 = FindClusters(merged_obj1, resolution = 0.60)
-merged_obj1 = RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
 
 # 3
-setwd("C:/Esmaeil/irAEsProject/Backup/Part4/3_The Seurat object obtained after First RunUMAP")
 # saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after First RunUMAP
-gc()
+# The Seurat object obtained after FindNeighbors and FindClusters
 
 
-png(filename = "UMAP1.png", width = 8000, height = 4000, units = "px", res = 1200)
-DimPlot(merged_obj1, label = TRUE) +
-  theme(
-    legend.text = element_text(size = 6),
-    legend.title = element_text(size = 8),
-    legend.key.size = unit(0.3, "cm")
-  )
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+png(filename = "UMAP1.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+# Remove clusters 11
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(11), invert = TRUE)
+png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+# UMAP projection of all cells colored by their original sample ID (orig.ident).
+png(filename = "UMAP3.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, group.by = "orig.ident")
+dev.off()
+
+
+# UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
+png(filename = "UMAP4.png",width = 28000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, split.by = "orig.ident")
+dev.off()
+
+
+png(filename = "FeaturePlot.png", width = 10000, height = 4000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+dev.off()
+
+
+# Remove clusters 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
+png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
 
-png(filename = "UMAP2.png",width = 20000,height=9000,units ="px",res = 600 )
-DimPlot(merged_obj1, split.by = "dataset") + 
-  theme(
-    strip.text = element_text(size = 35), 
-    axis.text = element_text(size = 20), 
-    axis.title = element_text(size = 20),  
-    legend.text = element_text(size = 17) 
-  ) +
-  guides(color = guide_legend(override.aes = list(size = 8))) 
+# Remove cells with an x-axis value less than -11 and y-axis value less than -1.
+umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
+cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < -11 & umap_coord[, "umap_2"] < -1), ])
+merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, label = TRUE)
 dev.off()
-
 ################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
 
-################################################################################ Start Merge selected clusters into a new group
-setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4")
-Idents(merged_obj2) <- "seurat_clusters"
-all_clusters <- levels(Idents(merged_obj2))
-cluster_colors <- setNames(rep("gray", length(all_clusters)), all_clusters)
+# 4
+# saveRDS(file = "merged_obj2",merged_obj2)
+# The Seurat object obtained after UMAP
 
 
-#cluster_colors["0"] <- "blue"
-#cluster_colors["12"] <- "red"
-#cluster_colors["15"] <- "yellow"
-cluster_colors["19"] <- "purple"
+################################################################################ Start Extracting and saving Seurat objects for each sample
+
+samples <- unique(merged_obj2$orig.ident)
+
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
+  assign(paste0("srobj_", i), seurat_obj)
+}
 
 
-png(filename = "0_12_15.png", width = 8000, height = 4000, units = "px", res = 1200)
-DimPlot(merged_obj2, reduction = "umap", cols = cluster_colors) +
-  ggtitle("UMAP") +
-  theme(
-    legend.text = element_text(size = 6),
-    legend.title = element_text(size = 8),
-    legend.key.size = unit(0.3, "cm")
-  )
-dev.off()
-################################################################################ End Merge selected clusters into a new group
+# 5
+# 5_GSE144469_seurat_objs
+seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
+                    srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
+                    srobj_11, srobj_12, srobj_13, srobj_14, srobj_15, 
+                    srobj_16, srobj_17, srobj_18, srobj_19, srobj_20, 
+                    srobj_21, srobj_22)
 
+# Loop to save each Seurat object
+for (i in 1:length(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
+}
 
+################################################################################ End Extracting and saving Seurat objects for each sample
 
-################################################################################ Start Find Marker
-merged_obj2 <- JoinLayers(merged_obj2)
-setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part4")
-
-Wilcoxmarkers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1, test.use = "wilcox")
-write.csv(Wilcoxmarkers,file="WilcoxMarkers.csv")
-
-MASTmarkers = FindAllMarkers(merged_obj2,min.pct = 0.1 , logfc.threshold = 0.1, test.use = "MAST")
-write.csv(MASTmarkers,file="MASTMarkers.csv")
-################################################################################ End Find Marker
