@@ -13,7 +13,7 @@ The project is divided into six main parts:
 3. **Part 3** – Analysis of the **GSE189040** dataset [CPI-Colitis Single Cell and Spatial Atlas](https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/)
 4. **Part 4** – Analysis of the **GSE253720** dataset [NCBI gse253720](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)
 5. **Part 5** – 
-6. **Part 6** – Integration of all Five datasets
+6. **Part 6** – Integration of all five datasets
 
 By analyzing each dataset individually and then integrating them, we aim to provide deeper insights into immune-related adverse event diseases.
 
@@ -82,7 +82,7 @@ For more details on the data, please refer to the following publications:
 
 - In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
 - In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
-- In the **third part**, remaining cells from the GSE189040 dataset were selected based on upregulation of **CD3D**, **CD3E**, and **CD3G** genes, and downregulation of **LYZ**, **CD79A**, and **CD19** genes.
+- In the **third part**, cells were identified by high expression of **CD3D**, **CD3E**, and **CD3G** genes, and low expression of **LYZ**, **CD79A**, and **CD19** genes.
 
 ---
 ---
