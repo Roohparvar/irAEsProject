@@ -11,8 +11,8 @@ The project is divided into six main parts:
 1. **Part 1** – Analysis of the **GSE144469** dataset [NCBI GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469) 
 2. **Part 2** – Analysis of the **GSE206299** dataset [NCBI GSE206299](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)
 3. **Part 3** – Analysis of the **GSE189040** dataset [CPI-Colitis Single Cell and Spatial Atlas](https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/)
-4. **Part 4** – Analysis of the **GSE253720** dataset [NCBI gse253720](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)
-5. **Part 5** – 
+4. **Part 4** – Analysis of the **GSE253720** dataset [NCBI GSE253720](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)
+5. **Part 5** – Analysis of the **GSE216329** dataset [NCBI GSE216329](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216329&utm_source=chatgpt.com)
 6. **Part 6** – Integration of all five datasets
 
 By analyzing each dataset individually and then integrating them, we aim to provide deeper insights into immune-related adverse event diseases.
@@ -73,7 +73,8 @@ For more details on the data, please refer to the following publications:
 - [Part 2: GSE206299](https://www.nature.com/articles/s41591-024-02895-x)  
 - [Part 3: GSE189040](https://www.sciencedirect.com/science/article/pii/S153561082400134X?via%3Dihub#appsec2)  
 - [Part 4: GSE253720](https://pubmed.ncbi.nlm.nih.gov/38642938/)  
-- [Part 5: ]() 
+- [Part 5: GSE216329](https://pubmed.ncbi.nlm.nih.gov/36513074/) 
+
 ---
 ---
 ---
