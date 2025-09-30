@@ -7,10 +7,10 @@ subfolders <- list.dirs(base_path, recursive = FALSE, full.names = TRUE)
 TCR_data <- list()
 
 for (folder in subfolders) {
-  file_path <- file.path(folder, "TCR.csv")
+  file_path <- file.path(folder, "all_contig_annotations.csv")
   
   if (file.exists(file_path)) {
-    folder_name <- basename(folder)   # اسم پوشه
+    folder_name <- basename(folder) 
     TCR_data[[folder_name]] <- read.csv(file_path, stringsAsFactors = FALSE)
   } else {
     message("File not found: ", file_path)
@@ -18,13 +18,8 @@ for (folder in subfolders) {
 }
 
 
-TCR_data <- loadContigs(input = TCR_data) # the non-productive rows get removed here!
-
-
-
+TCR_data <- loadContigs(input = TCR_data)
 paired_TCR <- combineTCR(TCR_data, samples = names(TCR_data), filterMulti = TRUE)
-
-
 
 combined_df <- do.call(rbind, paired_TCR)
 combined_matrix <- as.matrix(combined_df)
