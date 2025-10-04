@@ -34,7 +34,7 @@ This dataset includes samples categorized into three cohorts:
 ---
 
 ### Dataset 2: GSE206299  
-This dataset includes samples from three distinct groups:  
+This dataset includes samples from 3 distinct groups:  
 - **Patients with irColitis**: Healthy controls without any treatment and no colitis.
 - **ICI-treated controls without irColitis**: Patients undergoing Immune Checkpoint Inhibitor (ICI) therapy without colitis. 
 - **Healthy controls**: Patients on ICI therapy who developed immune-related colitis.
@@ -42,7 +42,7 @@ This dataset includes samples from three distinct groups:
 ---
 
 ### Dataset 3: GSE189040  
-This dataset includes samples from five distinct groups:  
+This dataset includes samples from 5 distinct groups:  
 - **CPI Colitis**: Patients treated with CPI who experienced irAE-associated colitis.
 - **CPI Control**: Patients receiving CPI treatment but without colitis.
 - **Healthy Control**: Healthy individuals with no treatment and no colitis. 
@@ -52,11 +52,11 @@ This dataset includes samples from five distinct groups:
 ---
 
 ### Dataset 4: GSE253720  
-This dataset includes samples from ... distinct groups:  
-- **...**: ... .
-- **...**: ... .
-- **...**: ... . 
-
+This dataset includes samples from 3 distinct groups:  
+- **CPI_colitis**: Patients treated with CPI who experienced irAE-associated colitis.
+- **HC**: Healthy individuals with no treatment and no colitis.
+- **UC**: Ulcerative Colitis patients
+- 
 ---
 
 ### Dataset 5: GSE216329 
