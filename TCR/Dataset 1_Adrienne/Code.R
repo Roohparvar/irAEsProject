@@ -23,3 +23,9 @@ paired_TCR <- combineTCR(TCR_data, samples = names(TCR_data), filterMulti = TRUE
 
 combined_df <- do.call(rbind, paired_TCR)
 combined_matrix <- as.matrix(combined_df)
+
+
+save_path <- "C:/Esmaeil/irAEsProject/irAEsProject/TCR/Dataset 1_Adrienne/combined_metadata_matrix.rds"
+
+# Save combined matrix
+saveRDS(combined_matrix, file = save_path)
