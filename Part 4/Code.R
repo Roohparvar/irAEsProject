@@ -620,4 +620,31 @@ merged_obj1 = merged_obj
 
 ################################################################################ Start UMAP
 merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
+merged_obj1=FindClusters(merged_obj1,resolution = 0.1)
+
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+png(filename = "UMAP1.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+png(filename = "FeaturePlot.png", width = 7000, height = 4000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+dev.off()
+
+
+# Remove clusters 1, 5, 6, and 8
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 5, 6, 8), invert = TRUE)
+png(filename = "UMAP2.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+# Remove cells with an x-axis value less than -6 and y-axis value less than -5.
+umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
+cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < 0 | umap_coord[, "umap_2"] < 10), ])
+merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
+png(filename = "UMAP3.png",width = 7000,height=4000,units ="px",res = 600 )
+DimPlot(merged_obj1, label = TRUE)
+dev.off()
