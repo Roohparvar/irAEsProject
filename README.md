@@ -6,14 +6,13 @@ This repository contains a single-cell analysis pipeline for discovering biologi
 ---
 
 ## Overview:
-The project is divided into six main parts:
+The project is divided into five main parts:
 
 1. **Part 1** – Analysis of the **GSE144469** dataset [NCBI GSE144469](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469) 
 2. **Part 2** – Analysis of the **GSE206299** dataset [NCBI GSE206299](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)
 3. **Part 3** – Analysis of the **GSE189040** dataset [CPI-Colitis Single Cell and Spatial Atlas](https://simmonslab.shinyapps.io/CPI_COLITIS_DATA_PORTAL/)
 4. **Part 4** – Analysis of the **GSE253720** dataset [NCBI GSE253720](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)
-5. **Part 5** – Analysis of the **GSE216329** dataset [NCBI GSE216329](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216329&utm_source=chatgpt.com)
-6. **Part 6** – Integration of all five datasets
+6. **Part 5** – Integration of all five datasets
 
 By analyzing each dataset individually and then integrating them, we aim to provide deeper insights into immune-related adverse event diseases.
 
@@ -27,43 +26,50 @@ The project's data summary is as follows:
 
 ### Dataset 1: GSE144469  
 This dataset includes samples categorized into three cohorts:  
-- **Normal controls**: Healthy individuals without immunotherapy treatment and no colitis (baseline control group).
-- **CPI-treated patients without colitis**: Patients receiving Immune Checkpoint Inhibitors (CPI) treatment but without colitis.
-- **CPI-treated patients with colitis**: Patients treated with CPI who developed colitis as an immune-related adverse event.  
+- **Healthy individuals with no treatment and no colitis**
+- **Patients receiving Immune Checkpoint Inhibitors therapy  without colitisis**
+- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis**  
 
 ---
 
 ### Dataset 2: GSE206299  
 This dataset includes samples from three distinct groups:  
-- **Patients with irColitis**: Healthy controls without any treatment and no colitis.
-- **ICI-treated controls without irColitis**: Patients undergoing Immune Checkpoint Inhibitor (ICI) therapy without colitis. 
-- **Healthy controls**: Patients on ICI therapy who developed immune-related colitis.
+- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis**
+- **Patients receiving Immune Checkpoint Inhibitors therapy  without colitis**
+- **Healthy individuals with no treatment and no colitis**
 
 ---
 
 ### Dataset 3: GSE189040  
 This dataset includes samples from five distinct groups:  
-- **CPI Colitis**: Patients treated with CPI who experienced irAE-associated colitis.
-- **CPI Control**: Patients receiving CPI treatment but without colitis.
-- **Healthy Control**: Healthy individuals with no treatment and no colitis. 
-- **UC Inflamed**: Patients with active inflammation due to Ulcerative Colitis (UC). 
-- **UC Non-Inflamed**: Patients with Ulcerative Colitis in remission or non-inflamed phase.
+- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis**
+- **Patients receiving Immune Checkpoint Inhibitors therapy  without colitis**
+- **Healthy individuals with no treatment and no colitis**
+- **Patients with active inflammation due to Ulcerative Colitis (UC)**
+- **Patients with Ulcerative Colitis in remission or non-inflamed phase**
 
 ---
 
 ### Dataset 4: GSE253720  
 This dataset includes samples from ... distinct groups:  
-- **CPI_colitis**: Patients treated with CPI who experienced irAE-associated colitis .
-- **Healthy Control**: Healthy individuals with no treatment and no colitis .
-- **Ulcerative Colitis patients**: Ulcerative Colitis patients . 
+- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis**
+- **Healthy individuals with no treatment and no colitis**
+- **Patients with active inflammation due to Ulcerative Colitis (UC)**
 
 ---
 
-### Dataset 5: GSE216329 
-This dataset includes samples from ... distinct groups:  
-- **...**: ... .
-- **...**: ... .
-- **...**: ... .
+## Data Grouping
+The samples collected from the four datasets in this project are divided into **five main groups** based on treatment status, disease condition, and inflammation phase:
+
+| Group | Description | Short Name |
+|-------|------------|------------|
+| CPI Colitis | Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` |
+| CPI Control | Patients receiving Immune Checkpoint Inhibitors therapy  without colitis. | `CPI_Control` |
+| Healthy | Healthy individuals with no treatment and no colitis | `Healthy` |
+| UC Inflamed | Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` |
+| UC Non-Inflamed | Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` |
+
+> This categorization is applied across the four datasets to maintain consistency for analysis and integration.
 
 ---
 
@@ -73,7 +79,6 @@ For more details on the data, please refer to the following publications:
 - [Part 2: GSE206299](https://www.nature.com/articles/s41591-024-02895-x)  
 - [Part 3: GSE189040](https://www.sciencedirect.com/science/article/pii/S153561082400134X?via%3Dihub#appsec2)  
 - [Part 4: GSE253720](https://pubmed.ncbi.nlm.nih.gov/38642938/)  
-- [Part 5: GSE216329](https://pubmed.ncbi.nlm.nih.gov/36513074/) 
 
 ---
 ---
@@ -83,7 +88,7 @@ For more details on the data, please refer to the following publications:
 
 - In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
 - In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
-- In the **third part**, cells were identified by high expression of **CD3D**, **CD3E**, and **CD3G** genes, and low expression of **LYZ**, **CD79A**, and **CD19** genes.
+- In the **third and fourth parts**, cells were identified by high expression of **CD3D**, **CD3E**, and **CD3G** genes, and low expression of **LYZ**, **CD79A**, and **CD19** genes.
 
 ---
 ---

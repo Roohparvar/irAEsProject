@@ -74,7 +74,7 @@ for (file in files) {
   
   assign(project_name, seurat_obj)
   
-  output_base_path <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control"
+  output_base_path <- "C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC"
   new_folder_path <- file.path(output_base_path, project_name)
   if (!dir.exists(new_folder_path)) {
     dir.create(new_folder_path)
@@ -86,7 +86,7 @@ for (file in files) {
 
 
 ################################################################################ Start CPI_Colitis_1_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_1_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_1_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -117,7 +117,7 @@ CPI_Colitis_1_New=subset(CPI_Colitis_1_New,subset=nFeature_RNA>400 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_2_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_2_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_2_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -148,7 +148,7 @@ CPI_Colitis_2_New=subset(CPI_Colitis_2_New,subset=nFeature_RNA>360 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_3_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_3_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_3_New")
    
     
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -179,7 +179,7 @@ CPI_Colitis_3_New=subset(CPI_Colitis_3_New,subset=nFeature_RNA>360 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_4_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_4_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_4_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -210,7 +210,7 @@ CPI_Colitis_4_New=subset(CPI_Colitis_4_New,subset=nFeature_RNA>360 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_5_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_5_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_5_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -241,7 +241,7 @@ CPI_Colitis_5_New=subset(CPI_Colitis_5_New,subset=nFeature_RNA>360 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_6_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_6_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_6_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -272,7 +272,7 @@ CPI_Colitis_6_New=subset(CPI_Colitis_6_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_7_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_7_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_7_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -303,7 +303,7 @@ CPI_Colitis_7_New=subset(CPI_Colitis_7_New,subset=nFeature_RNA>500 & nFeature_RN
 
 
 ################################################################################ Start CPI_Colitis_8_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_8_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_8_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -334,7 +334,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_9_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_9_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_9_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -365,7 +365,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_10_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_10_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_10_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -396,7 +396,7 @@ CPI_Colitis_10_New=subset(CPI_Colitis_10_New,subset=nFeature_RNA>900 & nFeature_
 
 
 ################################################################################ Start CPI_Colitis_11_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_11_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_11_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -427,7 +427,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_12_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_12_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_12_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -458,7 +458,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_13_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_13_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_13_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -489,7 +489,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_14_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_14_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_14_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -520,7 +520,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_15_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_15_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_15_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -551,7 +551,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_16_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_16_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_16_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -582,7 +582,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_17_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_17_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_17_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -613,7 +613,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_18_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_18_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_18_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -644,7 +644,7 @@ dev.off()
 
 
 ################################################################################ Start CPI_Colitis_19_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_19_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_19_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -675,7 +675,7 @@ CPI_Colitis_19_New=subset(CPI_Colitis_19_New,subset=nFeature_RNA>950 & nFeature_
 
 
 ################################################################################ Start CPI_Colitis_20_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_20_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_20_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -706,7 +706,7 @@ CPI_Colitis_20_New=subset(CPI_Colitis_20_New,subset=nFeature_RNA>950 & nFeature_
 
 
 ################################################################################ Start CPI_Colitis_21_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Colitis_21_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Colitis_21_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -737,7 +737,7 @@ CPI_Colitis_21_New=subset(CPI_Colitis_21_New,subset=nFeature_RNA>900 & nFeature_
 
 
 ################################################################################ Start CPI_Control_1_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_1_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_1_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -768,7 +768,7 @@ CPI_Control_1_New=subset(CPI_Control_1_New,subset=nFeature_RNA>350 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_2_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_2_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_2_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -799,7 +799,7 @@ CPI_Control_2_New=subset(CPI_Control_2_New,subset=nFeature_RNA>400 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_3_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_3_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_3_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -830,7 +830,7 @@ CPI_Control_3_New=subset(CPI_Control_3_New,subset=nFeature_RNA>350 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_4_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_4_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_4_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -861,7 +861,7 @@ CPI_Control_4_New=subset(CPI_Control_4_New,subset=nFeature_RNA>350 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_5_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_5_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_5_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -892,7 +892,7 @@ CPI_Control_5_New=subset(CPI_Control_5_New,subset=nFeature_RNA>350 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_6_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_6_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_6_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -923,7 +923,7 @@ CPI_Control_6_New=subset(CPI_Control_6_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_7_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_7_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_7_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -954,7 +954,7 @@ CPI_Control_7_New=subset(CPI_Control_7_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_8_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_8_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_8_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -985,7 +985,7 @@ CPI_Control_8_New=subset(CPI_Control_8_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_9_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_9_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_9_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1016,7 +1016,7 @@ CPI_Control_9_New=subset(CPI_Control_9_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start CPI_Control_10_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_10_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_10_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1047,7 +1047,7 @@ CPI_Control_10_New=subset(CPI_Control_10_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_11_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_11_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_11_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1079,7 +1079,7 @@ CPI_Control_11_New=subset(CPI_Control_11_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_12_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_12_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_12_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1110,7 +1110,7 @@ CPI_Control_12_New=subset(CPI_Control_12_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_13_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_13_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_13_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1141,7 +1141,7 @@ CPI_Control_13_New=subset(CPI_Control_13_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_14_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_14_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_14_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1172,7 +1172,7 @@ CPI_Control_14_New=subset(CPI_Control_14_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_15_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_15_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_15_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1203,7 +1203,7 @@ CPI_Control_15_New=subset(CPI_Control_15_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start CPI_Control_16_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/CPI_Control_16_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/CPI_Control_16_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1234,7 +1234,7 @@ CPI_Control_16_New=subset(CPI_Control_16_New,subset=nFeature_RNA>600 & nFeature_
 
 
 ################################################################################ Start Healthy_Control_1_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_1_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_1_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1265,7 +1265,7 @@ Healthy_Control_1_New=subset(Healthy_Control_1_New,subset=nFeature_RNA>800 & nFe
 
 
 ################################################################################ Start Healthy_Control_2_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_2_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_2_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1296,7 +1296,7 @@ Healthy_Control_2_New=subset(Healthy_Control_2_New,subset=nFeature_RNA>550 & nFe
 
 
 ################################################################################ Start Healthy_Control_3_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_3_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_3_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1327,7 +1327,7 @@ dev.off()
 
 
 ################################################################################ Start Healthy_Control_4_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_4_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_4_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1358,7 +1358,7 @@ dev.off()
 
 
 ################################################################################ Start Healthy_Control_5_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_5_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_5_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1389,7 +1389,7 @@ Healthy_Control_5_New=subset(Healthy_Control_5_New,subset=nFeature_RNA>700 & nFe
 
 
 ################################################################################ Start Healthy_Control_6_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_6_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_6_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1420,7 +1420,7 @@ dev.off()
 
 
 ################################################################################ Start Healthy_Control_7_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_7_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_7_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1451,7 +1451,7 @@ Healthy_Control_7_New=subset(Healthy_Control_7_New,subset=nFeature_RNA>800 & nFe
 
 
 ################################################################################ Start Healthy_Control_8_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_8_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_8_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1482,7 +1482,7 @@ Healthy_Control_8_New=subset(Healthy_Control_8_New,subset=nFeature_RNA>900 & nFe
 
 
 ################################################################################ Start Healthy_Control_9_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/Healthy_Control_9_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/Healthy_Control_9_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1513,7 +1513,7 @@ Healthy_Control_9_New=subset(Healthy_Control_9_New,subset=nFeature_RNA>800 & nFe
 
 
 ################################################################################ Start UC_Inflamed_1_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_1_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_1_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1544,7 +1544,7 @@ UC_Inflamed_1_New=subset(UC_Inflamed_1_New,subset=nFeature_RNA>400 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_2_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_2_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_2_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1575,7 +1575,7 @@ UC_Inflamed_2_New=subset(UC_Inflamed_2_New,subset=nFeature_RNA>400 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_3_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_3_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_3_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1606,7 +1606,7 @@ UC_Inflamed_3_New=subset(UC_Inflamed_3_New,subset=nFeature_RNA>600 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_4_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_4_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_4_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1637,7 +1637,7 @@ UC_Inflamed_4_New=subset(UC_Inflamed_4_New,subset=nFeature_RNA>700 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_5_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_5_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_5_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1668,7 +1668,7 @@ UC_Inflamed_5_New=subset(UC_Inflamed_5_New,subset=nFeature_RNA>650 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_6_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_6_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_6_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1699,7 +1699,7 @@ UC_Inflamed_6_New=subset(UC_Inflamed_6_New,subset=nFeature_RNA>400 & nFeature_RN
 
 
 ################################################################################ Start UC_Inflamed_7_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_7_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_7_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1730,7 +1730,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Inflamed_8_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_8_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_8_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1762,7 +1762,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Inflamed_9_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_9_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_9_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1794,7 +1794,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Inflamed_10_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_10_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_10_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1826,7 +1826,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Inflamed_11_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_11_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_11_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1857,7 +1857,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Inflamed_12_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_12_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_12_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1888,7 +1888,7 @@ UC_Inflamed_12_New=subset(UC_Inflamed_12_New,subset=nFeature_RNA>800 & nFeature_
 
 
 ################################################################################ Start UC_Inflamed_13_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_13_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_13_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1919,7 +1919,7 @@ UC_Inflamed_13_New=subset(UC_Inflamed_13_New,subset=nFeature_RNA>1000 & nFeature
 
 
 ################################################################################ Start UC_Inflamed_14_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Inflamed_14_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Inflamed_14_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1950,7 +1950,7 @@ UC_Inflamed_14_New=subset(UC_Inflamed_14_New,subset=nFeature_RNA>800 & nFeature_
 
 
 ################################################################################ Start UC_Non_Inflamed_1_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_1_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_1_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -1981,7 +1981,7 @@ UC_Non_Inflamed_1_New=subset(UC_Non_Inflamed_1_New,subset=nFeature_RNA>400 & nFe
 
 
 ################################################################################ Start UC_Non_Inflamed_2_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_2_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_2_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2012,7 +2012,7 @@ UC_Non_Inflamed_2_New=subset(UC_Non_Inflamed_2_New,subset=nFeature_RNA>600 & nFe
 
 
 ################################################################################ Start UC_Non_Inflamed_3_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_3_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_3_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2043,7 +2043,7 @@ UC_Non_Inflamed_3_New=subset(UC_Non_Inflamed_3_New,subset=nFeature_RNA>750 & nFe
 
 
 ################################################################################ Start UC_Non_Inflamed_4_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_4_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_4_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2074,7 +2074,7 @@ UC_Non_Inflamed_4_New=subset(UC_Non_Inflamed_4_New,subset=nFeature_RNA>600 & nFe
 
 
 ################################################################################ Start UC_Non_Inflamed_5_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_5_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_5_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2105,7 +2105,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Non_Inflamed_6_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_6_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_6_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2136,7 +2136,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Non_Inflamed_7_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_7_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_7_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -2167,7 +2167,7 @@ dev.off()
 
 
 ################################################################################ Start UC_Non_Inflamed_8_New
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/Quality Control/UC_Non_Inflamed_8_New")
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part3/QC/UC_Non_Inflamed_8_New")
 
 
 png(filename = "1.png", width = 10000, height = 4000, units = "px", res = 600)

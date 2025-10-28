@@ -1,19 +1,20 @@
-################################################################################ Start library
+################################################################################ Start libraries
 library(Seurat)
 library(SeuratObject)
 library(ggplot2)
-################################################################################ End library
+################################################################################ End libraries
 
 
 
 ################################################################################ Start Normal Control CT1 #1
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288840_CT1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288840_CT1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288840_CT1-CD3-genes-barcodes-matrix")
 
 
 srobj_1=CreateSeuratObject(CountMatrix,project ="Normal Control CT1",min.cells=3,min.features=200)
 srobj_1[["MTpercent"]]=PercentageFeatureSet(srobj_1,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288840_CT1-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_1@meta.data, aes(x = srobj_1$nCount_RNA, y = srobj_1$MTpercent)) +
@@ -42,14 +43,15 @@ srobj_1=subset(srobj_1,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<2
 
 
 
-
 ################################################################################ Start Normal Control CT2 #2
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
+
 
 srobj_2=CreateSeuratObject(CountMatrix,project ="Normal Control CT2",min.cells=3,min.features=200)
 srobj_2[["MTpercent"]]=PercentageFeatureSet(srobj_2,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288841_CT2-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_2@meta.data, aes(x = srobj_2$nCount_RNA, y = srobj_2$MTpercent)) +
@@ -79,13 +81,14 @@ srobj_2=subset(srobj_2,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT3 #3
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288842_CT3-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288842_CT3-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288842_CT3-CD3-genes-barcodes-matrix")
 
 
 srobj_3=CreateSeuratObject(CountMatrix,project ="Normal Control CT3",min.cells=3,min.features=200)
 srobj_3[["MTpercent"]]=PercentageFeatureSet(srobj_3,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288842_CT3-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_3@meta.data, aes(x = srobj_3$nCount_RNA, y = srobj_3$MTpercent)) +
@@ -115,13 +118,14 @@ srobj_3=subset(srobj_3,subset=nFeature_RNA>800 & nFeature_RNA<5000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT4 #4
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
 
 
 srobj_4=CreateSeuratObject(CountMatrix,project ="Normal Control CT4",min.cells=3,min.features=200)
 srobj_4[["MTpercent"]]=PercentageFeatureSet(srobj_4,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288843_CT4-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_4@meta.data, aes(x = srobj_4$nCount_RNA, y = srobj_4$MTpercent)) +
@@ -151,13 +155,14 @@ srobj_4=subset(srobj_4,subset=nFeature_RNA>900 & nFeature_RNA<4500 & MTpercent<1
 
 
 ################################################################################ Start Normal Control CT5 #5
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
 
 
 srobj_5=CreateSeuratObject(CountMatrix,project ="Normal Control CT5",min.cells=3,min.features=200)
 srobj_5[["MTpercent"]]=PercentageFeatureSet(srobj_5,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288844_CT5-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_5@meta.data, aes(x = srobj_5$nCount_RNA, y = srobj_5$MTpercent)) +
@@ -187,13 +192,14 @@ srobj_5=subset(srobj_5,subset=nFeature_RNA>900 & nFeature_RNA<4800 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT6 #6
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
 
 
 srobj_6=CreateSeuratObject(CountMatrix,project ="Normal Control CT6",min.cells=3,min.features=200)
 srobj_6[["MTpercent"]]=PercentageFeatureSet(srobj_6,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288845_CT6-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_6@meta.data, aes(x = srobj_6$nCount_RNA, y = srobj_6$MTpercent)) +
@@ -223,13 +229,14 @@ srobj_6=subset(srobj_6,subset=nFeature_RNA>700 & nFeature_RNA<4000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT7 #7
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
 
 
 srobj_7=CreateSeuratObject(CountMatrix,project ="Normal Control CT7",min.cells=3,min.features=200)
 srobj_7[["MTpercent"]]=PercentageFeatureSet(srobj_7,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288846_CT7-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_7@meta.data, aes(x = srobj_7$nCount_RNA, y = srobj_7$MTpercent)) +
@@ -259,13 +266,14 @@ srobj_7=subset(srobj_7,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<2
 
 
 ################################################################################ Start Normal Control CT8 #8
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
 
 
 srobj_8=CreateSeuratObject(CountMatrix,project ="Normal Control CT8",min.cells=3,min.features=200)
 srobj_8[["MTpercent"]]=PercentageFeatureSet(srobj_8,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/Normal Control/GSM4288847_CT8-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_8@meta.data, aes(x = srobj_8$nCount_RNA, y = srobj_8$MTpercent)) +
@@ -295,13 +303,14 @@ srobj_8=subset(srobj_8,subset=nFeature_RNA>800 & nFeature_RNA<4000 & MTpercent<2
 
 
 ################################################################################ Start +CPI no colitis NC1 #9
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 
 
 srobj_9=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC1",min.cells=3,min.features=200)
 srobj_9[["MTpercent"]]=PercentageFeatureSet(srobj_9,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_9@meta.data, aes(x = srobj_9$nCount_RNA, y = srobj_9$MTpercent)) +
@@ -331,13 +340,14 @@ srobj_9=subset(srobj_9,subset=nFeature_RNA>900 & nFeature_RNA<6000 & MTpercent<1
 
 
 ################################################################################ Start +CPI no colitis NC2 #10
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288834_NC1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288835_NC2-CD3-genes-barcodes-matrix")
 
 
 srobj_10=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC2",min.cells=3,min.features=200)
 srobj_10[["MTpercent"]]=PercentageFeatureSet(srobj_10,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288835_NC2-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_10@meta.data, aes(x = srobj_10$nCount_RNA, y = srobj_10$MTpercent)) +
@@ -367,13 +377,14 @@ srobj_10=subset(srobj_10,subset=nFeature_RNA>800 & nFeature_RNA<4500 & MTpercent
 
 
 ################################################################################ Start +CPI no colitis NC3 #11
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
 
 
 srobj_11=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC3",min.cells=3,min.features=200)
 srobj_11[["MTpercent"]]=PercentageFeatureSet(srobj_11,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288836_NC3-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_11@meta.data, aes(x = srobj_11$nCount_RNA, y = srobj_11$MTpercent)) +
@@ -403,13 +414,14 @@ srobj_11=subset(srobj_11,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent
 
 
 ################################################################################ Start +CPI no colitis NC4 #12
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
 
 
 srobj_12=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC4",min.cells=3,min.features=200)
 srobj_12[["MTpercent"]]=PercentageFeatureSet(srobj_12,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288837_NC4-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_12@meta.data, aes(x = srobj_12$nCount_RNA, y = srobj_12$MTpercent)) +
@@ -439,13 +451,14 @@ srobj_12=subset(srobj_12,subset=nFeature_RNA>800 & nFeature_RNA<4200 & MTpercent
 
 
 ################################################################################ Start +CPI no colitis NC5 #13
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
 
 
 srobj_13=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC5",min.cells=3,min.features=200)
 srobj_13[["MTpercent"]]=PercentageFeatureSet(srobj_13,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288838_NC5-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_13@meta.data, aes(x = srobj_13$nCount_RNA, y = srobj_13$MTpercent)) +
@@ -476,13 +489,14 @@ srobj_13=subset(srobj_13,subset=nFeature_RNA>900 & nFeature_RNA<5000 & MTpercent
 
 
 ################################################################################ Start +CPI no colitis NC6 #14
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
 
 
 srobj_14=CreateSeuratObject(CountMatrix,project ="+CPI no colitis NC6",min.cells=3,min.features=200)
 srobj_14[["MTpercent"]]=PercentageFeatureSet(srobj_14,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI no colitis/GSM4288839_NC6-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_14@meta.data, aes(x = srobj_14$nCount_RNA, y = srobj_14$MTpercent)) +
@@ -513,13 +527,14 @@ srobj_14=subset(srobj_14,subset=nFeature_RNA>600 & nFeature_RNA<5000 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C1 #15
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
 
 
 srobj_15=CreateSeuratObject(CountMatrix,project ="+CPI colitis C1",min.cells=3,min.features=200)
 srobj_15[["MTpercent"]]=PercentageFeatureSet(srobj_15,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288826_C1-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_15@meta.data, aes(x = srobj_15$nCount_RNA, y = srobj_15$MTpercent)) +
@@ -549,13 +564,14 @@ srobj_15=subset(srobj_15,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C2 #16
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
 
 
 srobj_16=CreateSeuratObject(CountMatrix,project ="+CPI colitis C2",min.cells=3,min.features=200)
 srobj_16[["MTpercent"]]=PercentageFeatureSet(srobj_16,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288827_C2-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_16@meta.data, aes(x = srobj_16$nCount_RNA, y = srobj_16$MTpercent)) +
@@ -585,13 +601,14 @@ srobj_16=subset(srobj_16,subset=nFeature_RNA>900 & nFeature_RNA<6200 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C3 #17
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
 
 
 srobj_17=CreateSeuratObject(CountMatrix,project ="+CPI colitis C3",min.cells=3,min.features=200)
 srobj_17[["MTpercent"]]=PercentageFeatureSet(srobj_17,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288828_C3-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_17@meta.data, aes(x = srobj_17$nCount_RNA, y = srobj_17$MTpercent)) +
@@ -621,13 +638,14 @@ srobj_17=subset(srobj_17,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C4 #18
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
 
 
 srobj_18=CreateSeuratObject(CountMatrix,project ="+CPI colitis C4",min.cells=3,min.features=200)
 srobj_18[["MTpercent"]]=PercentageFeatureSet(srobj_18,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288829_C4-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_18@meta.data, aes(x = srobj_18$nCount_RNA, y = srobj_18$MTpercent)) +
@@ -657,13 +675,14 @@ srobj_18=subset(srobj_18,subset=nFeature_RNA>800 & nFeature_RNA<6200 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C5 #19
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
 
 
 srobj_19=CreateSeuratObject(CountMatrix,project ="+CPI colitis C5",min.cells=3,min.features=200)
 srobj_19[["MTpercent"]]=PercentageFeatureSet(srobj_19,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288830_C5-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_19@meta.data, aes(x = srobj_19$nCount_RNA, y = srobj_19$MTpercent)) +
@@ -693,13 +712,14 @@ srobj_19=subset(srobj_19,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C6 #20
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
 
 
 srobj_20=CreateSeuratObject(CountMatrix,project ="+CPI colitis C6",min.cells=3,min.features=200)
 srobj_20[["MTpercent"]]=PercentageFeatureSet(srobj_20,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288831_C6-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_20@meta.data, aes(x = srobj_20$nCount_RNA, y = srobj_20$MTpercent)) +
@@ -729,13 +749,14 @@ srobj_20=subset(srobj_20,subset=nFeature_RNA>800 & nFeature_RNA<5600 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C7 #21
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
 
 
 srobj_21=CreateSeuratObject(CountMatrix,project ="+CPI colitis C7",min.cells=3,min.features=200)
 srobj_21[["MTpercent"]]=PercentageFeatureSet(srobj_21,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288832_C7-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_21@meta.data, aes(x = srobj_21$nCount_RNA, y = srobj_21$MTpercent)) +
@@ -765,13 +786,14 @@ srobj_21=subset(srobj_21,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent
 
 
 ################################################################################ Start +CPI colitis C8 #22
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part 1/Data/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
-CountMatrix=Read10X("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/Data/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
+CountMatrix=Read10X("C:/Esmaeil/irAEsProject/Backup/Part 1/0_Data/GEX_Data/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
 
 
 srobj_22=CreateSeuratObject(CountMatrix,project ="+CPI colitis C8",min.cells=3,min.features=200)
 srobj_22[["MTpercent"]]=PercentageFeatureSet(srobj_22,pattern = "^MT-")
 
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1/QC/CD3/+CPI colitis/GSM4288833_C8-CD3-genes-barcodes-matrix")
 
 png(filename = "1.png",width = 10000,height=4000,units ="px",res = 600)
 ggplot(data = srobj_22@meta.data, aes(x = srobj_22$nCount_RNA, y = srobj_22$MTpercent)) +
@@ -801,7 +823,7 @@ srobj_22=subset(srobj_22,subset=nFeature_RNA>800 & nFeature_RNA<6500 & MTpercent
 
 
 ################################################################################ Start integration and UMAP
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/integrated_obj Data")
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 1")
 merged_obj <- merge(srobj_1, y = list(srobj_2, srobj_3, srobj_4, 
                                       srobj_5, srobj_6, srobj_7, 
                                       srobj_8, srobj_9,srobj_10, 
@@ -823,7 +845,7 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 merged_obj = RunPCA(merged_obj)
 
 # 1
-# saveRDS(file = "merged_obj",merged_obj)
+ saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
 merged_obj <- IntegrateLayers(object = merged_obj,
@@ -857,21 +879,15 @@ DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-# Remove clusters 11
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(11), invert = TRUE)
-png(filename = "UMAP2.png",width = 10000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,label = TRUE)
-dev.off()
-
 
 # UMAP projection of all cells colored by their original sample ID (orig.ident).
-png(filename = "UMAP3.png",width = 7000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP2.png",width = 7000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, group.by = "orig.ident")
 dev.off()
 
 
 # UMAP projection split by original sample ID. Each panel shows the cells of one sample with their spatial distribution in the integrated UMAP space.
-png(filename = "UMAP4.png",width = 28000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP3.png",width = 28000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, split.by = "orig.ident")
 dev.off()
 
@@ -883,17 +899,17 @@ dev.off()
 
 # Remove clusters 10
 merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
-png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP4.png",width = 10000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
 
-# Remove cells with an x-axis value less than -11 and y-axis value less than -1.
+# Remove cells with an x-axis value less than -6 and y-axis value less than -5.
 umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
-cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < -11 & umap_coord[, "umap_2"] < -1), ])
+cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < -6 & umap_coord[, "umap_2"] < -5), ])
 merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP6.png",width = 10000,height=4000,units ="px",res = 600 )
+png(filename = "UMAP5.png",width = 10000,height=4000,units ="px",res = 600 )
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
 ################################################################################ End UMAP
@@ -906,7 +922,7 @@ merged_obj2 = merged_obj1
 
 
 ################################################################################ Start Extracting and saving Seurat objects for each sample
-
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 1/5_GSE144469_seurat_objs")
 samples <- unique(merged_obj2$orig.ident)
 
 for (i in seq_along(samples)) {

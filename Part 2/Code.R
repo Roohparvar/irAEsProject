@@ -11,8 +11,8 @@ library(rhdf5)
 
 
 ################################################################################ Start Control Healthy MC_1 #1
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250065_MC_1_Colon_555_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250065_MC_1_Colon_555_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250065_MC_1_Colon_555_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250065_MC_1_Colon_555_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -48,8 +48,8 @@ seurat_obj_1=subset(seurat_obj_1,subset=nFeature_RNA>195 & nFeature_RNA<2000 & M
 
 
 ################################################################################ Start Control Healthy MC_2_A #2
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250066_MC_2_Colon_576_CD45sort_5p_GEX_A")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250066_MC_2_Colon_576_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250066_MC_2_Colon_576_CD45sort_5p_GEX_A")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250066_MC_2_Colon_576_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -85,8 +85,8 @@ seurat_obj_2=subset(seurat_obj_2,subset=nFeature_RNA>300 & nFeature_RNA<2700 & M
 
 
 ################################################################################ Start Control Healthy MC_2_B #3
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250067_MC_2_Colon_576_CD45sort_5p_GEX_B")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250067_MC_2_Colon_576_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250067_MC_2_Colon_576_CD45sort_5p_GEX_B")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250067_MC_2_Colon_576_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -122,8 +122,8 @@ seurat_obj_3=subset(seurat_obj_3,subset=nFeature_RNA>300 & nFeature_RNA<2700 & M
 
 
 ################################################################################ Start Control Healthy MC_9 #4
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250068_MC_9_Colon_661_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250068_MC_9_Colon_661_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250068_MC_9_Colon_661_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250068_MC_9_Colon_661_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -159,8 +159,8 @@ seurat_obj_4=subset(seurat_obj_4,subset=nFeature_RNA>190 & nFeature_RNA<2500 & M
 
 
 ################################################################################ Start Control Healthy SIC_13 #5
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250074_SIC_13_Colon_78_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250074_SIC_13_Colon_78_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250074_SIC_13_Colon_78_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250074_SIC_13_Colon_78_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -196,8 +196,8 @@ seurat_obj_5=subset(seurat_obj_5,subset=nFeature_RNA>1000 & nFeature_RNA<2300 & 
 
 
 ################################################################################ Start Control Healthy SIC_186 #6
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250079_SIC_186_Colon_584_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250079_SIC_186_Colon_584_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250079_SIC_186_Colon_584_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250079_SIC_186_Colon_584_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -233,8 +233,8 @@ seurat_obj_6=subset(seurat_obj_6,subset=nFeature_RNA>400 & nFeature_RNA<2300 & M
 
 
 ################################################################################ Start Control Healthy SIC_187 #7
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250080_SIC_187_Colon_584_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250080_SIC_187_Colon_584_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250080_SIC_187_Colon_584_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250080_SIC_187_Colon_584_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -270,8 +270,8 @@ seurat_obj_7=subset(seurat_obj_7,subset=nFeature_RNA>300 & nFeature_RNA<2000 & M
 
 
 ################################################################################ Start Control Healthy SIC_188_A #8
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250081_SIC_188_Colon_585_CD45sort_5p_GEX_A")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250081_SIC_188_Colon_585_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250081_SIC_188_Colon_585_CD45sort_5p_GEX_A")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250081_SIC_188_Colon_585_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -307,8 +307,8 @@ seurat_obj_8=subset(seurat_obj_8,subset=nFeature_RNA>400 & nFeature_RNA<2000 & M
 
 
 ################################################################################ Start Control Healthy SIC_188_B #9
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250082_SIC_188_Colon_585_CD45sort_5p_GEX_B")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250082_SIC_188_Colon_585_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250082_SIC_188_Colon_585_CD45sort_5p_GEX_B")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250082_SIC_188_Colon_585_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -344,8 +344,8 @@ seurat_obj_9=subset(seurat_obj_9,subset=nFeature_RNA>300 & nFeature_RNA<2000 & M
 
 
 ################################################################################ Start Control Healthy SIC_612_A #10
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250083_SIC_196_Colon_612_CD45sort_5p_GEX_A")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250083_SIC_196_Colon_612_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250083_SIC_196_Colon_612_CD45sort_5p_GEX_A")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250083_SIC_196_Colon_612_CD45sort_5p_GEX_A/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -381,8 +381,8 @@ seurat_obj_10=subset(seurat_obj_10,subset=nFeature_RNA>300 & nFeature_RNA<1800 &
 
 
 ################################################################################ Start Control Healthy SIC_612_B #11
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - Healthy/GSM6250084_SIC_196_Colon_612_CD45sort_5p_GEX_B")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - Healthy/GSM6250084_SIC_196_Colon_612_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - Healthy/GSM6250084_SIC_196_Colon_612_CD45sort_5p_GEX_B")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - Healthy/GSM6250084_SIC_196_Colon_612_CD45sort_5p_GEX_B/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -418,8 +418,8 @@ seurat_obj_11=subset(seurat_obj_11,subset=nFeature_RNA>150 & nFeature_RNA<1800 &
 
 
 ################################################################################ Start Control - On ICI Therapy SIC_109 #12
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250070_SIC_109_Colon_368_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -455,8 +455,8 @@ seurat_obj_12=subset(seurat_obj_12,subset=nFeature_RNA>240 & nFeature_RNA<1600 &
 
 
 ################################################################################ Start Control - On ICI Therapy SIC_172 #13
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250078_SIC_172_Colon_529_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -492,8 +492,8 @@ seurat_obj_13=subset(seurat_obj_13,subset=nFeature_RNA>600 & nFeature_RNA<2900 &
 
 
 ################################################################################ Start Control - On ICI Therapy SIC_19 #14
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250085_SIC_19_Colon_217_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -530,8 +530,8 @@ seurat_obj_14=subset(seurat_obj_14,subset=nFeature_RNA>240 & nFeature_RNA<2600 &
 
 
 ################################################################################ Start Control - On ICI Therapy SIC_31 #15
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250086_SIC_31_Colon_128_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -568,8 +568,8 @@ seurat_obj_15=subset(seurat_obj_15,subset=nFeature_RNA>550 & nFeature_RNA<2400 &
 
 
 ################################################################################ Start Control - On ICI Therapy SIC_94 #16
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/Control - On ICI Therapy/GSM6250093_SIC_94_Colon_340_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -605,8 +605,8 @@ seurat_obj_16=subset(seurat_obj_16,subset=nFeature_RNA>210 & nFeature_RNA<1000 &
 
 
 ################################################################################ Start irColitis Case SIC_100 #17
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250069_SIC_100_Colon_332_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -643,8 +643,8 @@ seurat_obj_17=subset(seurat_obj_17,subset=nFeature_RNA>400 & nFeature_RNA<3000 &
 
 
 ################################################################################ Start irColitis Case SIC_121 #18
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250071_SIC_121_Colon_382_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -680,8 +680,8 @@ seurat_obj_18=subset(seurat_obj_18,subset=nFeature_RNA>205 & nFeature_RNA<4000 &
 
 
 ################################################################################ Start irColitis Case SIC_126 #19
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250072_SIC_126_Colon_398_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -718,8 +718,8 @@ seurat_obj_19=subset(seurat_obj_19,subset=nFeature_RNA>205 & nFeature_RNA<3500 &
 
 
 ################################################################################ Start irColitis Case SIC_134 #20
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250073_SIC_134_Colon_417_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -756,8 +756,8 @@ seurat_obj_20=subset(seurat_obj_20,subset=nFeature_RNA>205 & nFeature_RNA<2500 &
 
 
 ################################################################################ Start irColitis Case SIC_140 #21
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250075_SIC_140_Colon_441_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -793,8 +793,8 @@ seurat_obj_21=subset(seurat_obj_21,subset=nFeature_RNA>700 & nFeature_RNA<3200 &
 
 
 ################################################################################ Start irColitis Case SIC_141_A #22
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250076_SIC_141_Colon_438_CD45pos_5p_GEX_A/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -830,8 +830,8 @@ seurat_obj_22=subset(seurat_obj_22,subset=nFeature_RNA>200 & nFeature_RNA<2800 &
 
 
 ################################################################################ Start irColitis Case SIC_141_B #23
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250077_SIC_141_Colon_438_CD45pos_5p_GEX_B/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -867,8 +867,8 @@ seurat_obj_23=subset(seurat_obj_23,subset=nFeature_RNA>200 & nFeature_RNA<2600 &
 
 
 ################################################################################ Start irColitis Case SIC_32_Colon_128 #24
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250087_SIC_32_Colon_128_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -904,8 +904,8 @@ seurat_obj_24=subset(seurat_obj_24,subset=nFeature_RNA>200 & nFeature_RNA<2000 &
 
 
 ################################################################################ Start irColitis Case SIC_32_Colon_178 #25
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250088_SIC_32_Colon_178_CAP_unselect_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -942,8 +942,8 @@ seurat_obj_25=subset(seurat_obj_25,subset=nFeature_RNA>200 & nFeature_RNA<2500 &
 
 
 ################################################################################ Start irColitis Case SIC_40 #26
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250089_SIC_40_Colon_282_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -979,8 +979,8 @@ seurat_obj_26=subset(seurat_obj_26,subset=nFeature_RNA>200 & nFeature_RNA<550 & 
 
 
 ################################################################################ Start irColitis Case SIC_71 #27
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250090_SIC_71_Colon_241_CD45sort_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -1016,8 +1016,8 @@ seurat_obj_27=subset(seurat_obj_27,subset=nFeature_RNA>400 & nFeature_RNA<3000 &
 
 
 ################################################################################ Start irColitis Case SIC_76 #28
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250091_SIC_76_Colon_273_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -1053,8 +1053,8 @@ seurat_obj_28=subset(seurat_obj_28,subset=nFeature_RNA>200 & nFeature_RNA<4000 &
 
 
 ################################################################################ Start irColitis Case SIC_89 #29
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250092_SIC_89_Colon_310_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -1091,8 +1091,8 @@ seurat_obj_29=subset(seurat_obj_29,subset=nFeature_RNA>200 & nFeature_RNA<1700 &
 
 
 ################################################################################ Start irColitis Case SIC_97 #30
-setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/Data/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX")
-data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/Raw Data/GSE206299/GEX/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
+setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2/QC/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX")
+data_dir <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/0_Data/GSE206299/GEX/5p/irColitis Case/GSM6250094_SIC_97_Colon_318_CD45pos_5p_GEX/raw_feature_bc_matrix.h5"
 
 
 raw_data <- Read10X_h5(data_dir)
@@ -1227,6 +1227,12 @@ Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
 png(filename = "UMAP5.png", width = 7000, height = 4000, units = "px", res = 600)
 DimPlot(merged_obj1, label = TRUE)
 dev.off()
+
+
+png(filename = "FeaturePlot2.png", width = 5000, height = 4000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+dev.off()
+
 
 # 4
 # saveRDS(file = "merged_obj1",merged_obj1)
