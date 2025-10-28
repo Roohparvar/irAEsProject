@@ -1,5 +1,5 @@
 # irAEs Project:
-This repository contains a single-cell and TCR analysis pipeline for discovering biologically relevant insights in immune-related adverse events (irAE) disease.
+This repository contains a single-cell analysis pipeline for discovering biologically relevant insights in immune-related adverse events (irAE) disease.
 
 ---
 ---
@@ -61,13 +61,13 @@ This dataset includes samples from ... distinct groups:
 ## Data Grouping
 The samples collected from the four datasets in this project are divided into **five main groups** based on treatment status, disease condition, and inflammation phase:
 
-| Description | Short Name |
-| ------------|------------|
-| Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` |
-| Patients receiving Immune Checkpoint Inhibitors therapy  without colitis. | `CPI_Control` |
-| Healthy individuals with no treatment and no colitis | `Healthy` |
-| Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` |
-| Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` |
+| Group | Description | Short Name |
+|-------|------------|------------|
+| CPI Colitis | Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` |
+| CPI Control | Patients receiving Immune Checkpoint Inhibitors therapy  without colitis. | `CPI_Control` |
+| Healthy | Healthy individuals with no treatment and no colitis | `Healthy` |
+| UC Inflamed | Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` |
+| UC Non-Inflamed | Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` |
 
 > This categorization is applied across the four datasets to maintain consistency for analysis and integration.
 
