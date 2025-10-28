@@ -8,10 +8,10 @@ This repository presents a unified single-cell and TCR analysis pipeline focused
 ## Overview:
 The project is divided into five main parts:
 
-1. **Part 1** – Analysis of the **GSE144469** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469)) – Publication: [https://doi.org/10.1016/j.cell.2020.06.001](https://doi.org/10.1016/j.cell.2020.06.001)
-2. **Part 2** – Analysis of the **GSE206299** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)) – Publication: [https://www.nature.com/articles/s41591-024-02895-x](https://www.nature.com/articles/s41591-024-02895-x)
-3. **Part 3** – Analysis of the **GSE189040** dataset (CPI-Colitis Single Cell and Spatial Atlas) – Publication: [https://www.sciencedirect.com/science/article/pii/S153561082400134X](https://www.sciencedirect.com/science/article/pii/S153561082400134X)
-4. **Part 4** – Analysis of the **GSE253720** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)) – Publication: [https://pubmed.ncbi.nlm.nih.gov/38642938/](https://pubmed.ncbi.nlm.nih.gov/38642938/)
+1. **Part 1** – Analysis of the **GSE144469** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144469)) – Publication: [GSE144469](https://doi.org/10.1016/j.cell.2020.06.001)
+2. **Part 2** – Analysis of the **GSE206299** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206299)) – Publication: [GSE206299](https://www.nature.com/articles/s41591-024-02895-x)
+3. **Part 3** – Analysis of the **GSE189040** dataset (CPI-Colitis Single Cell and Spatial Atlas) – Publication: [GSE189040](https://www.sciencedirect.com/science/article/pii/S153561082400134X)
+4. **Part 4** – Analysis of the **GSE253720** dataset ([NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE253720)) – Publication: [GSE253720](https://pubmed.ncbi.nlm.nih.gov/38642938/)
 5. **Part 5** – Integration of all datasets, clustering, and cell type annotation.
 6. **Part 6** – Downstream comparative and differential analysis.
 7. **Part 7** – TCR clonotype and repertoire analysis.
