@@ -72,7 +72,7 @@ The samples collected from the four datasets in this project are divided into **
 
 ##
 
-### Cell Type Focus:
+### Cell Type Focus
 
 - In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
 - In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
@@ -96,7 +96,7 @@ For each dataset (article by article, dataset by dataset), we performed the foll
 ---
 
 ## Part 2: Integration of All Samples
-In this section, we applied the same analytical approach as in the previous parts. However, this time, the analysis was performed on all samples collectively by integrating the datasets obtained from the five referenced publications.
+In this section, we applied the same analytical approach as in the previous parts. However, this time, the analysis was performed on all samples collectively by integrating the datasets obtained from the all referenced datasets.
 
 ---
 ---
