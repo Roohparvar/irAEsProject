@@ -1,5 +1,5 @@
 # irAEs Project:
-This repository contains a single-cell analysis pipeline for discovering biologically relevant insights in immune-related adverse events (irAE) disease.
+This repository contains a single-cell and TCR analysis pipeline for discovering biologically relevant insights in immune-related adverse events (irAE) disease.
 
 ---
 ---
