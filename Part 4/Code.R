@@ -1,5 +1,6 @@
 ################################################################################ Start libraries
 library(Seurat)
+library(SeuratObject)
 library(ggplot2)
 ################################################################################ End libraries
 
@@ -611,3 +612,12 @@ merged_obj <- IntegrateLayers(object = merged_obj,
 # 2
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers
+
+merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
+################################################################################ End integration
+
+merged_obj1 = merged_obj
+
+################################################################################ Start UMAP
+merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
+merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
