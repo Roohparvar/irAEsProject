@@ -868,13 +868,8 @@ merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
-# 3
-# saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after FindNeighbors and FindClusters
-
-
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-png(filename = "1_First UMAP.png",width = 4000,height=3000,units ="px",res = 600 )
+png(filename = "1_First UMAP.png", width = 4000,height = 3000, units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 

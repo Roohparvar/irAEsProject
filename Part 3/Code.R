@@ -2253,12 +2253,9 @@ merged_obj <- merge(
 
 merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
 
-
 merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
 
-
 merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
-
 
 merged_obj = RunPCA(merged_obj)
 
@@ -2286,18 +2283,13 @@ merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
 
 
-# 3
-# saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after FindNeighbors and FindClusters
-
-
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-png(filename = "UMAP1.png",width = 9000,height=4000,units ="px",res = 600 )
+png(filename = "1_First UMAP.png", width = 4000,height = 3000 ,units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "FeaturePlot.png", width = 9000, height = 5000, units = "px", res = 600)
+png(filename = "2_Feature Plot.png", width = 5000, height = 6000, units = "px", res = 600)
 FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
 dev.off()
 ################################################################################ End UMAP
@@ -2316,8 +2308,8 @@ for (i in seq_along(samples)) {
 
 
 
-# 4
-# New_seurat_objs
+# 3
+# 3_The Seurat objects per sample
 setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part3/4_New_seurat_objs")
 
 sr_objs <- list(sr_obj_1, sr_obj_2, sr_obj_3, sr_obj_4, sr_obj_5, 

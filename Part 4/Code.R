@@ -624,27 +624,56 @@ merged_obj1=FindClusters(merged_obj1,resolution = 0.1)
 
 
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-png(filename = "UMAP1.png",width = 7000,height=4000,units ="px",res = 600 )
+png(filename = "1_First UMAP.png", width = 4000,height = 3000, units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "FeaturePlot.png", width = 7000, height = 4000, units = "px", res = 600)
-FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+png(filename = "2_First Feature Plot.png", width = 18000, height = 25000, units = "px", res = 600)
+
+FeaturePlot(merged_obj1, features = c(
+  "CD3D", "CD3E", "CD3G",  # T cell markers
+  "CD4",           # helper T cells
+  "CD8A", "CD8B",  # cytotoxic T cells
+  "TRAC", "TRBC1", "TRBC2",  # TCR chains
+  "IL7R", "TCF7", "SELL",    # naive/memory T cells
+  
+  "MS4A1", "CD79A", "CD19",   # B cell markers
+  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
+  "NCAM1", "KLRD1",   # NK cells
+  "HBB", "PPBP"   # Erythroid / Platelets
+))
+
 dev.off()
 
 
-# Remove clusters 1, 5, 6, and 8
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 5, 6, 8), invert = TRUE)
-png(filename = "UMAP2.png",width = 7000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1,label = TRUE)
-dev.off()
+# Remove clusters 1, 5, 6, 8, and 11
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 5, 6, 8, 11), invert = TRUE)
+
+################################################################################ End UMAP
+
+merged_obj2 = merged_obj1
+
+################################################################################ Start Extracting and saving Seurat objects for each sample
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 4/3_The Seurat objects per sample")
+samples <- unique(merged_obj2$orig.ident)
+
+for (i in seq_along(samples)) {
+  sample_name <- samples[i]
+  seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
+  assign(paste0("srobj_", i), seurat_obj)
+}
 
 
-# Remove cells with an x-axis value less than -6 and y-axis value less than -5.
-umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
-cells_to_keep <- rownames(umap_coord[!(umap_coord[, "umap_1"] < 0 | umap_coord[, "umap_2"] < 10), ])
-merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP3.png",width = 7000,height=4000,units ="px",res = 600 )
-DimPlot(merged_obj1, label = TRUE)
-dev.off()
+# 3
+# 3_The Seurat objects per sample
+seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
+                    srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
+                    srobj_11, srobj_12, srobj_13, srobj_14)
+
+# Loop to save each Seurat object
+for (i in 1:length(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
+}
+
+################################################################################ End Extracting and saving Seurat objects for each sample

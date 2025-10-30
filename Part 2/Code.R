@@ -1128,7 +1128,7 @@ seurat_obj_30=subset(seurat_obj_30,subset=nFeature_RNA>200 & nFeature_RNA<3500 &
 
 
 
-################################################################################ Start integration
+################################################################################ Start The fundamental steps before integration
 setwd("C:/Esmaeil/scRNA-seq/Single-Cell-Pipeline-in-R/Part2")
 merged_obj <- merge(seurat_obj_1, y = list(seurat_obj_2, seurat_obj_3, seurat_obj_4, 
                                            seurat_obj_5, seurat_obj_6, seurat_obj_7, 
@@ -1141,15 +1141,11 @@ merged_obj <- merge(seurat_obj_1, y = list(seurat_obj_2, seurat_obj_3, seurat_ob
                                            seurat_obj_26, seurat_obj_27,seurat_obj_28,
                                            seurat_obj_29, seurat_obj_30))
 
-
 merged_obj=NormalizeData(merged_obj,normalization.method = "LogNormalize",scale.factor = 10000)
-
 
 merged_obj=FindVariableFeatures(merged_obj,selection.method = "vst",nfeatures = 2000)
 
-
 merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
-
 
 merged_obj = RunPCA(merged_obj)
 
@@ -1157,6 +1153,14 @@ merged_obj = RunPCA(merged_obj)
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
+################################################################################ End The fundamental steps before integration
+
+
+
+
+################################################################################ Start integration with CCAIntegration
+
+# ---------------------------------------------------- integration
 merged_obj <- IntegrateLayers(object = merged_obj,
                               method = CCAIntegration,
                               orig.reduction = "pca", 
@@ -1165,80 +1169,166 @@ merged_obj <- IntegrateLayers(object = merged_obj,
 
 # 2
 # saveRDS(file = "merged_obj",merged_obj)
-# The Seurat object obtained after IntegrateLayers
+# The Seurat object obtained after IntegrateLayers with CCAIntegration
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
-################################################################################ End integration
+
+# -------------------------------------------- Start UMAP
+merged_obj1 = merged_obj
+
+
+merged_obj1 = FindNeighbors(merged_obj1, dims = 1:30, reduction = "integrated.cca")
+merged_obj1 = FindClusters(merged_obj1, resolution = 0.2)
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+
+
+png(filename = "1_First UMAP-CCA.png", width = 4000,height = 3000, units ="px", res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+png(filename = "2_First Feature Plot-CCA.png", width = 18000, height = 25000, units = "px", res = 600)
+
+FeaturePlot(merged_obj1, features = c(
+  "CD3D", "CD3E", "CD3G",  # T cell markers
+  "CD4",           # helper T cells
+  "CD8A", "CD8B",  # cytotoxic T cells
+  "TRAC", "TRBC1", "TRBC2",  # TCR chains
+  "IL7R", "TCF7", "SELL",    # naive/memory T cells
+  
+  "MS4A1", "CD79A", "CD19",   # B cell markers
+  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
+  "NCAM1", "KLRD1",   # NK cells
+  "HBB", "PPBP"   # Erythroid / Platelets
+))
+
+dev.off()
+################################################################################ End integration with CCAIntegration
+
+
+################################################################################ Start integration with RPCAIntegration
+
+# ---------------------------------------------------- integration
+library(future)
+options(future.globals.maxSize = 50 * 1024^3)  # 50 GiB
+
+merged_obj <- IntegrateLayers(object = merged_obj,
+                              method = RPCAIntegration,
+                              orig.reduction = "pca", 
+                              new.reduction = "integrated.rpca",
+                              verbose = FALSE)
+
+# 3
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 2/3_The Seurat object obtained after IntegrateLayers with RPCAIntegration")
+# saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after IntegrateLayers with RPCAIntegration
+
+# -------------------------------------------- Start UMAP
 
 merged_obj1 = merged_obj
 
-################################################################################ Start UMAP
 
-merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
-merged_obj1=FindClusters(merged_obj1,resolution = 0.2)
-
-
-# 3
-# saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after FindNeighbors and FindClusters
+merged_obj1 = FindNeighbors(merged_obj1, dims = 1:30, reduction = "integrated.rpca")
+merged_obj1 = FindClusters(merged_obj1, resolution = 0.2)
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.rpca")
 
 
-merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
-png(filename = "UMAP1.png",width = 9000,height=4000,units ="px",res = 600 )
+png(filename = "1_Second UMAP-RPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "FeaturePlot.png", width = 9000, height = 4000, units = "px", res = 600)
-FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+png(filename = "2_Second Feature Plot-RPCA.png", width = 18000, height = 25000, units = "px", res = 600)
+
+FeaturePlot(merged_obj1, features = c(
+  "CD3D", "CD3E", "CD3G",  # T cell markers
+  "CD4",           # helper T cells
+  "CD8A", "CD8B",  # cytotoxic T cells
+  "TRAC", "TRBC1", "TRBC2",  # TCR chains
+  "IL7R", "TCF7", "SELL",    # naive/memory T cells
+  
+  "MS4A1", "CD79A", "CD19",   # B cell markers
+  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
+  "NCAM1", "KLRD1",   # NK cells
+  "HBB", "PPBP"   # Erythroid / Platelets
+))
+
 dev.off()
 
+################################################################################ End integration with RPCAIntegration
 
-# Remove clusters 0 2 5 6 8 9 10
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(0, 2, 5, 6, 8, 9, 10), invert = TRUE)
-png(filename = "UMAP2.png",width = 7000,height=4000,units ="px",res = 600 )
+
+################################################################################ Start integration with JointPCAIntegration
+
+# ---------------------------------------------------- integration
+merged_obj <- IntegrateLayers(object = merged_obj,
+                              method = JointPCAIntegration,
+                              orig.reduction = "pca", 
+                              new.reduction = "integrated.dr",
+                              verbose = FALSE)
+
+# 2
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 2/4_The Seurat object obtained after IntegrateLayers with JointPCAIntegration")
+saveRDS(file = "merged_obj",merged_obj)
+# The Seurat object obtained after IntegrateLayers with JointPCAIntegration
+
+merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
+
+# -------------------------------------------- Start UMAP
+merged_obj1 = merged_obj
+
+
+merged_obj1 = FindNeighbors(merged_obj1, dims = 1:30, reduction = "integrated.dr")
+merged_obj1 = FindClusters(merged_obj1, resolution = 0.2)
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.dr")
+
+
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 2")
+png(filename = "5_Third UMAP-JointPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-# Remove cells with an x-axis value greater than 1.
-umap_coord <- merged_obj1@reductions[["umap"]]@cell.embeddings
-cells_to_keep <- rownames(umap_coord[umap_coord[, "umap_1"] <= 1, ])
-merged_obj1 <- subset(merged_obj1, cells = cells_to_keep)
-png(filename = "UMAP3.png", width = 7000, height = 4000, units = "px", res = 600)
-DimPlot(merged_obj1, label = TRUE)
+png(filename = "6_Third Feature Plot-JointPCA.png", 
+    width = 18000, height = 29000, units = "px", res = 600)
+
+FeaturePlot(merged_obj1, features = c(
+  # ---- T cell markers ----
+  "CD3D", "CD3E", "CD3G",
+  "CD2", "CD5", "CD7",
+  "CD4", "CD8A", "CD8B",
+  "TRAC", "TRBC1", "TRBC2",
+  "LCK", "ZAP70",
+  # Naive/memory T
+  "IL7R", "TCF7", "SELL",
+  # Cytotoxic T
+  "GZMA", "GZMB", "GZMK", "PRF1",
+  # Regulatory T
+  "FOXP3", "IL2RA",
+  
+  # ---- B cell markers ----
+  "MS4A1", "CD19", "CD79A", "CD79B", "PAX5",
+  # Immunoglobulin (BCR) transcripts
+  "IGHM", "IGHD", "IGKC", "IGLC2",
+  # Memory B / Activation
+  "CD27", "CD38",
+  # Plasma cell differentiation
+  "MZB1", "XBP1", "PRDM1", "SDC1", "TNFRSF17",
+  
+  # ---- Other lineages to exclude ----
+  "LYZ", "CD14", "FCGR3A",   # Monocyte/Myeloid
+  "NKG7", "GNLY", "NCAM1", "KLRD1",  # NK cells
+  "HBB", "HBA1", "PPBP",     # Erythroid / Platelets
+  "EPCAM", "PECAM1", "COL1A1" # Epithelial / Endothelial / Stromal
+))
+
 dev.off()
 
 
-# This code changes the label of cluster 7 to cluster 2
-#  and then generates and saves a UMAP plot of the modified dataset.
-cluster_ids <- as.character(Idents(merged_obj1))
-cluster_ids[cluster_ids == "7"] <- "2" 
+# Remove clusters 1, 3, 5, 6, 7, 10, 11, 14, and 15
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 3, 5, 6, 7, 10, 11, 14, 15), invert = TRUE)
 
-Idents(merged_obj1) <- cluster_ids
-png(filename = "UMAP4.png", width = 7000, height = 4000, units = "px", res = 600)
-DimPlot(merged_obj1, label = TRUE)
-dev.off()
-
-
-# This code reorders the cluster identities in the Seurat object (merged_obj1) according to the specified order ("1", "2", "3", "4")
-desired_order <- c("1", "2", "3", "4")
-Idents(merged_obj1) <- factor(Idents(merged_obj1), levels = desired_order)
-png(filename = "UMAP5.png", width = 7000, height = 4000, units = "px", res = 600)
-DimPlot(merged_obj1, label = TRUE)
-dev.off()
-
-
-png(filename = "FeaturePlot2.png", width = 5000, height = 4000, units = "px", res = 600)
-FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
-dev.off()
-
-
-# 4
-# saveRDS(file = "merged_obj1",merged_obj1)
-# The Seurat object obtained after UMAP and FeaturePlot
-
-################################################################################ End UMAP
+################################################################################ End integration with JointPCAIntegration
 
 merged_obj2 = merged_obj1
 
@@ -1253,6 +1343,7 @@ for (i in seq_along(samples)) {
 }
 
 
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 2/5_The Seurat objects per sample")
 # 5
 # GSE206299_seurat_objs
 seurat_objs <- list(seurat_obj_1, seurat_obj_2, seurat_obj_3, seurat_obj_4, seurat_obj_5, 
