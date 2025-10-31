@@ -2263,6 +2263,9 @@ merged_obj = RunPCA(merged_obj)
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
+total_barcodes <- length(colnames(merged_obj))
+unique_barcodes <- length(unique(colnames(merged_obj)))
+
 merged_obj <- IntegrateLayers(object = merged_obj,
                               method = CCAIntegration,
                               orig.reduction = "pca", 
@@ -2296,31 +2299,73 @@ dev.off()
 
 merged_obj2 = merged_obj1
 
+merged_obj2$orig.ident <- gsub("_New$", "", merged_obj2$orig.ident)
+
+merged_obj2$orig.ident <- gsub("Healthy_Control_", "Healthy ", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("UC_Non_Inflamed_", "UC_NonInflamed ", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("CPI_Colitis_", "CPI_Colitis ", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("CPI_Control_", "CPI_Control ", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("UC_Inflamed_", "UC_Inflamed ", merged_obj2$orig.ident)
+
+merged_obj2 <- RenameCells(merged_obj2, new.names = paste0("Gupta/", merged_obj2$orig.ident, "/", colnames(merged_obj2)))
+
+cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
+colnames(cell_counts) <- c("Sample", "Number_of_Cells")
+print(cell_counts, row.names = FALSE)
+
+# CPI_Colitis 1 : 2165
+# CPI_Colitis 2 : 1853
+# CPI_Colitis 3 : 3366
+# CPI_Colitis 4 : 1013
+# CPI_Colitis 5 : 992
+# CPI_Colitis 6 : 2630
+# CPI_Colitis 7 : 1657
+# CPI_Control 1 : 3411
+# CPI_Control 2 : 1646
+# CPI_Control 3 : 4127
+# CPI_Control 4 : 1566
+# CPI_Control 5 : 4097
+# CPI_Control 6 : 748
+# Healthy 1 : 1777
+# Healthy 2 : 929
+# Healthy 7 : 900
+# Healthy 8 : 632
+# Healthy 9 : 3348
+# UC_Inflamed 1 : 2093
+# UC_Inflamed 12 : 1079
+# UC_Inflamed 13 :  588
+# UC_Inflamed 14 : 1917
+# UC_Inflamed 2 : 3017
+# UC_Inflamed 3 : 3976
+# UC_Inflamed 4 : 2423
+# UC_Inflamed 5 : 3591
+# UC_Inflamed 6 : 5167
+# UC_NonInflamed 1 : 5079
+# UC_NonInflamed 2 : 3845
+# UC_NonInflamed 3 : 2318
+# UC_NonInflamed 4 : 3603
+
 ################################################################################ Start Extracting and saving Seurat objects for each sample
+
 samples <- unique(merged_obj2$orig.ident)
 
+start_index <- 53
+num_samples <- 31 
 
-for (i in seq_along(samples)) {
-  sample_name <- samples[i]
+for (i in 1:num_samples) {
+  sample_name <- samples[i] 
   seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
-  assign(paste0("sr_obj_", i), seurat_obj)
+  assign(paste0("srobj_", start_index + i - 1), seurat_obj)  # srobj_53 ... srobj_83
 }
-
 
 
 # 3
 # 3_The Seurat objects per sample
-setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part3/4_New_seurat_objs")
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 3/3_The Seurat objects per sample")
 
-sr_objs <- list(sr_obj_1, sr_obj_2, sr_obj_3, sr_obj_4, sr_obj_5, 
-                sr_obj_6, sr_obj_7, sr_obj_8, sr_obj_9, sr_obj_10, 
-                sr_obj_11, sr_obj_12, sr_obj_13, sr_obj_14, sr_obj_15, 
-                sr_obj_16, sr_obj_17, sr_obj_18, sr_obj_19, sr_obj_20, 
-                sr_obj_21, sr_obj_22, sr_obj_23, sr_obj_24, sr_obj_25, 
-                sr_obj_26, sr_obj_27, sr_obj_28, sr_obj_29, sr_obj_30, sr_obj_31)
-
-
-for (i in 1:length(sr_objs)) {
-  saveRDS(sr_objs[[i]], file = paste0("sr_obj_", i, ".rds"))
+seurat_objs <- mget(paste0("srobj_", start_index:(start_index + num_samples - 1)))
+for (i in seq_along(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", start_index + i - 1, ".rds"))
 }
+
 ################################################################################ End Extracting and saving Seurat objects for each sample

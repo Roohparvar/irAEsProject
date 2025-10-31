@@ -845,9 +845,12 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 merged_obj = RunPCA(merged_obj)
 
 # 1
- saveRDS(file = "merged_obj",merged_obj)
+# saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
-
+ 
+total_barcodes <- length(colnames(merged_obj))
+unique_barcodes <- length(unique(colnames(merged_obj)))
+ 
 merged_obj <- IntegrateLayers(object = merged_obj,
                               method = CCAIntegration,
                               orig.reduction = "pca", 
@@ -881,8 +884,46 @@ dev.off()
 
 merged_obj2 = merged_obj1
 
+
+merged_obj2$orig.ident <- dplyr::case_when(
+  grepl("Normal Control CT", merged_obj2$orig.ident) ~ sub("Normal Control ", "Healthy ", merged_obj2$orig.ident),
+  grepl("\\+CPI no colitis NC", merged_obj2$orig.ident) ~ sub("\\+CPI no colitis", "CPI_Control", merged_obj2$orig.ident),
+  grepl("\\+CPI colitis C", merged_obj2$orig.ident) ~ sub("\\+CPI colitis", "CPI_Colitis", merged_obj2$orig.ident),
+  TRUE ~ merged_obj2$orig.ident
+)
+merged_obj2 <- RenameCells(merged_obj2, new.names = paste0("Adrienne/", merged_obj2$orig.ident, "/", colnames(merged_obj2)))
+
+
+
+cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
+colnames(cell_counts) <- c("Sample", "Number_of_Cells")
+print(cell_counts, row.names = FALSE)
+
+# CPI_Colitis C1 : 3394
+# CPI_Colitis C2 : 3889
+# CPI_Colitis C3: 4128
+# CPI_Colitis C4 : 3445
+# CPI_Colitis C5 : 3892
+# CPI_Colitis C6 : 3011
+# CPI_Colitis C7 : 3465
+# CPI_Colitis C8 : 3517
+# CPI_Control NC1 : 2918
+# CPI_Control NC2 : 3661
+# CPI_Control NC3 : 2568
+# CPI_Control NC4 : 3465
+# CPI_Control NC5 : 3222
+# CPI_Control NC6 : 3995
+# Healthy CT1 : 3708
+# Healthy CT2 : 2637
+# Healthy CT3 : 3652
+# Healthy CT4 : 2479
+# Healthy CT5 : 2690
+# Healthy CT6 : 4598
+# Healthy CT7 : 3408
+# Healthy CT8 : 3148
+
 ################################################################################ Start Extracting and saving Seurat objects for each sample
-setwd("C:/Esmaeil/irAEsProject/Backup/Part 1/4_The Seurat objects per sample")
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 1/3_The Seurat objects per sample")
 samples <- unique(merged_obj2$orig.ident)
 
 for (i in seq_along(samples)) {
@@ -892,8 +933,8 @@ for (i in seq_along(samples)) {
 }
 
 
-# 4
-# 4_The Seurat objects per sample
+# 3
+# 3_The Seurat objects per sample
 seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
                     srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
                     srobj_11, srobj_12, srobj_13, srobj_14, srobj_15, 

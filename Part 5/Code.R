@@ -18,7 +18,7 @@ library(MAST)
 
 
 ################################################################################ Start Load Seurat objects | Part 1
-folder_path1 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 1/5_GSE144469_seurat_objs"
+folder_path1 <- "C:/Esmaeil/irAEsProject/Backup/Part 1/3_The Seurat objects per sample"
 rds_files1 <- list.files(folder_path1, pattern = "\\.rds$", full.names = TRUE)
 
 for (i in seq_along(rds_files1)) {
@@ -29,7 +29,7 @@ for (i in seq_along(rds_files1)) {
 
 
 ################################################################################ Start Load Seurat objects | Part 2
-folder_path2 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part 2/5_GSE206299_seurat_objs"
+folder_path2 <- "C:/Esmaeil/irAEsProject/Backup/Part 2/5_The Seurat objects per sample"
 rds_files2 <- list.files(folder_path2, pattern = "\\.rds$", full.names = TRUE)
 
 offset2 <- length(rds_files1)
@@ -41,7 +41,7 @@ for (i in seq_along(rds_files2)) {
 
 
 ################################################################################ Start Load Seurat objects | Part 3
-folder_path3 <- "C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part3/4_New_seurat_objs"
+folder_path3 <- "C:/Esmaeil/irAEsProject/Backup/Part 3/3_The Seurat objects per sample"
 rds_files3 <- list.files(folder_path3, pattern = "\\.rds$", full.names = TRUE)
 
 offset3 <- length(rds_files1) + length(rds_files2)
@@ -51,6 +51,17 @@ for (i in seq_along(rds_files3)) {
 }
 ################################################################################ End Load Seurat objects | Part 3
 
+
+################################################################################ Start Load Seurat objects | Part 3
+folder_path4 <- "C:/Esmaeil/irAEsProject/Backup/Part 4/3_The Seurat objects per sample"
+rds_files3 <- list.files(folder_path3, pattern = "\\.rds$", full.names = TRUE)
+
+offset3 <- length(rds_files1) + length(rds_files2) + length(rds_files3)
+for (i in seq_along(rds_files3)) {
+  obj <- readRDS(rds_files3[i])
+  assign(paste0("srob", i + offset3), obj)
+}
+################################################################################ End Load Seurat objects | Part 3
 
 
 
@@ -86,7 +97,11 @@ merged_obj <- merge(srob1, y = list(srob2, srob3, srob4,
                                     srob73, srob74, srob75,
                                     srob76, srob77, srob78,
                                     srob79, srob80, srob81,
-                                    srob82, srob83))
+                                    srob82, srob83, srob84, 
+                                    srob85, srob86, srob87,
+                                    srob88, srob89, srob90,
+                                    srob91, srob92, srob93,
+                                    srob94, srob95, srob96, , srob97))
 
 
 rm(list = paste0("srob", 1:83))
@@ -106,9 +121,10 @@ merged_obj = RunPCA(merged_obj)
 gc()
 
 # 1
-setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part4/1_The Seurat object obtained after RunPCA and before IntegrateLayers")
-saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 5/1_The Seurat object obtained after RunPCA and before IntegrateLayers")
+saveRDS(file = "merged_obj",merged_obj)
+
 gc()
 
 merged_obj <- IntegrateLayers(object = merged_obj,
@@ -117,10 +133,12 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                               new.reduction = "integrated.cca")
 
 gc()
+
 # 2
-#setwd("C:/Esmaeil/scRNA-seq/Backup of Local Data and Files Not on GitHub/Part4/2_The Seurat object obtained after IntegrateLayers")
-#saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 5/2_The Seurat object obtained after IntegrateLayers")
+saveRDS(file = "merged_obj",merged_obj)
+
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
 ################################################################################ End integration

@@ -654,26 +654,52 @@ merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 5, 6, 8, 1
 
 merged_obj2 = merged_obj1
 
+merged_obj2$orig.ident <- gsub("^Jun_HS([0-9]+)_HC$", "Healthy HS\\1", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("^Jun_HS([0-9]+)_UC$", "UC_Inflamed HS\\1", merged_obj2$orig.ident)
+merged_obj2$orig.ident <- gsub("^Jun_HS([0-9]+)_CPI_colitis$", "CPI_Colitis HS\\1", merged_obj2$orig.ident)
+
+merged_obj2 <- RenameCells(merged_obj2, new.names = paste0("Jun/", merged_obj2$orig.ident, "/", colnames(merged_obj2)))
+
+cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
+colnames(cell_counts) <- c("Sample", "Number_of_Cells")
+print(cell_counts, row.names = FALSE)
+
+# CPI_Colitis HS10 : 1483
+# CPI_Colitis HS11 : 3448
+# CPI_Colitis HS12 : 2321
+# CPI_Colitis HS13 : 3501
+# CPI_Colitis HS14 : 2809
+# CPI_Colitis HS15 : 2177
+# CPI_Colitis HS7 : 1962
+# CPI_Colitis HS8 : 1083
+# CPI_Colitis HS9 : 1232
+# Healthy HS1 : 1451
+# Healthy HS2 : 1000
+# Healthy HS3 : 1224
+# UC_Inflamed HS4 : 901
+# UC_Inflamed HS5 : 1302
+
 ################################################################################ Start Extracting and saving Seurat objects for each sample
-setwd("C:/Esmaeil/irAEsProject/Backup/Part 4/3_The Seurat objects per sample")
 samples <- unique(merged_obj2$orig.ident)
 
-for (i in seq_along(samples)) {
-  sample_name <- samples[i]
+start_index <- 84
+num_samples <- 14 
+
+
+for (i in 1:num_samples) {
+  sample_name <- samples[i] 
   seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
-  assign(paste0("srobj_", i), seurat_obj)
+  assign(paste0("srobj_", start_index + i - 1), seurat_obj)  # srobj_84 ... srobj_97
 }
 
 
 # 3
 # 3_The Seurat objects per sample
-seurat_objs <- list(srobj_1, srobj_2, srobj_3, srobj_4, srobj_5, 
-                    srobj_6, srobj_7, srobj_8, srobj_9, srobj_10, 
-                    srobj_11, srobj_12, srobj_13, srobj_14)
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 4/3_The Seurat objects per sample")
 
-# Loop to save each Seurat object
-for (i in 1:length(seurat_objs)) {
-  saveRDS(seurat_objs[[i]], file = paste0("srobj_", i, ".rds"))
+seurat_objs <- mget(paste0("srobj_", start_index:(start_index + num_samples - 1)))
+for (i in seq_along(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", start_index + i - 1, ".rds"))
 }
 
 ################################################################################ End Extracting and saving Seurat objects for each sample

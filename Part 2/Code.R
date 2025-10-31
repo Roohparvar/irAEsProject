@@ -1153,6 +1153,9 @@ merged_obj = RunPCA(merged_obj)
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
 
+total_barcodes <- length(colnames(merged_obj))
+unique_barcodes <- length(unique(colnames(merged_obj)))
+
 ################################################################################ End The fundamental steps before integration
 
 
@@ -1269,7 +1272,7 @@ merged_obj <- IntegrateLayers(object = merged_obj,
 
 # 2
 setwd("C:/Esmaeil/irAEsProject/Backup/Part 2/4_The Seurat object obtained after IntegrateLayers with JointPCAIntegration")
-saveRDS(file = "merged_obj",merged_obj)
+# saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers with JointPCAIntegration
 
 merged_obj[["RNA"]] <- JoinLayers(merged_obj[["RNA"]])
@@ -1332,29 +1335,71 @@ merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 3, 5, 6, 7
 
 merged_obj2 = merged_obj1
 
+merged_obj2$orig.ident <- dplyr::case_when(
+  grepl("^Control Healthy", merged_obj2$orig.ident) ~ sub("^Control Healthy ", "Healthy ", merged_obj2$orig.ident),
+  grepl("^Control - On ICI Therapy", merged_obj2$orig.ident) ~ sub("^Control - On ICI Therapy ", "CPI_Control ", merged_obj2$orig.ident),
+  grepl("^irColitis Case", merged_obj2$orig.ident) ~ sub("^irColitis Case ", "CPI_Colitis ", merged_obj2$orig.ident),
+  TRUE ~ merged_obj2$orig.ident
+)
+
+merged_obj2 <- RenameCells(merged_obj2, new.names = paste0("Thomas/", merged_obj2$orig.ident, "/", colnames(merged_obj2)))
+
+cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
+colnames(cell_counts) <- c("Sample", "Number_of_Cells")
+print(cell_counts, row.names = FALSE)
+
+
+# CPI_Colitis SIC_100 : 3182
+# CPI_Colitis SIC_121 : 2869
+# CPI_Colitis SIC_126 : 2429
+# CPI_Colitis SIC_134 :  272
+# CPI_Colitis SIC_140 : 2408
+# CPI_Colitis SIC_141_A : 2460
+# CPI_Colitis SIC_141_B : 2296
+# CPI_Colitis SIC_32_Colon_128 : 591
+# CPI_Colitis SIC_32_Colon_178 : 1771
+# CPI_Colitis SIC_40 : 1115
+# CPI_Colitis SIC_71 : 2770
+# CPI_Colitis SIC_76 : 2871
+# CPI_Colitis SIC_89 : 1217
+# CPI_Colitis SIC_97 : 3404
+# CPI_Control SIC_109 : 1545
+# CPI_Control SIC_172 :  1066
+# CPI_Control SIC_19 : 302
+# CPI_Control SIC_31 : 1694
+# CPI_Control SIC_94 : 1367
+# Healthy MC_1 : 2836
+# Healthy MC_2_A : 1942
+# Healthy MC_2_B : 1833
+# Healthy MC_9 : 4769
+# Healthy SIC_13 : 423
+# Healthy SIC_186 : 2091
+# Healthy SIC_187 : 2076
+# Healthy SIC_188_A : 1393
+# Healthy SIC_188_B : 1490
+# Healthy SIC_612_A : 1662
+# Healthy SIC_612_B : 1749
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 
 samples <- unique(merged_obj2$orig.ident)
 
-for (i in seq_along(samples)) {
-  sample_name <- samples[i]
+start_index <- 23
+num_samples <- 30 
+
+
+for (i in 1:num_samples) {
+  sample_name <- samples[i] 
   seurat_obj <- subset(merged_obj2, subset = orig.ident == sample_name)
-  assign(paste0("seurat_obj_", i), seurat_obj)
+  assign(paste0("srobj_", start_index + i - 1), seurat_obj)  # srobj_23 ... srobj_52
 }
 
 
 setwd("C:/Esmaeil/irAEsProject/Backup/Part 2/5_The Seurat objects per sample")
-# 5
-# GSE206299_seurat_objs
-seurat_objs <- list(seurat_obj_1, seurat_obj_2, seurat_obj_3, seurat_obj_4, seurat_obj_5, 
-                    seurat_obj_6, seurat_obj_7, seurat_obj_8, seurat_obj_9, seurat_obj_10, 
-                    seurat_obj_11, seurat_obj_12, seurat_obj_13, seurat_obj_14, seurat_obj_15, 
-                    seurat_obj_16, seurat_obj_17, seurat_obj_18, seurat_obj_19, seurat_obj_20, 
-                    seurat_obj_21, seurat_obj_22, seurat_obj_23, seurat_obj_24, seurat_obj_25, 
-                    seurat_obj_26, seurat_obj_27, seurat_obj_28, seurat_obj_29, seurat_obj_30)
 
-for (i in 1:length(seurat_objs)) {
-  saveRDS(seurat_objs[[i]], file = paste0("seurat_obj_", i, ".rds"))
+seurat_objs <- mget(paste0("srobj_", start_index:(start_index + num_samples - 1)))
+for (i in seq_along(seurat_objs)) {
+  saveRDS(seurat_objs[[i]], file = paste0("srobj_", start_index + i - 1, ".rds"))
 }
+
 
 ################################################################################ End Extracting and saving Seurat objects for each sample

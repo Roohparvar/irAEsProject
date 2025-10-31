@@ -52,7 +52,7 @@ This dataset includes samples from five distinct groups:
 ##
 
 ### Dataset 4: GSE253720  
-This dataset includes samples from ... distinct groups:  
+This dataset includes samples from three distinct groups:  
 - **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis**
 - **Healthy individuals with no treatment and no colitis**
 - **Patients with active inflammation due to Ulcerative Colitis (UC)**
