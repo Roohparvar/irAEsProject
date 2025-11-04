@@ -73,16 +73,13 @@ The samples collected from the four datasets in this project are divided into **
 ##
 
 ### Cell Type Focus
-
-- In the **first part** of the project, **CD3+ cells** were downloaded and analyzed from the GSE144469 dataset.  
-- In the **second part**, **CD4+** and **CD8+ cells** were extracted and analyzed from the GSE206299 dataset.  
-- In the **third and fourth parts**, cells were identified by high expression of **CD3D**, **CD3E**, and **CD3G** genes, and low expression of **LYZ**, **CD79A**, and **CD19** genes.
+In this study, we focused on T cells by examining marker gene expression, selecting cells with high T cell marker expression and low expression of other lineage markers to include only T cells.
 
 ---
 ---
 ---
 
-## Part 1: Analyzing Each Dataset Separately
+## Analyzing Each Dataset Separately
 For each dataset (article by article, dataset by dataset), we performed the following steps:
 
 - Conducted quality control (QC) on individual samples. 
@@ -95,9 +92,17 @@ For each dataset (article by article, dataset by dataset), we performed the foll
 ---
 ---
 
-## Part 2: Integration of All Samples
-In this section, we applied the same analytical approach as in the previous parts. However, this time, the analysis was performed on all samples collectively by integrating the datasets obtained from the all referenced datasets.
+## Integration of All Samples
+- In this section, we integrated the preprocessed data using the CCA Integration method.
+- After integration, we performed FindNeighbors and FindClusters, and visualized the resulting clusters using a UMAP plot.
 
+---
+---
+---
+
+## Integration of All Samples
+- We identified marker genes for each cluster using min.pct = 0.1, logfc.threshold = 0.1, and the Wilcoxon test (test.use = "wilcox").
+- Based on these marker genes, we assigned a cell type identity to each cluster.
 ---
 ---
 ---
