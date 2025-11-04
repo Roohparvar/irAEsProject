@@ -63,7 +63,7 @@ This dataset includes samples from three distinct groups:
 The samples collected from the four datasets in this project are divided into **five main groups** based on treatment status, disease condition, and inflammation phase:
 
 | Description | Short Name | Number of Samples | Number of Cells |
-|------------|------------|-----------------|
+|------------|------------|-----------------|-----------------|
 | Healthy individuals with no treatment and no colitis | `Healthy` | 27 | 59845 |
 | Patients receiving Immune Checkpoint Inhibitors therapy without colitis | `CPI_Control` | 17 | 41398 |
 | Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` | 38 | 92088 |
