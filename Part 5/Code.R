@@ -45,6 +45,7 @@ folder_path3 <- "C:/Esmaeil/irAEsProject/Backup/Part 3/3_The Seurat objects per 
 rds_files3 <- list.files(folder_path3, pattern = "\\.rds$", full.names = TRUE)
 
 offset3 <- length(rds_files1) + length(rds_files2)
+
 for (i in seq_along(rds_files3)) {
   obj <- readRDS(rds_files3[i])
   assign(paste0("srob", i + offset3), obj)
@@ -52,16 +53,16 @@ for (i in seq_along(rds_files3)) {
 ################################################################################ End Load Seurat objects | Part 3
 
 
-################################################################################ Start Load Seurat objects | Part 3
+################################################################################ Start Load Seurat objects | Part 4
 folder_path4 <- "C:/Esmaeil/irAEsProject/Backup/Part 4/3_The Seurat objects per sample"
-rds_files3 <- list.files(folder_path3, pattern = "\\.rds$", full.names = TRUE)
+rds_files4 <- list.files(folder_path4, pattern = "\\.rds$", full.names = TRUE)
 
-offset3 <- length(rds_files1) + length(rds_files2) + length(rds_files3)
-for (i in seq_along(rds_files3)) {
-  obj <- readRDS(rds_files3[i])
-  assign(paste0("srob", i + offset3), obj)
+offset4 <- length(rds_files1) + length(rds_files2) + length(rds_files3)
+for (i in seq_along(rds_files4)) {
+  obj <- readRDS(rds_files4[i])
+  assign(paste0("srob", i + offset4), obj)
 }
-################################################################################ End Load Seurat objects | Part 3
+################################################################################ End Load Seurat objects | Part 4
 
 
 
@@ -101,10 +102,11 @@ merged_obj <- merge(srob1, y = list(srob2, srob3, srob4,
                                     srob85, srob86, srob87,
                                     srob88, srob89, srob90,
                                     srob91, srob92, srob93,
-                                    srob94, srob95, srob96, , srob97))
+                                    srob94, srob95, srob96,
+                                    srob97))
 
 
-rm(list = paste0("srob", 1:83))
+rm(list = paste0("srob", 1:97))
 gc() 
 
 
