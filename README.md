@@ -64,11 +64,11 @@ The samples collected from the four datasets in this project are divided into **
 
 | Description | Short Name | Number of Samples | Number of Cells |
 |------------|------------|-----------------|-----------------|
-| Healthy individuals with no treatment and no colitis | `Healthy` | 27 | 59845 |
-| Patients receiving Immune Checkpoint Inhibitors therapy without colitis | `CPI_Control` | 17 | 41398 |
-| Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` | 38 | 92088 |
-| Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` | 11 | 26054 |
-| Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` | 4 | 14845 |
+| Healthy individuals with no treatment and no colitis | `Healthy` | 27 | 59,845 |
+| Patients receiving Immune Checkpoint Inhibitors therapy without colitis | `CPI_Control` | 17 | 41,398 |
+| Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` | 38 | 92,088 |
+| Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` | 11 | 26,054 |
+| Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` | 4 | 14,845 |
 
 ##
 
