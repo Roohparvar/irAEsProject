@@ -35,9 +35,9 @@ This dataset includes samples categorized into three cohorts:
 
 ### Dataset 2: GSE206299  
 This dataset includes samples from three distinct groups:  
-- **Healthy individuals with no treatment and no colitis(11 Samples)**
-- **Patients receiving Immune Checkpoint Inhibitors therapy  without colitis(5 Samples)**
-- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis(14 Samples)**
+- **Healthy individuals with no treatment and no colitis (11 Samples)**
+- **Patients receiving Immune Checkpoint Inhibitors therapy  without colitis (5 Samples)**
+- **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis (14 Samples)**
 
 ##
 

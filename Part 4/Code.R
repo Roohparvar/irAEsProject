@@ -8,10 +8,10 @@ library(ggplot2)
 
 ################################################################################ Start reading the expression and metadata CSVs, and splitting the data by each patient.
 # Expression matrix
-expr <- read.csv("C:/Esmaeil/irAEsProject/Backup/Part 4/Data/1_Python Data Preparation/expression.csv", row.names = 1)
+expr <- read.csv("C:/Esmaeil/irAEsProject/Backup/Part 4/0_Data/Python Data Preparation/expression.csv", row.names = 1)
 
 # Metadata file
-obs <- read.csv("C:/Esmaeil/irAEsProject/Backup/Part 4/Data/1_Python Data Preparation/metadata_obs.csv", row.names = 1)
+obs <- read.csv("C:/Esmaeil/irAEsProject/Backup/Part 4/0_Data/Python Data Preparation/metadata_obs.csv", row.names = 1)
 
 
 
@@ -53,15 +53,15 @@ for (s in samples) {
 # Saved and stored: HS4 ( 2853 cells, disease: UC )
 # Saved and stored: HS5 ( 2260 cells, disease: UC )
 
-# Saved and stored: HS7 ( 3172 cells, disease: CPI_colitis )
-# Saved and stored: HS8 ( 2851 cells, disease: CPI_colitis )
-# Saved and stored: HS9 ( 2366 cells, disease: CPI_colitis )
-# Saved and stored: HS10 ( 2731 cells, disease: CPI_colitis )
-# Saved and stored: HS11 ( 4848 cells, disease: CPI_colitis )
-# Saved and stored: HS12 ( 3589 cells, disease: CPI_colitis )
-# Saved and stored: HS13 ( 5142 cells, disease: CPI_colitis )
-# Saved and stored: HS14 ( 5293 cells, disease: CPI_colitis )
-# Saved and stored: HS15 ( 4936 cells, disease: CPI_colitis )
+# Saved and stored: HS7 (3172 cells, disease: CPI_colitis)
+# Saved and stored: HS8 (2851 cells, disease: CPI_colitis)
+# Saved and stored: HS9 (2366 cells, disease: CPI_colitis)
+# Saved and stored: HS10 (2731 cells, disease: CPI_colitis)
+# Saved and stored: HS11 (4848 cells, disease: CPI_colitis)
+# Saved and stored: HS12 (3589 cells, disease: CPI_colitis)
+# Saved and stored: HS13 (5142 cells, disease: CPI_colitis)
+# Saved and stored: HS14 (5293 cells, disease: CPI_colitis)
+# Saved and stored: HS15 (4936 cells, disease: CPI_colitis)
 ################################################################################ End reading the expression and metadata CSVs, and splitting the data by each patient.
 
 # QC
@@ -72,8 +72,9 @@ CountMatrix <- t(HS1$expression)
 
 
 Jun_srobj_1 <- CreateSeuratObject(counts = CountMatrix, project = "Jun_HS1_HC", min.cells = 3, min.features = 200)
-Jun_srobj_1[["MTpercent"]] <- PercentageFeatureSet(Jun_srobj_1, pattern = "^MT\\.")
 
+# grep("^MT", rownames(Jun_srobj_1), value = TRUE)
+Jun_srobj_1[["MTpercent"]] <- PercentageFeatureSet(Jun_srobj_1, pattern = "^MT\\.")
 
 setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 4/QC/HS1(HC)")
 
@@ -82,9 +83,9 @@ ggplot(data = Jun_srobj_1@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
+  geom_hline(yintercept = 15, color = 'red') +
   geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 3500, color = 'red')
+  geom_vline(xintercept = 30000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -92,14 +93,15 @@ ggplot(data = Jun_srobj_1@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 650, color = 'red') +
+  geom_hline(yintercept = 15, color = 'red') +
+  geom_vline(xintercept = 600, color = 'red') +
   geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_1 <- subset(Jun_srobj_1, subset = nFeature_RNA > 650 & nFeature_RNA < 3000 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 3500)
+Jun_srobj_1 <- subset(Jun_srobj_1, subset = nFeature_RNA > 600 & nFeature_RNA < 3000 & MTpercent < 15 & nCount_RNA > 1000 & nCount_RNA < 30000)
 ################################################################################ End HS1(HC)
+
 
 
 ################################################################################ Start HS2(HC)
@@ -118,9 +120,9 @@ ggplot(data = Jun_srobj_2@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
+  geom_hline(yintercept = 18, color = 'red') +
   geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 3500, color = 'red')
+  geom_vline(xintercept = 30000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -128,13 +130,13 @@ ggplot(data = Jun_srobj_2@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 650, color = 'red') +
+  geom_hline(yintercept = 18, color = 'red') +
+  geom_vline(xintercept = 600, color = 'red') +
   geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_2 <- subset(Jun_srobj_2, subset = nFeature_RNA > 650 & nFeature_RNA < 3000 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 3500)
+Jun_srobj_2 <- subset(Jun_srobj_2, subset = nFeature_RNA > 600 & nFeature_RNA < 3000 & MTpercent < 18 & nCount_RNA > 1000 & nCount_RNA < 30000)
 ################################################################################ End HS2(HC)
 
 
@@ -155,9 +157,9 @@ ggplot(data = Jun_srobj_3@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 3500, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') +
+  geom_vline(xintercept = 1200, color = 'red') +
+  geom_vline(xintercept = 30000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -165,13 +167,13 @@ ggplot(data = Jun_srobj_3@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 650, color = 'red') +
+  geom_hline(yintercept = 18, color = 'red') +
+  geom_vline(xintercept = 700, color = 'red') +
   geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_3 <- subset(Jun_srobj_3, subset = nFeature_RNA > 650 & nFeature_RNA < 3000 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 3500)
+Jun_srobj_3 <- subset(Jun_srobj_3, subset = nFeature_RNA > 700 & nFeature_RNA < 3000 & MTpercent < 18 & nCount_RNA > 1200 & nCount_RNA < 30000)
 ################################################################################ End HS3(HC)
 
 
@@ -191,9 +193,9 @@ ggplot(data = Jun_srobj_4@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 3000, color = 'red')
+  geom_hline(yintercept = 15, color = 'red') +
+  geom_vline(xintercept = 1200, color = 'red') +
+  geom_vline(xintercept = 30000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -201,13 +203,13 @@ ggplot(data = Jun_srobj_4@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 650, color = 'red') +
+  geom_hline(yintercept = 15, color = 'red') +
+  geom_vline(xintercept = 700, color = 'red') +
   geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_4 <- subset(Jun_srobj_4, subset = nFeature_RNA > 650 & nFeature_RNA < 3000 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 3000)
+Jun_srobj_4 <- subset(Jun_srobj_4, subset = nFeature_RNA > 700 & nFeature_RNA < 3000 & MTpercent < 15 & nCount_RNA > 1200 & nCount_RNA < 30000)
 ################################################################################ End HS4(UC)
 
 
@@ -227,9 +229,9 @@ ggplot(data = Jun_srobj_5@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1500, color = 'red') +
-  geom_vline(xintercept = 3000, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 7900, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -237,13 +239,13 @@ ggplot(data = Jun_srobj_5@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 600, color = 'red') +
-  geom_vline(xintercept = 2800, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 2500, color = 'red')
 dev.off()
 
 
-Jun_srobj_5 <- subset(Jun_srobj_5, subset = nFeature_RNA > 600 & nFeature_RNA < 2800 & MTpercent < 5 & nCount_RNA > 1500 & nCount_RNA < 3000)
+Jun_srobj_5 <- subset(Jun_srobj_5, subset = nFeature_RNA > 700 & nFeature_RNA < 2500 & MTpercent < 18 & nCount_RNA > 1000 & nCount_RNA < 7900)
 ################################################################################ End HS5(UC)
 
 
@@ -264,9 +266,9 @@ ggplot(data = Jun_srobj_7@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 1500, color = 'red') +
-  geom_vline(xintercept = 3500, color = 'red')
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 10000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -274,13 +276,13 @@ ggplot(data = Jun_srobj_7@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
   geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_7 <- subset(Jun_srobj_7, subset = nFeature_RNA > 500 & nFeature_RNA < 3000 & MTpercent < 4.5 & nCount_RNA > 1500 & nCount_RNA < 3500)
+Jun_srobj_7 <- subset(Jun_srobj_7, subset = nFeature_RNA > 700 & nFeature_RNA < 3000 & MTpercent < 20 & nCount_RNA > 1000 & nCount_RNA < 10000)
 ################################################################################ End HS7(CPI_colitis)
 
 
@@ -301,9 +303,9 @@ ggplot(data = Jun_srobj_8@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 3500, color = 'red')
+  geom_hline(yintercept = 17, color = 'red') + 
+  geom_vline(xintercept = 1200, color = 'red') +
+  geom_vline(xintercept = 35000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -311,13 +313,13 @@ ggplot(data = Jun_srobj_8@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 3100, color = 'red')
+  geom_hline(yintercept = 17, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 3300, color = 'red')
 dev.off()
 
 
-Jun_srobj_8 <- subset(Jun_srobj_8, subset = nFeature_RNA > 500 & nFeature_RNA < 3100 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 3500)
+Jun_srobj_8 <- subset(Jun_srobj_8, subset = nFeature_RNA > 700 & nFeature_RNA < 3300 & MTpercent < 17 & nCount_RNA > 1200 & nCount_RNA < 35000)
 ################################################################################ End HS8(CPI_colitis)
 
 
@@ -338,9 +340,9 @@ ggplot(data = Jun_srobj_9@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4, color = 'red') +
-  geom_vline(xintercept = 1500, color = 'red') +
-  geom_vline(xintercept = 3600, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1200, color = 'red') +
+  geom_vline(xintercept = 14000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -348,13 +350,13 @@ ggplot(data = Jun_srobj_9@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4, color = 'red') +
-  geom_vline(xintercept = 600, color = 'red') +
-  geom_vline(xintercept = 4000, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 650, color = 'red') +
+  geom_vline(xintercept = 3700, color = 'red')
 dev.off()
 
 
-Jun_srobj_9 <- subset(Jun_srobj_9, subset = nFeature_RNA > 600 & nFeature_RNA < 4000 & MTpercent < 4 & nCount_RNA > 1500 & nCount_RNA < 3600)
+Jun_srobj_9 <- subset(Jun_srobj_9, subset = nFeature_RNA > 650 & nFeature_RNA < 3700 & MTpercent < 18 & nCount_RNA > 1200 & nCount_RNA < 14000)
 ################################################################################ End HS9(CPI_colitis)
 
 
@@ -374,9 +376,9 @@ ggplot(data = Jun_srobj_10@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1200, color = 'red') +
-  geom_vline(xintercept = 3700, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1400, color = 'red') +
+  geom_vline(xintercept = 15000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -384,13 +386,13 @@ ggplot(data = Jun_srobj_10@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 4000, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_10 <- subset(Jun_srobj_10, subset = nFeature_RNA > 500 & nFeature_RNA < 4000 & MTpercent < 5 & nCount_RNA > 1200 & nCount_RNA < 3700)
+Jun_srobj_10 <- subset(Jun_srobj_10, subset = nFeature_RNA > 600 & nFeature_RNA < 3000 & MTpercent < 18 & nCount_RNA > 1400 & nCount_RNA < 15000)
 ################################################################################ End HS10(CPI_colitis)
 
 
@@ -411,9 +413,9 @@ ggplot(data = Jun_srobj_11@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 1300, color = 'red') +
-  geom_vline(xintercept = 3700, color = 'red')
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 18000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -421,13 +423,13 @@ ggplot(data = Jun_srobj_11@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 4000, color = 'red')
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 3200, color = 'red')
 dev.off()
 
 
-Jun_srobj_11 <- subset(Jun_srobj_11, subset = nFeature_RNA > 500 & nFeature_RNA < 4000 & MTpercent < 4.5 & nCount_RNA > 1300 & nCount_RNA < 3700)
+Jun_srobj_11 <- subset(Jun_srobj_11, subset = nFeature_RNA > 600 & nFeature_RNA < 3200 & MTpercent < 20 & nCount_RNA > 1000 & nCount_RNA < 18000)
 ################################################################################ End HS11(CPI_colitis)
 
 
@@ -448,9 +450,9 @@ ggplot(data = Jun_srobj_12@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 1300, color = 'red') +
-  geom_vline(xintercept = 3700, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 10000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -458,13 +460,13 @@ ggplot(data = Jun_srobj_12@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 4.5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 4000, color = 'red')
+  geom_hline(yintercept = 18, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 3000, color = 'red')
 dev.off()
 
 
-Jun_srobj_12 <- subset(Jun_srobj_12, subset = nFeature_RNA > 500 & nFeature_RNA < 4000 & MTpercent < 4.5 & nCount_RNA > 1300 & nCount_RNA < 3700)
+Jun_srobj_12 <- subset(Jun_srobj_12, subset = nFeature_RNA > 700 & nFeature_RNA < 3000 & MTpercent < 18 & nCount_RNA > 1000 & nCount_RNA < 10000)
 ################################################################################ End HS12(CPI_colitis)
 
 
@@ -485,9 +487,9 @@ ggplot(data = Jun_srobj_13@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 1300, color = 'red') +
-  geom_vline(xintercept = 3700, color = 'red')
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 1000, color = 'red') +
+  geom_vline(xintercept = 17000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -495,13 +497,13 @@ ggplot(data = Jun_srobj_13@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 4000, color = 'red')
+  geom_hline(yintercept = 20, color = 'red') + 
+  geom_vline(xintercept = 600, color = 'red') +
+  geom_vline(xintercept = 3200, color = 'red')
 dev.off()
 
 
-Jun_srobj_13 <- subset(Jun_srobj_13, subset = nFeature_RNA > 500 & nFeature_RNA < 4000 & MTpercent < 5 & nCount_RNA > 1300 & nCount_RNA < 3700)
+Jun_srobj_13 <- subset(Jun_srobj_13, subset = nFeature_RNA > 600 & nFeature_RNA < 3200 & MTpercent < 20 & nCount_RNA > 1000 & nCount_RNA < 17000)
 ################################################################################ End HS13(CPI_colitis)
 
 
@@ -522,9 +524,9 @@ ggplot(data = Jun_srobj_14@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
+  geom_hline(yintercept = 17, color = 'red') + 
   geom_vline(xintercept = 1100, color = 'red') +
-  geom_vline(xintercept = 4100, color = 'red')
+  geom_vline(xintercept = 42000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -532,13 +534,13 @@ ggplot(data = Jun_srobj_14@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 8500, color = 'red')
+  geom_hline(yintercept = 17, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 8000, color = 'red')
 dev.off()
 
 
-Jun_srobj_14 <- subset(Jun_srobj_14, subset = nFeature_RNA > 500 & nFeature_RNA < 8500 & MTpercent < 5 & nCount_RNA > 1100 & nCount_RNA < 4100)
+Jun_srobj_14 <- subset(Jun_srobj_14, subset = nFeature_RNA > 700 & nFeature_RNA < 8000 & MTpercent < 17 & nCount_RNA > 1100 & nCount_RNA < 42000)
 ################################################################################ End HS14(CPI_colitis)
 
 
@@ -559,9 +561,9 @@ ggplot(data = Jun_srobj_15@meta.data, aes(x = nCount_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nCount_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
+  geom_hline(yintercept = 16, color = 'red') + 
   geom_vline(xintercept = 1000, color = 'red') +
-  geom_vline(xintercept = 4100, color = 'red')
+  geom_vline(xintercept = 40000, color = 'red')
 dev.off()
 
 png(filename = "2.png", width = 10000, height = 4000, units = "px", res = 600)
@@ -569,13 +571,13 @@ ggplot(data = Jun_srobj_15@meta.data, aes(x = nFeature_RNA, y = MTpercent)) +
   geom_point(size = 2, color = 'blue') +
   labs(x = 'nFeature_RNA', y = 'Percent Mito') +
   scale_x_log10() +
-  geom_hline(yintercept = 5, color = 'red') +
-  geom_vline(xintercept = 500, color = 'red') +
-  geom_vline(xintercept = 8000, color = 'red')
+  geom_hline(yintercept = 16, color = 'red') + 
+  geom_vline(xintercept = 700, color = 'red') +
+  geom_vline(xintercept = 5400, color = 'red')
 dev.off()
 
 
-Jun_srobj_15 <- subset(Jun_srobj_15, subset = nFeature_RNA > 500 & nFeature_RNA < 8000 & MTpercent < 5 & nCount_RNA > 1000 & nCount_RNA < 4100)
+Jun_srobj_15 <- subset(Jun_srobj_15, subset = nFeature_RNA > 700 & nFeature_RNA < 5400 & MTpercent < 16 & nCount_RNA > 1000 & nCount_RNA < 40000)
 ################################################################################ End HS15(CPI_colitis)
 
 
