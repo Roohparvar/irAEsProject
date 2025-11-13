@@ -688,21 +688,6 @@ cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
 colnames(cell_counts) <- c("Sample", "Number_of_Cells")
 print(cell_counts, row.names = FALSE)
 
-# CPI_Colitis HS10	975
-# CPI_Colitis HS11	2900
-# CPI_Colitis HS12	1817
-# CPI_Colitis HS13	2843
-# CPI_Colitis HS14	1332
-# CPI_Colitis HS15	1065
-# CPI_Colitis HS7	1580
-# CPI_Colitis HS8	646
-# CPI_Colitis HS9	926
-# Healthy HS1	1100
-# Healthy HS2	634
-# Healthy HS3	655
-# UC_Inflamed HS4	650
-# UC_Inflamed HS5	1234
-
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 samples <- unique(merged_obj2$orig.ident)
 

@@ -1190,22 +1190,6 @@ DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "2_First Feature Plot-CCA.png", width = 18000, height = 25000, units = "px", res = 600)
-
-FeaturePlot(merged_obj1, features = c(
-  "CD3D", "CD3E", "CD3G",  # T cell markers
-  "CD4",           # helper T cells
-  "CD8A", "CD8B",  # cytotoxic T cells
-  "TRAC", "TRBC1", "TRBC2",  # TCR chains
-  "IL7R", "TCF7", "SELL",    # naive/memory T cells
-  
-  "MS4A1", "CD79A", "CD19",   # B cell markers
-  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
-  "NCAM1", "KLRD1",   # NK cells
-  "HBB", "PPBP"   # Erythroid / Platelets
-))
-
-dev.off()
 ################################################################################ End integration with CCAIntegration
 
 
@@ -1236,27 +1220,10 @@ merged_obj1 = FindClusters(merged_obj1, resolution = 0.2)
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.rpca")
 
 
-png(filename = "1_Second UMAP-RPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
+png(filename = "2_Second UMAP-RPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
-
-png(filename = "2_Second Feature Plot-RPCA.png", width = 18000, height = 25000, units = "px", res = 600)
-
-FeaturePlot(merged_obj1, features = c(
-  "CD3D", "CD3E", "CD3G",  # T cell markers
-  "CD4",           # helper T cells
-  "CD8A", "CD8B",  # cytotoxic T cells
-  "TRAC", "TRBC1", "TRBC2",  # TCR chains
-  "IL7R", "TCF7", "SELL",    # naive/memory T cells
-  
-  "MS4A1", "CD79A", "CD19",   # B cell markers
-  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
-  "NCAM1", "KLRD1",   # NK cells
-  "HBB", "PPBP"   # Erythroid / Platelets
-))
-
-dev.off()
 
 ################################################################################ End integration with RPCAIntegration
 
@@ -1286,50 +1253,56 @@ merged_obj1 = FindClusters(merged_obj1, resolution = 0.2)
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.dr")
 
 
-setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 2")
-png(filename = "5_Third UMAP-JointPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
+png(filename = "3_Third UMAP-JointPCA.png", width = 4000,height = 3000, units ="px", res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "6_Third Feature Plot-JointPCA.png", 
-    width = 18000, height = 29000, units = "px", res = 600)
+png(filename = "4_First Dot Plot.png", width = 1500, height = 1300, units = "px", res = 600)
 
-FeaturePlot(merged_obj1, features = c(
-  # ---- T cell markers ----
+DotPlot(merged_obj1, features = c(
+  # ---- T cell ----
   "CD3D", "CD3E", "CD3G",
-  "CD2", "CD5", "CD7",
-  "CD4", "CD8A", "CD8B",
-  "TRAC", "TRBC1", "TRBC2",
-  "LCK", "ZAP70",
-  # Naive/memory T
-  "IL7R", "TCF7", "SELL",
-  # Cytotoxic T
-  "GZMA", "GZMB", "GZMK", "PRF1",
-  # Regulatory T
-  "FOXP3", "IL2RA",
   
-  # ---- B cell markers ----
-  "MS4A1", "CD19", "CD79A", "CD79B", "PAX5",
-  # Immunoglobulin (BCR) transcripts
-  "IGHM", "IGHD", "IGKC", "IGLC2",
-  # Memory B / Activation
-  "CD27", "CD38",
-  # Plasma cell differentiation
-  "MZB1", "XBP1", "PRDM1", "SDC1", "TNFRSF17",
+  # ----  CD8 T cells ----
+  "CD8A",
   
-  # ---- Other lineages to exclude ----
-  "LYZ", "CD14", "FCGR3A",   # Monocyte/Myeloid
-  "NKG7", "GNLY", "NCAM1", "KLRD1",  # NK cells
-  "HBB", "HBA1", "PPBP",     # Erythroid / Platelets
-  "EPCAM", "PECAM1", "COL1A1" # Epithelial / Endothelial / Stromal
-))
+  # ----  CD4 T cells ----
+  "CD4",
+  
+  # ----  Plasma cells ----
+  "XBP1",
+  
+  # ----  B cells ----
+  "MS4A1", "CD19", "CD79A",
+  
+  # ----  Mononuclear phagocytes ----
+  "LYZ",
+  
+  # ----  Mast cells
+  "HPGDS"
+)) +
+  ggplot2::theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 3),
+    axis.text.y = element_text(size = 4),
+    axis.title = element_text(size = 6),
+    legend.text = element_text(size = 5),   # smaller legend text
+    legend.title = element_text(size = 5),  # smaller legend title
+    plot.title = element_text(size = 5, hjust = 1),  # smaller and centered title
+    legend.key.size = unit(0.2, "cm")  # decrease legend key size
+  ) +
+  ggplot2::labs(
+    title = "Cluster Marker Gene Expression (Dot Plot)",
+    x = "Genes",
+    y = "Clusters"
+  ) +
+  ggplot2::scale_size(range = c(1, 1))  # smaller circles
 
 dev.off()
 
 
-# Remove clusters 1, 3, 5, 6, 7, 10, 11, 14, and 15
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 3, 5, 6, 7, 10, 11, 14, 15), invert = TRUE)
+# Remove clusters 1, 3, 5, 6, 7, 10, 11, 12, 13, 14, and 15
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 3, 5, 6, 7, 10, 11, 12, 13, 14, 15), invert = TRUE)
 
 ################################################################################ End integration with JointPCAIntegration
 
@@ -1348,37 +1321,6 @@ cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
 colnames(cell_counts) <- c("Sample", "Number_of_Cells")
 print(cell_counts, row.names = FALSE)
 
-
-# CPI_Colitis SIC_100 : 3182
-# CPI_Colitis SIC_121 : 2869
-# CPI_Colitis SIC_126 : 2429
-# CPI_Colitis SIC_134 :  272
-# CPI_Colitis SIC_140 : 2408
-# CPI_Colitis SIC_141_A : 2460
-# CPI_Colitis SIC_141_B : 2296
-# CPI_Colitis SIC_32_Colon_128 : 591
-# CPI_Colitis SIC_32_Colon_178 : 1771
-# CPI_Colitis SIC_40 : 1115
-# CPI_Colitis SIC_71 : 2770
-# CPI_Colitis SIC_76 : 2871
-# CPI_Colitis SIC_89 : 1217
-# CPI_Colitis SIC_97 : 3404
-# CPI_Control SIC_109 : 1545
-# CPI_Control SIC_172 :  1066
-# CPI_Control SIC_19 : 302
-# CPI_Control SIC_31 : 1694
-# CPI_Control SIC_94 : 1367
-# Healthy MC_1 : 2836
-# Healthy MC_2_A : 1942
-# Healthy MC_2_B : 1833
-# Healthy MC_9 : 4769
-# Healthy SIC_13 : 423
-# Healthy SIC_186 : 2091
-# Healthy SIC_187 : 2076
-# Healthy SIC_188_A : 1393
-# Healthy SIC_188_B : 1490
-# Healthy SIC_612_A : 1662
-# Healthy SIC_612_B : 1749
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 
 samples <- unique(merged_obj2$orig.ident)
