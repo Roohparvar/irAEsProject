@@ -599,7 +599,7 @@ merged_obj = ScaleData(merged_obj,features = rownames(merged_obj))
 merged_obj = RunPCA(merged_obj)
 
 
-setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 4")
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 4/1_The Seurat object obtained after RunPCA and before IntegrateLayers")
 # 1
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after RunPCA and before IntegrateLayers
@@ -612,6 +612,7 @@ merged_obj <- IntegrateLayers(object = merged_obj,
                               verbose = FALSE)
 
 # 2
+setwd("C:/Esmaeil/irAEsProject/Backup/Part 4/2_The Seurat object obtained after IntegrateLayers")
 # saveRDS(file = "merged_obj",merged_obj)
 # The Seurat object obtained after IntegrateLayers
 
@@ -625,32 +626,53 @@ merged_obj1=FindNeighbors(merged_obj1,dims = 1:30,reduction = "integrated.cca")
 merged_obj1=FindClusters(merged_obj1,resolution = 0.1)
 
 
+setwd("C:/Esmaeil/irAEsProject/irAEsProject/Part 4")
+
 merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
 png(filename = "1_First UMAP.png", width = 4000,height = 3000, units ="px",res = 600 )
 DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "2_First Feature Plot.png", width = 18000, height = 25000, units = "px", res = 600)
 
-FeaturePlot(merged_obj1, features = c(
-  "CD3D", "CD3E", "CD3G",  # T cell markers
-  "CD4",           # helper T cells
-  "CD8A", "CD8B",  # cytotoxic T cells
-  "TRAC", "TRBC1", "TRBC2",  # TCR chains
-  "IL7R", "TCF7", "SELL",    # naive/memory T cells
-  
-  "MS4A1", "CD79A", "CD19",   # B cell markers
-  "LYZ", "CD14", "FCGR3A",   # Myeloid / Monocytes
-  "NCAM1", "KLRD1",   # NK cells
-  "HBB", "PPBP"   # Erythroid / Platelets
-))
+png(filename = "1_First Dot Plot.png", width = 20000, height = 4000, units = "px", res = 600)
+
+
+DotPlot(merged_obj1, features = c(
+  "CD79A", "MS4A1", "CD19",
+  "CD3D", "IL7R", "CD4", "CD40LG",
+  "CD8A", "CD8B", "GZMA",
+  "MKI67", "TYMS", "STMN1",
+  "PLVAP", "RAMP2", "EGFL7", "PECAM1", "CLDN5", "CRYAB", "S100B",
+  "NRXN1", "PLP1", "FABP1", "LRT8", "LGALS4", "PIGR", "EPCAM",
+  "TRDC", "TRGC2", "TRGC1",
+  "KRT86", "KRT81", "RORC",
+  "TPSAB1", "CPA3", "GATA2",
+  "COL3A1", "COL1A2", "PDGFRA",
+  "LYZ", "C1QA", "C1QB", "C1QC",
+  "GNLY", "KLRF1", "FCGR3A",
+  "MZB1", "DERL3", "TNFRSF17", "JCHAIN"
+)) +
+  ggplot2::theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12, face = "bold"),
+    legend.text = element_text(size = 9),
+    legend.title = element_text(size = 10)
+  ) +
+  ggplot2::labs(
+    title = "Cluster Marker Gene Expression (Dot Plot)",
+    x = "Genes",
+    y = "Clusters"
+  ) +
+  ggplot2::scale_size(range = c(1, 8)) 
 
 dev.off()
 
 
-# Remove clusters 1, 5, 6, 8, and 11
-merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 5, 6, 8, 11), invert = TRUE)
+
+# Remove clusters 1, 3 ,4, 6, 7, 8, 9, 10, and 11
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(1, 3, 4, 6, 7, 8, 9, 10, 11), invert = TRUE)
 
 ################################################################################ End UMAP
 
@@ -666,20 +688,20 @@ cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
 colnames(cell_counts) <- c("Sample", "Number_of_Cells")
 print(cell_counts, row.names = FALSE)
 
-# CPI_Colitis HS10 : 1483
-# CPI_Colitis HS11 : 3448
-# CPI_Colitis HS12 : 2321
-# CPI_Colitis HS13 : 3501
-# CPI_Colitis HS14 : 2809
-# CPI_Colitis HS15 : 2177
-# CPI_Colitis HS7 : 1962
-# CPI_Colitis HS8 : 1083
-# CPI_Colitis HS9 : 1232
-# Healthy HS1 : 1451
-# Healthy HS2 : 1000
-# Healthy HS3 : 1224
-# UC_Inflamed HS4 : 901
-# UC_Inflamed HS5 : 1302
+# CPI_Colitis HS10	975
+# CPI_Colitis HS11	2900
+# CPI_Colitis HS12	1817
+# CPI_Colitis HS13	2843
+# CPI_Colitis HS14	1332
+# CPI_Colitis HS15	1065
+# CPI_Colitis HS7	1580
+# CPI_Colitis HS8	646
+# CPI_Colitis HS9	926
+# Healthy HS1	1100
+# Healthy HS2	634
+# Healthy HS3	655
+# UC_Inflamed HS4	650
+# UC_Inflamed HS5	1234
 
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 samples <- unique(merged_obj2$orig.ident)

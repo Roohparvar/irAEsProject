@@ -877,9 +877,25 @@ DimPlot(merged_obj1,label = TRUE)
 dev.off()
 
 
-png(filename = "2_Feature Plot.png", width = 5000, height = 6000, units = "px", res = 600)
+png(filename = "2_First Feature Plot.png", width = 5000, height = 6000, units = "px", res = 600)
 FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
 dev.off()
+
+
+# Remove clusters 10
+merged_obj1 <- subset(merged_obj1, subset = seurat_clusters %in% c(10), invert = TRUE)
+
+
+merged_obj1=RunUMAP(merged_obj1,dims = 1:30, reduction = "integrated.cca")
+png(filename = "3_Second UMAP.png", width = 4000,height = 3000, units ="px", res = 600 )
+DimPlot(merged_obj1,label = TRUE)
+dev.off()
+
+
+png(filename = "4_Second Feature Plot.png", width = 5000, height = 6000, units = "px", res = 600)
+FeaturePlot(merged_obj1, features = c("CD3D", "CD3E", "CD3G", "LYZ", "CD79A", "CD19"))
+dev.off()
+
 ################################################################################ End UMAP
 
 merged_obj2 = merged_obj1
@@ -898,29 +914,6 @@ merged_obj2 <- RenameCells(merged_obj2, new.names = paste0("Adrienne/", merged_o
 cell_counts <- as.data.frame(table(merged_obj2$orig.ident))
 colnames(cell_counts) <- c("Sample", "Number_of_Cells")
 print(cell_counts, row.names = FALSE)
-
-# CPI_Colitis C1 : 3394
-# CPI_Colitis C2 : 3889
-# CPI_Colitis C3: 4128
-# CPI_Colitis C4 : 3445
-# CPI_Colitis C5 : 3892
-# CPI_Colitis C6 : 3011
-# CPI_Colitis C7 : 3465
-# CPI_Colitis C8 : 3517
-# CPI_Control NC1 : 2918
-# CPI_Control NC2 : 3661
-# CPI_Control NC3 : 2568
-# CPI_Control NC4 : 3465
-# CPI_Control NC5 : 3222
-# CPI_Control NC6 : 3995
-# Healthy CT1 : 3708
-# Healthy CT2 : 2637
-# Healthy CT3 : 3652
-# Healthy CT4 : 2479
-# Healthy CT5 : 2690
-# Healthy CT6 : 4598
-# Healthy CT7 : 3408
-# Healthy CT8 : 3148
 
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 setwd("C:/Esmaeil/irAEsProject/Backup/Part 1/3_The Seurat objects per sample")
