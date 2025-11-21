@@ -93,7 +93,7 @@ For each dataset (article by article, dataset by dataset), we performed the foll
 ---
 
 ## Integration of all datasets, clustering, and cell type annotation.
-- In this section, we integrated the preprocessed data using the CCA Integration method.
+- In this section, we integrated the preprocessed data using the JointPCA Integration method.
 - After integration, we performed FindNeighbors and FindClusters, and visualized the resulting clusters using a UMAP plot.
 - We identified marker genes for each cluster using min.pct = 0.1, logfc.threshold = 0.1, and the Wilcoxon test (test.use = "wilcox").
 - Based on these marker genes, we assigned a cell type identity to each cluster.
