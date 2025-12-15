@@ -59,7 +59,7 @@ This dataset includes samples from three distinct groups:
 ##
 
 ### Data Grouping
-The samples collected from the four datasets in this project are divided into **five main groups** based on treatment status, disease condition, and inflammation phase:
+The samples collected from the four datasets in this project are divided into **four main groups** based on treatment status, disease condition, and inflammation phase:
 
 | Description | Short Name | Number of Samples | Number of Cells |
 |------------|------------|-----------------|-----------------|
