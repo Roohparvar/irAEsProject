@@ -691,7 +691,7 @@ print(cell_counts, row.names = FALSE)
 ################################################################################ Start Extracting and saving Seurat objects for each sample
 samples <- unique(merged_obj2$orig.ident)
 
-start_index <- 84
+start_index <- 80
 num_samples <- 14 
 
 
