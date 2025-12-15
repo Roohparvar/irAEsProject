@@ -1,5 +1,5 @@
 # irAEs Project:
-This repository presents a unified single-cell and TCR analysis pipeline focused on immune-related adverse events (irAEs). By analyzing multiple datasets of patients with and without checkpoint inhibitor–associated colitis, alongside healthy and ulcerative colitis controls, the project aims to uncover immune cell signatures, disease mechanisms, and potential biomarkers linked to irAEs.
+This repository presents a unified single-cell and TCR analysis pipeline focused on ircolitis. By analyzing multiple datasets of patients with and without checkpoint inhibitor–associated colitis, alongside healthy and ulcerative colitis controls, the project aims to uncover immune cell signatures, disease mechanisms, and potential biomarkers linked to ircolitis.
 
 ---
 ---
@@ -42,12 +42,11 @@ This dataset includes samples from three distinct groups:
 ##
 
 ### Dataset 3: GSE189040  
-This dataset includes samples from five distinct groups:  
+This dataset includes samples from four distinct groups:  
 - **Healthy individuals with no treatment and no colitis (5 Samples)**
 - **Patients receiving Immune Checkpoint Inhibitors therapy  without colitis (6 Samples)**
 - **Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis (7 Samples)**
 - **Patients with active inflammation due to Ulcerative Colitis (9 Samples)**
-- **Patients with Ulcerative Colitis in remission or non-inflamed phase (4 Samples)**
 
 ##
 
@@ -68,7 +67,6 @@ The samples collected from the four datasets in this project are divided into **
 | Patients receiving Immune Checkpoint Inhibitors therapy without colitis | `CPI_Control` | 17 | 40,955 |
 | Patients receiving Immune Checkpoint Inhibitors therapy who developed colitis | `CPI_Colitis` | 38 | 85,334 |
 | Patients with active inflammation due to Ulcerative Colitis (UC) | `UC_Inflamed` | 11 | 25,735 |
-| Patients with Ulcerative Colitis in remission or non-inflamed phase | `UC_NonInflamed` | 4 | 14,845 |
 
 ##
 
@@ -93,7 +91,7 @@ For each dataset (article by article, dataset by dataset), we performed the foll
 ---
 
 ## Integration of all datasets, clustering, and cell type annotation.
-- In this section, we integrated the preprocessed data using the JointPCA Integration method.
+- In this section, we integrated the preprocessed data using the CCA Integration method.
 - After integration, we performed FindNeighbors and FindClusters, and visualized the resulting clusters using a UMAP plot.
 - We identified marker genes for each cluster using min.pct = 0.1, logfc.threshold = 0.1, and the Wilcoxon test (test.use = "wilcox").
 - Based on these marker genes, we assigned a cell type identity to each cluster.
